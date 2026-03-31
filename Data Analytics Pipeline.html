@@ -113,8 +113,40 @@
     .pager{position:fixed;left:50%;transform:translateX(-50%);bottom:30px;display:flex;gap:8px;z-index:20}
     .dotp{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.2)}
     .dotp.active{background:var(--accent);box-shadow:0 0 0 5px rgba(25,193,199,.15)}
+
+    .foundation-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      grid-template-rows:1fr 1fr;
+      gap:18px;
+      height:calc(100% - 64px);
+    }
+    .foundation-grid .card-dark{
+      height:100%;
+    }
+    .foundation-grid .span-2{
+      grid-row:span 2;
+    }
+    .foundation-grid .card-dark h3{
+      font-size:21px;
+      margin-bottom:10px;
+    }
+    .foundation-grid .card-dark h4{
+      font-size:16px;
+      margin:16px 0 8px;
+      color:#f2f6fd;
+    }
+    .foundation-grid .card-dark p,
+    .foundation-grid .card-dark li{
+      font-size:15px;
+      line-height:1.55;
+      color:#d8dfed;
+    }
+
     @media (max-width: 1200px){
       .cover,.split,.content-grid.two-col,.mini-grid.three,.timeline{grid-template-columns:1fr}
+      .foundation-grid{grid-template-columns:1fr;grid-template-rows:auto;height:auto}
+      .foundation-grid .span-2{grid-row:auto}
       .slide{overflow:auto}
       html,body,.deck{overflow:auto;height:auto}
       .slide{position:relative;opacity:1;transform:none;pointer-events:auto;height:auto;min-height:100vh}
@@ -225,14 +257,13 @@
                 <tr>
                   <td class="dept">HR</td>
                   <td><div class="task-list"><span class="task ok">Sick Leave</span><span class="task ok">Introduzione Odoo</span><span class="task ok">Check anomalie Odoo</span></div></td>
-                  <td><div class="task-list"><span class="task ok">Anomalie Odoo vs DB</span><span class="task todo">Allineamento Leaves DB</span><span class="task block">Attrition</span></div></td>
+                  <td><div class="task-list"><span class="task ok">Anomalie Odoo vs DB</span><span class="task block">Allineamento Leaves DB</span><span class="task block">Attrition</span></div></td>
                   <td><div class="task-list"><span class="task ok">Dashboard Remaining Leaves</span><span class="task ok">Documentazione Remaining Leaves</span><span class="task ok">Attrition - Workforce</span><span class="task ok">Attendance</span></div></td>
                 </tr>
                 <tr>
                   <td class="dept">ACCENTURE</td>
                   <td><div class="task-list"><span class="task ok">SKIP CVP</span><span class="task ok">BO Post Sales</span><span class="task ok">Quality Check</span><span class="task ok">BO Dealer</span></div></td>
                   <td><div class="task-list"><span class="task ok">Report per agent Dealer Care</span><span class="task ok">Report per agent Post Sales</span></div></td>
-                  <td><div class="task-list"><span class="task todo">Stabilizzazione / nessuna nuova priorità maggiore</span></div></td>
                 </tr>
                 <tr>
                   <td class="dept">Recruiting &amp; Training</td>
@@ -399,8 +430,8 @@
               <tbody>
                 <tr>
                   <td class="dept">C-LEVEL</td>
-                  <td><div class="task-list"><span class="task ok">Mokup Looker</span></div></td>
-                  <td><div class="task-list"><span class="task todo">Sales Dashboard - Analysis</span></div></td>
+                  <td><div class="task-list"><span class="task ok">Mokup iniziale Looker</span></div></td>
+                  <td><div class="task-list"><span class="task ok">Sales Dashboard - Analysis</span></div></td>
                   <td><div class="task-list"><span class="task ok">Sales Dashboard</span></div></td>
                 </tr>
                 <tr>
@@ -409,13 +440,12 @@
                     <span class="task ok">Assessment</span>
                     <span class="task ok">Check Tools</span>
                     <span class="task ok">Check Mapping &amp; KPIs</span>
-                    <span class="task todo">Sales Dashboard</span>
                   </div></td>
                   <td><div class="task-list">
-                    <span class="task prog">Mapping Statuses</span>
+                    <span class="task ok">Mapping Statuses</span>
                     <span class="task ok">Mapping prodotti</span>
                     <span class="task ok">Mapping area / BU / commesse</span>
-                    <span class="task todo">Sales Dashboard - Analysis</span>
+                    <span class="task ok">Sales Dashboard - Analysis</span>
                   </div></td>
                   <td><div class="task-list">
                     <span class="task ok">Sales Dashboard</span>
@@ -425,17 +455,15 @@
                   <td class="dept">RETAIL</td>
                   <td><div class="task-list">
                     <span class="task ok">Assessment v1</span>
-                    <span class="task ok">Dashboard on Looker - Report Magazzino</span>
                   </div></td>
                   <td><div class="task-list">
-                    <span class="task prog">Analisi dati su DB</span>
+                    <span class="task ok">Analisi dati su DB</span>
                     <span class="task block">Assessment v2</span>
-                    <span class="task block">Mokup Looker</span>
                   </div></td>
                   <td><div class="task-list">
                     <span class="task ok">Assessment v2</span>
-                    <span class="task ok">Attivazioni Retail</span>
                     <span class="task ok">Mapping</span>
+                    <span class="task ok">Dashboard Attivazioni Vodafone</span>
                   </div></td>
                 </tr>
                 <tr>
@@ -502,6 +530,7 @@
                 <li>Elevata complessità di mapping nella Sales Table.</li>
                 <li>Criticità strutturali nel modulo Pagamenti (listini e anagrafica).</li>
                 <li>Manutenzione parzialmente manuale e dipendente da altri dipartimenti.</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -655,47 +684,52 @@
       </div>
     </section>
 
-    <section class="slide">
-      <div class="frame">
-        <div class="header">
-          <div>
-            <div class="sub">Foundation work</div>
-            <h2>Valore nascosto ma strategico del dipartimento</h2>
-          </div>
-          <div class="legend"><span class="badge prog">high impact · low visibility</span></div>
-        </div>
-        <div class="content-grid two-col">
-          <div class="mini-grid">
-            <div class="card-dark">
-              <div class="mini">Architettura dati</div>
-              <h3>Stato attuale e direzione target</h3>
-              <p>Attualmente una parte dei dati verrà trasferita da <strong>NiFi</strong> a <strong>dbt</strong> con trasformazioni intermedie. Il lavoro di migrazione dell'intero background verso un <strong>Data Warehouse strutturato</strong> non è ancora partito, è per farlo dobbiamo prima fare un studio preliminare e analisi degli impatti.</p>
-            </div>
-            <div class="card-dark">
-              <div class="mini">Qualità e affidabilità</div>
-              <h3>Analisi Odoo: attività time-consuming ma necessaria</h3>
-              <p>È stata svolta un'analisi approfondita delle anomalie e dei problemi legati a Odoo. Questa attività richiede tempo e non genera visibilità immediata nel frontend, ma è fondamentale per migliorare accuratezza, coerenza e scalabilità delle future delivery.</p>
-            </div>
-          </div>
-          <div class="mini-grid">
-            <div class="card-dark">
-              <div class="mini">Messaggio chiave</div>
-              <h3>Come valutare correttamente Data Analytics</h3>
-              <ul>
-                <li>non solo report consegnati, ma anche stabilità del layer dati;</li>
-                <li>non solo output frontend, ma riduzione del rischio operativo;</li>
-                <li>non solo velocità di delivery, ma costruzione di una base sostenibile nel lungo periodo.</li>
-              </ul>
-            </div>
-            <div class="card-dark">
-              <div class="mini">Conclusione esecutiva</div>
-              <h3>Priorità strategica</h3>
-              <p>Il dipartimento crea valore sia attraverso i deliverable visibili sia attraverso la sistemazione del background tecnologico e informativo. Questa seconda componente è meno immediata da percepire, ma abilita qualità, automazione e affidabilità su tutta la roadmap futura.</p>
-            </div>
-          </div>
-        </div>
+<section class="slide">
+  <div class="frame">
+    <div class="header">
+      <div>
+        <div class="sub">Foundation work</div>
+        <h2>Valore strategico del lavoro abilitante</h2>
       </div>
-    </section>
+      <div class="legend"><span class="badge prog">high impact · low visibility</span></div>
+    </div>
+
+    <div class="foundation-grid">
+      <div class="card-dark">
+        <div class="mini">Architettura dati</div>
+        <h3>Evoluzione dell’ecosistema dati</h3>
+        <p>Attualmente una parte dei flussi dati è gestita tramite <strong>NiFi</strong> e <strong>dbt</strong>, con trasformazioni intermedie. L’evoluzione verso un <strong>Data Warehouse strutturato</strong> rappresenta un passaggio strategico per rafforzare standardizzazione, scalabilità e affidabilità. Prima di avviare questa transizione è necessario completare una fase preliminare di analisi tecnica e valutazione degli impatti.</p>
+      </div>
+
+      <div class="card-dark">
+        <div class="mini">Messaggio chiave</div>
+        <h3>Come valutare correttamente Data Analytics</h3>
+        <ul>
+          <li>non solo report consegnati, ma anche stabilità del layer dati;</li>
+          <li>non solo output frontend, ma riduzione del rischio operativo;</li>
+          <li>non solo velocità di delivery, ma costruzione di una base sostenibile nel lungo periodo.</li>
+        </ul>
+      </div>
+
+      <div class="card-dark">
+        <div class="mini">Qualità e affidabilità</div>
+        <h3>Attività ad alta complessità operativa</h3>
+
+        <h4>1) WAF · Analisi Odoo</h4>
+        <p>È stata condotta un’analisi approfondita delle anomalie e delle criticità legate a Odoo. Si tratta di un’attività ad elevato effort analitico che, pur non traducendosi immediatamente in output visibili, è essenziale per consolidare accuratezza, coerenza e affidabilità delle delivery future.</p>
+
+        <h4>2) Numbers · Analisi business e mapping</h4>
+        <p>È stato sviluppato un lavoro strutturato sui KPI di business e sui mapping a supporto di <strong>Sales</strong> e <strong>Mod Pagamenti</strong>. Anche in questo caso si tratta di un’attività abilitante, ad alta intensità analitica, fondamentale per costruire una reportistica più solida, coerente e scalabile nel tempo.</p>
+      </div>
+
+      <div class="card-dark">
+        <div class="mini">Conclusione esecutiva</div>
+        <h3>Priorità strategica</h3>
+        <p>Il dipartimento genera valore sia attraverso i deliverable visibili sia tramite il consolidamento del background tecnologico e informativo. Questa componente, meno immediata da percepire, è quella che abilita qualità, automazione e affidabilità su tutta la roadmap futura.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
   </div>
 
