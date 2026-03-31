@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data & Analytics | Roadmap Executive Q1-Q2 2026</title>
+  <style>
+    :root {
+      --bg:#0c1526;
+      --bg2:#111d34;
+      --panel:#15233d;
+      --panel2:#1a2945;
+      --card:#ffffff;
+      --ink:#152033;
+      --text:#f7f9fc;
+      --muted:#aeb8ca;
+      --line:rgba(255,255,255,.11);
+      --accent:#19c1c7;
+      --accent-soft:rgba(25,193,199,.12);
+      --ok:#dff2dd;
+      --ok-border:#8bb986;
+      --ok-text:#2e5a2d;
+      --live:#d6f3e8;
+      --live-border:#57b58d;
+      --live-text:#1d684f;
+      --prog:#ffe4cc;
+      --prog-border:#f0a45d;
+      --prog-text:#9a5209;
+      --todo:#dbe7ff;
+      --todo-border:#84a3de;
+      --todo-text:#31507f;
+      --block:#ffd7d7;
+      --block-border:#dd7474;
+      --block-text:#8e2d2d;
+      --shadow:0 24px 60px rgba(0,0,0,.28);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(135deg,var(--bg),var(--bg2));color:var(--text);overflow:hidden}
+    .deck{position:relative;width:100vw;height:100vh}
+    .slide{position:absolute;inset:0;padding:2.8vh 2.8vw;opacity:0;transform:translateX(32px) scale(.985);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
+    .slide.active{opacity:1;transform:none;pointer-events:auto}
+    .frame{height:100%;border:1px solid rgba(255,255,255,.12);border-radius:28px;background:
+      radial-gradient(circle at 15% 10%, rgba(25,193,199,.10), transparent 18%),
+      radial-gradient(circle at 88% 18%, rgba(25,193,199,.07), transparent 16%),
+      linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      box-shadow: var(--shadow); padding:28px 34px; position:relative; overflow:hidden}
+    .frame:before,.frame:after{content:"";position:absolute;border:1px solid rgba(25,193,199,.08);border-radius:50%}
+    .frame:before{width:380px;height:380px;left:-160px;top:-160px}
+    .frame:after{width:220px;height:220px;left:48px;top:-40px}
+    .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}
+    h1,h2,h3,p{margin:0}
+    .cover{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;height:100%;align-items:center}
+    .title{font-size:clamp(44px,5.4vw,78px);font-weight:800;line-height:1.02;margin-top:18px}
+    .subtitle{margin-top:18px;font-size:clamp(20px,2vw,28px);line-height:1.35;color:#d1d9e8;max-width:720px}
+    .accent-line{width:92px;height:6px;border-radius:999px;background:linear-gradient(90deg,var(--accent),rgba(25,193,199,.15));margin:18px 0 26px}
+    .meta{margin-top:28px;color:var(--muted);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+    .hero-panel{background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:26px;min-height:62vh;display:flex;flex-direction:column;justify-content:space-between}
+    .hero-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:16px}
+    .stat .n{font-size:30px;font-weight:800;color:#fff}
+    .stat .l{font-size:13px;color:#d1d8e6;line-height:1.35;margin-top:6px}
+    .hero-note{padding:18px;border-radius:18px;background:rgba(25,193,199,.08);border:1px solid rgba(25,193,199,.18);font-size:15px;line-height:1.55;color:#dff9fb}
+    .header{display:flex;justify-content:space-between;align-items:end;margin-bottom:18px}
+    .header h2{font-size:34px;font-weight:800}
+    .header .sub{font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+    .content-grid{display:grid;gap:18px;height:calc(100% - 64px)}
+    .two-col{grid-template-columns:1.1fr .9fr}
+    .card-dark{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:22px;box-shadow:0 16px 40px rgba(0,0,0,.18)}
+    .card-dark h3{font-size:21px;margin-bottom:10px}
+    .card-dark p,.card-dark li{font-size:15px;line-height:1.55;color:#d8dfed}
+    .card-dark ul{margin:10px 0 0;padding-left:18px}
+    .callout{border-left:4px solid var(--accent);padding-left:14px;margin-top:14px;color:#d6e0f0}
+    .legend{display:flex;flex-wrap:wrap;gap:10px 12px}
+    .badge{display:inline-flex;align-items:center;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.03em;border:1px solid transparent;white-space:nowrap}
+    .ok{background:var(--ok);color:var(--ok-text);border-color:var(--ok-border)}
+    .live{background:var(--live);color:var(--live-text);border-color:var(--live-border)}
+    .prog{background:var(--prog);color:var(--prog-text);border-color:var(--prog-border)}
+    .todo{background:var(--todo);color:var(--todo-text);border-color:var(--todo-border)}
+    .block{background:var(--block);color:var(--block-text);border-color:var(--block-border)}
+    .roadmap-wrap{background:#f6f8fb;border-radius:22px;padding:16px 16px 12px;color:var(--ink);box-shadow:0 24px 50px rgba(0,0,0,.22);overflow:auto}
+    table.roadmap{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;font-size:13px}
+    .roadmap th,.roadmap td{border-right:1px solid #dbe4f0;border-bottom:1px solid #dbe4f0;vertical-align:top;padding:10px 10px 8px 10px}
+    .roadmap th:first-child,.roadmap td:first-child{border-left:1px solid #dbe4f0}
+    .roadmap thead th{background:#eef3f9;font-size:14px;font-weight:800;color:#1f2e49}
+    .roadmap thead th:first-child{border-top-left-radius:14px}
+    .roadmap thead th:last-child{border-top-right-radius:14px}
+    .dept{font-weight:800;color:#44546b;background:#fbfcfe;width:14%}
+    .task-list{display:flex;flex-direction:column;gap:7px}
+    .task{display:block;padding:7px 9px;border-radius:10px;border:1px solid transparent;font-weight:700;line-height:1.25}
+    .task small{display:block;font-weight:600;opacity:.88;margin-top:3px}
+    .task.ok{background:var(--ok);color:var(--ok-text);border-color:var(--ok-border)}
+    .task.live{background:var(--live);color:var(--live-text);border-color:var(--live-border)}
+    .task.prog{background:var(--prog);color:var(--prog-text);border-color:var(--prog-border)}
+    .task.todo{background:var(--todo);color:var(--todo-text);border-color:var(--todo-border)}
+    .task.block{background:var(--block);color:var(--block-text);border-color:var(--block-border)}
+    .split{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;height:calc(100% - 64px)}
+    .mini-grid{display:grid;gap:14px}
+    .mini-grid.two{grid-template-columns:1fr 1fr}
+    .mini-grid.three{grid-template-columns:1fr 1fr 1fr}
+    .num{font-size:30px;font-weight:800;color:#fff}
+    .mini{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px}
+    .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start;position:relative;margin-top:10px}
+    .timeline:before{content:"";position:absolute;left:8%;right:8%;top:42px;height:3px;background:linear-gradient(90deg, rgba(25,193,199,.25), rgba(25,193,199,.55), rgba(25,193,199,.25));border-radius:999px}
+    .step{position:relative;padding-top:64px}
+    .step:before{content:"";position:absolute;top:26px;left:50%;transform:translateX(-50%);width:22px;height:22px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(25,193,199,.14);z-index:2}
+    .step .box{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:16px;min-height:170px}
+    .step h3{font-size:19px;margin-bottom:8px}
+    .step p{font-size:15px;line-height:1.5;color:#d8dfed}
+    .footer-note{position:absolute;bottom:24px;left:34px;right:34px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
+    .nav{position:fixed;right:24px;bottom:20px;display:flex;gap:10px;z-index:20}
+    .btn{width:44px;height:44px;border:none;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font-size:20px;cursor:pointer;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12)}
+    .btn:hover{background:rgba(255,255,255,.18)}
+    .pager{position:fixed;left:50%;transform:translateX(-50%);bottom:30px;display:flex;gap:8px;z-index:20}
+    .dotp{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.2)}
+    .dotp.active{background:var(--accent);box-shadow:0 0 0 5px rgba(25,193,199,.15)}
+    @media (max-width: 1200px){
+      .cover,.split,.content-grid.two-col,.mini-grid.three,.timeline{grid-template-columns:1fr}
+      .slide{overflow:auto}
+      html,body,.deck{overflow:auto;height:auto}
+      .slide{position:relative;opacity:1;transform:none;pointer-events:auto;height:auto;min-height:100vh}
+      .nav,.pager{display:none}
+      .footer-note{position:static;margin-top:10px}
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+
+    <section class="slide active">
+      <div class="frame cover">
+        <div>
+          <div class="kicker">Executive review | Q1-Q2 2026</div>
+          <div class="accent-line"></div>
+          <h1 class="title">Data &amp; Analytics</h1>
+          <p class="subtitle">Roadmap corporate delle pipeline, stato avanzamento deliverable e attività infrastrutturali che sostengono la delivery nel medio periodo.</p>
+          <div class="meta">C-Level briefing · panoramica task &amp; delivered reports</div>
+        </div>
+        <div class="hero-panel">
+          <div>
+            <div class="mini">Messaggi chiave</div>
+            <div class="hero-stat-grid">
+              <div class="stat"><div class="n">2</div><div class="l">trimestri con visibilità della pianificazione operativa</div></div>
+              <div class="stat"><div class="n">8+</div><div class="l">perimetri dipartimentali/campagne da gestire in parallelo</div></div>
+              <div class="stat"><div class="n">Multi</div><div class="l">dipendenze dati e richieste ad hoc che impattano le priorità</div></div>
+              <div class="stat"><div class="n">Focus</div><div class="l">scalabilità, qualità dati, standardizzazione e reportistica</div></div>
+            </div>
+          </div>
+          <div class="hero-note">
+            L'obiettivo non è solo la consegna rapida di report e dashboard, ma la costruzione di una base dati affidabile e sostenibile, capace di supportare crescita, automazione e decisioni più veloci.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="frame">
+        <div class="header">
+          <div>
+            <div class="sub">Executive summary</div>
+            <h2>Lettura manageriale della pipeline</h2>
+          </div>
+          <div class="legend">
+            <span class="badge ok">Completato / report creato</span>
+            <span class="badge live">Live / ongoing</span>
+            <span class="badge prog">In progress</span>
+            <span class="badge todo">Da fare</span>
+            <span class="badge block">Bloccato</span>
+          </div>
+        </div>
+        <div class="content-grid two-col">
+          <div class="card-dark">
+            <h3>Cosa rappresenta questa vista</h3>
+            <p>La roadmap mostra le iniziative pianificate per area, distinguendo task di delivery visibile e attività di consolidamento del layer dati. La pipeline è stata costruita per garantire equilibrio tra urgenze di business, manutenzione dell'ecosistema reportistico e sviluppo di nuove capability.</p>
+            <div class="callout">Le variazioni di priorità durante il trimestre generano inevitabilmente slittamenti sulle attività già schedulate, perché richiedono riallocazione immediata di capacità e focus del team.</div>
+          </div>
+          <div class="mini-grid">
+            <div class="card-dark">
+              <div class="mini">Dipendenze</div>
+              <h3>Vincoli esterni alla funzione</h3>
+              <ul>
+                <li>assenza o ritardo dei dati necessari per alcuni report;</li>
+                <li>allineamenti interfunzionali non sempre sotto il controllo di Data Analytics;</li>
+                <li>priorità ad hoc che interrompono la sequenza pianificata.</li>
+              </ul>
+            </div>
+            <div class="card-dark">
+              <div class="mini">Criterio di valutazione</div>
+              <h3>Delivery + infrastruttura</h3>
+              <p>La performance del dipartimento non può essere misurata solo sul numero di report consegnati. Va considerato anche tutto il lavoro di sistemazione del background: analisi dei flussi, validazione, trasformazioni, qualità dati e readiness architetturale.</p>
+            </div>
+          </div>
+        </div>
+       </div>
+    </section>
+
+    <section class="slide">
+      <div class="frame">
+        <div class="header">
+          <div>
+            <div class="sub">Roadmap Q1 2026</div>
+            <h2>Pianificazione gennaio · febbraio · marzo</h2>
+          </div>
+          <div class="legend">
+            <span class="badge ok">stato leggibile e incorporato</span>
+          </div>
+        </div>
+        <div class="split">
+          <div class="roadmap-wrap">
+            <table class="roadmap">
+              <thead>
+                <tr>
+                  <th>Dipartimento</th>
+                  <th>Gennaio</th>
+                  <th>Febbraio</th>
+                  <th>Marzo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="dept">OPS &amp; STAFF</td>
+                  <td><div class="task-list"><span class="task ok">Payroll introduction</span><span class="task ok">Payroll</span></div></td>
+                  <td><div class="task-list"><span class="task ok">Payroll handover</span><span class="task ok">Payroll</span><span class="task ok">Payroll documentation</span></div></td>
+                  <td><div class="task-list"><span class="task ok">Payroll</span><span class="task ok">Implementazione controlli settimanali</span></div></td>
+                </tr>
+                <tr>
+                  <td class="dept">HR</td>
+                  <td><div class="task-list"><span class="task ok">Sick Leave</span><span class="task ok">Introduzione Odoo</span><span class="task ok">Check anomalie Odoo</span></div></td>
+                  <td><div class="task-list"><span class="task ok">Anomalie Odoo vs DB</span><span class="task todo">Allineamento Leaves DB</span><span class="task block">Attrition</span></div></td>
+                  <td><div class="task-list"><span class="task ok">Dashboard Remaining Leaves</span><span class="task ok">Documentazione Remaining Leaves</span><span class="task ok">Attrition - Workforce</span><span class="task ok">Attendance</span></div></td>
+                </tr>
+                <tr>
+                  <td class="dept">ACCENTURE</td>
+                  <td><div class="task-list"><span class="task ok">SKIP CVP</span><span class="task ok">BO Post Sales</span><span class="task ok">Quality Check</span><span class="task ok">BO Dealer</span></div></td>
+                  <td><div class="task-list"><span class="task ok">Report per agent Dealer Care</span><span class="task ok">Report per agent Post Sales</span></div></td>
+                  <td><div class="task-list"><span class="task todo">Stabilizzazione / nessuna nuova priorità maggiore</span></div></td>
+                </tr>
+                <tr>
+                  <td class="dept">Recruiting &amp; Training</td>
+                  <td><div class="task-list"><span class="task block">Candidates per stage</span><span class="task block">Demand &amp; Achieved</span><span class="task block">Cost Analysis</span><span class="task block">Candidates per stage of training</span></div></td>
+                  <td><div class="task-list"><span class="task block">Candidates per stage</span><span class="task block">Demand &amp; Achieved</span><span class="task block">Cost Analysis</span><span class="task block">Candidates per stage of training</span></div></td>
+                  <td><div class="task-list"><span class="task prog">Candidates per stage</span></div></td>
+                </tr>
+                <tr>
+                  <td class="dept">COO</td>
+                  <td><div class="task-list"><span class="task ok">Site con tutti i report</span></div></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="dept">Other Campaigns</td>
+                  <td><div class="task-list"><span class="task ok">Mio Dottore PBI</span><span class="task ok">Mio Dottore Excel</span><span class="task ok">Just Eat bonus template</span><span class="task ok">Divora PBI</span></div></td>
+                  <td><div class="task-list"><span class="task ok">Mio Dottore PBI</span><span class="task ok">Mio Dottore Excel</span><span class="task ok">Mio Dottore add SL</span><span class="task ok">Divora PBI</span></div></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="dept">Budgeting</td>
+                  <td></td>
+                  <td><div class="task-list"><span class="task ok">Introduzione budgeting</span></div></td>
+                  <td><div class="task-list"><span class="task ok">Automazione budgeting</span></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mini-grid">
+            <div class="card-dark">
+              <div class="mini">Lettura Q1</div>
+              <h3>Cosa abbiamo fatto</h3>
+              <ul>
+                <li>Abbiamo ristrutturato la payroll da capo</li>
+ 		<li>Abbiamo documentato il processo di Payroll</li>
+ 		<li>Abbiamo analizzato come funziona Odoo e tutte le anomalie che ha</li>
+ 		<li>Abbiamo fatto delivery di +6 reports in un periodo di <3 mesi</li>
+              </ul>
+              <h3>Pending/Blocchi</h3>
+              <ul>
+                <li>Richiesta fatta per la db di odoo</li>
+ 		<li>Mapping di agente/TL/FM/CSDM</li>
+               </ul>
+            </div>
+            <div class="card-dark">
+              <div class="mini">Commento manageriale</div>
+              <h3>Dove si concentra il valore</h3>
+              <p>Nel trimestre il team ha coperto contemporaneamente delivery visibile, documentazione, handover e controlli ricorrenti. Questo riduce rischio operativo e migliora la continuità di servizio, anche quando non produce immediatamente un nuovo dashboard da mostrare.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="frame">
+        <div class="header">
+          <div>
+            <div class="sub">Roadmap Q2 2026</div>
+            <h2>Pianificazione aprile · maggio · giugno</h2>
+          </div>
+          <div class="legend"><span class="badge todo">focus su backlog, dettagli e nuovi stream</span></div>
+        </div>
+        <div class="split">
+          <div class="roadmap-wrap">
+            <table class="roadmap">
+              <thead>
+                <tr>
+                  <th>Dipartimento</th>
+                  <th>Aprile</th>
+                  <th>Maggio</th>
+                  <th>Giugno</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="dept">OPS &amp; STAFF</td>
+                  <td><div class="task-list"><span class="task todo">Payroll</span></div></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="dept">HR</td>
+                  <td><div class="task-list"><span class="task block">Absenteeism report</span><span class="task todo">Attrition - detailed view da aggiungere</span><span class="task todo">Remaining Leaves - detailed view da aggiungere</span></div></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="dept">Recruiting &amp; Training</td>
+                  <td><div class="task-list"><span class="task prog">Candidates per stage</span><span class="task todo">Demand &amp; Achieved</span><span class="task todo">Cost Analysis</span><span class="task todo">Candidates per stage of training</span></div></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="dept">COO</td>
+                  <td></td>
+                  <td></td>
+                  <td><div class="task-list"><span class="task todo">GM - Economics</span></div></td>
+                </tr>
+                <tr>
+                  <td class="dept">KLARNA</td>
+                  <td></td>
+                  <td><div class="task-list"><span class="task todo">Introduction with data</span><span class="task todo">Daily Report x activity</span><span class="task todo">Agent Report</span></div></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="dept">Other Campaigns</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="dept">Architecture of Data Flow</td>
+                  <td></td>
+                  <td></td>
+                  <td><div class="task-list"><span class="task todo">Evoluzione architetturale del background dati</span></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mini-grid">
+            <div class="card-dark">
+              <div class="mini">Lettura Q2</div>
+              <h3>Direzione del trimestre successivo</h3>
+              <ul>
+                <li>Completamento viste dettagliate HR</li>
+                <li>Ripresa del report per Recruiting</li>
+                <li>Avvio dei report per Klarna e progressiva estensione del perimetro.</li>
+              </ul>
+            </div>
+            <div class="card-dark">
+              <div class="mini">Nota operativa</div>
+              <h3>Capacità e sequenziamento</h3>
+              <p>La pianificazione è intenzionalmente flessibile: adattiamo le priorità in funzione del valore business e delle dipendenze operative.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-note"><span>Q2 evidenzia backlog, nuove iniziative e attività architetturali</span><span>Slide 4</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="frame">
+        <div class="header">
+          <div>
+            <div class="sub">Operating model</div>
+            <h2>Sprint di delivery Data Analytics</h2>
+          </div>
+          <div class="legend"><span class="badge live">modello operativo standard</span></div>
+        </div>
+        <div class="timeline">
+          <div class="step">
+            <div class="box">
+              <h3>Fase 1 · Assessment</h3>
+              <p>Comprensione del bisogno business, mappatura del prodotto/report richiesto, verifica delle fonti e prima identificazione dei rischi di disponibilità dati.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="box">
+              <h3>Fase 2 · Design</h3>
+              <p>Definizione della struttura del report, KPI, logica di calcolo, layout di consumo e dipendenze tecniche. Qui si decidono standard e priorità di implementazione.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="box">
+              <h3>Fase 3 · Collect Data &amp; Transformation</h3>
+              <p>Raccolta dati, trasformazioni, controlli di qualità, allineamenti con DB e sistemi sorgente, implementazione delle metriche e costruzione del report finale.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="box">
+              <h3>Fase 4 · Go-Live</h3>
+              <p>Condivisione del report, handover, documentazione, tuning finale e passaggio alla fase di monitoraggio o manutenzione ricorrente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="frame">
+        <div class="header">
+          <div>
+            <div class="sub">Foundation work</div>
+            <h2>Valore nascosto ma strategico del dipartimento</h2>
+          </div>
+          <div class="legend"><span class="badge prog">high impact · low visibility</span></div>
+        </div>
+        <div class="content-grid two-col">
+          <div class="mini-grid">
+            <div class="card-dark">
+              <div class="mini">Architettura dati</div>
+              <h3>Stato attuale e direzione target</h3>
+              <p>Attualmente una parte dei dati verrà trasferita da <strong>NiFi</strong> a <strong>dbt</strong> con trasformazioni intermedie. Il lavoro di migrazione dell'intero background verso un <strong>Data Warehouse strutturato</strong> non è ancora partito, è per farlo dobbiamo prima fare un studio preliminare e analisi degli impatti.</p>
+            </div>
+            <div class="card-dark">
+              <div class="mini">Qualità e affidabilità</div>
+              <h3>Analisi Odoo: attività time-consuming ma necessaria</h3>
+              <p>È stata svolta un'analisi approfondita delle anomalie e dei problemi legati a Odoo. Questa attività richiede tempo e non genera visibilità immediata nel frontend, ma è fondamentale per migliorare accuratezza, coerenza e scalabilità delle future delivery.</p>
+            </div>
+          </div>
+          <div class="mini-grid">
+            <div class="card-dark">
+              <div class="mini">Messaggio chiave</div>
+              <h3>Come valutare correttamente Data Analytics</h3>
+              <ul>
+                <li>non solo report consegnati, ma anche stabilità del layer dati;</li>
+                <li>non solo output frontend, ma riduzione del rischio operativo;</li>
+                <li>non solo velocità di delivery, ma costruzione di una base sostenibile nel lungo periodo.</li>
+              </ul>
+            </div>
+            <div class="card-dark">
+              <div class="mini">Conclusione esecutiva</div>
+              <h3>Priorità strategica</h3>
+              <p>Il dipartimento crea valore sia attraverso i deliverable visibili sia attraverso la sistemazione del background tecnologico e informativo. Questa seconda componente è meno immediata da percepire, ma abilita qualità, automazione e affidabilità su tutta la roadmap futura.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="nav">
+    <button class="btn" id="prev">&#8249;</button>
+    <button class="btn" id="next">&#8250;</button>
+  </div>
+  <div class="pager" id="pager"></div>
+
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const pager = document.getElementById('pager');
+    let index = 0;
+    function renderPager(){
+      pager.innerHTML = '';
+      slides.forEach((_,i)=>{
+        const d=document.createElement('div');
+        d.className='dotp'+(i===index?' active':'');
+        d.addEventListener('click',()=>go(i));
+        pager.appendChild(d);
+      });
+    }
+    function go(i){
+      index=(i+slides.length)%slides.length;
+      slides.forEach((s,k)=>s.classList.toggle('active',k===index));
+      renderPager();
+    }
+    document.getElementById('prev').addEventListener('click',()=>go(index-1));
+    document.getElementById('next').addEventListener('click',()=>go(index+1));
+    document.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight' || e.key==='PageDown' || e.key===' ') go(index+1);
+      if(e.key==='ArrowLeft' || e.key==='PageUp') go(index-1);
+    });
+    renderPager();
+  </script>
+</body>
+</html>
