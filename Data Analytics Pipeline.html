@@ -34,85 +34,357 @@
       --block-text:#8e2d2d;
       --shadow:0 24px 60px rgba(0,0,0,.28);
     }
+
     *{box-sizing:border-box}
-    html,body{margin:0;height:100%;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(135deg,var(--bg),var(--bg2));color:var(--text);overflow:hidden}
+    html,body{
+      margin:0;
+      height:100%;
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      background:linear-gradient(135deg,var(--bg),var(--bg2));
+      color:var(--text);
+      overflow:hidden
+    }
+
     .deck{position:relative;width:100vw;height:100vh}
-    .slide{position:absolute;inset:0;padding:2.8vh 2.8vw;opacity:0;transform:translateX(32px) scale(.985);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
+    .slide{
+      position:absolute;
+      inset:0;
+      padding:2.8vh 2.8vw;
+      opacity:0;
+      transform:translateX(32px) scale(.985);
+      transition:opacity .45s ease,transform .45s ease;
+      pointer-events:none
+    }
     .slide.active{opacity:1;transform:none;pointer-events:auto}
-    .frame{height:100%;border:1px solid rgba(255,255,255,.12);border-radius:28px;background:
-      radial-gradient(circle at 15% 10%, rgba(25,193,199,.10), transparent 18%),
-      radial-gradient(circle at 88% 18%, rgba(25,193,199,.07), transparent 16%),
-      linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      box-shadow: var(--shadow); padding:28px 34px; position:relative; overflow:hidden}
-    .frame:before,.frame:after{content:"";position:absolute;border:1px solid rgba(25,193,199,.08);border-radius:50%}
+
+    .frame{
+      height:100%;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:28px;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(25,193,199,.10), transparent 18%),
+        radial-gradient(circle at 88% 18%, rgba(25,193,199,.07), transparent 16%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      box-shadow: var(--shadow);
+      padding:28px 34px;
+      position:relative;
+      overflow:hidden
+    }
+
+    .frame:before,.frame:after{
+      content:"";
+      position:absolute;
+      border:1px solid rgba(25,193,199,.08);
+      border-radius:50%
+    }
     .frame:before{width:380px;height:380px;left:-160px;top:-160px}
     .frame:after{width:220px;height:220px;left:48px;top:-40px}
-    .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}
-    h1,h2,h3,p{margin:0}
-    .cover{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;height:100%;align-items:center}
-    .title{font-size:clamp(44px,5.4vw,78px);font-weight:800;line-height:1.02;margin-top:18px}
-    .subtitle{margin-top:18px;font-size:clamp(20px,2vw,28px);line-height:1.35;color:#d1d9e8;max-width:720px}
-    .accent-line{width:92px;height:6px;border-radius:999px;background:linear-gradient(90deg,var(--accent),rgba(25,193,199,.15));margin:18px 0 26px}
-    .meta{margin-top:28px;color:var(--muted);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
-    .hero-panel{background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:26px;min-height:62vh;display:flex;flex-direction:column;justify-content:space-between}
+
+    .kicker{
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--accent);
+      font-weight:700
+    }
+
+    h1,h2,h3,h4,p{margin:0}
+
+    .cover{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:26px;
+      height:100%;
+      align-items:center
+    }
+
+    .title{
+      font-size:clamp(44px,5.4vw,78px);
+      font-weight:800;
+      line-height:1.02;
+      margin-top:18px
+    }
+
+    .subtitle{
+      margin-top:18px;
+      font-size:clamp(20px,2vw,28px);
+      line-height:1.35;
+      color:#d1d9e8;
+      max-width:720px
+    }
+
+    .accent-line{
+      width:92px;
+      height:6px;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--accent),rgba(25,193,199,.15));
+      margin:18px 0 26px
+    }
+
+    .meta{
+      margin-top:28px;
+      color:var(--muted);
+      font-size:14px;
+      letter-spacing:.08em;
+      text-transform:uppercase
+    }
+
+    .hero-panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:24px;
+      padding:26px;
+      min-height:62vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between
+    }
+
     .hero-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:16px}
+    .stat{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:18px;
+      padding:16px
+    }
     .stat .n{font-size:30px;font-weight:800;color:#fff}
     .stat .l{font-size:13px;color:#d1d8e6;line-height:1.35;margin-top:6px}
-    .hero-note{padding:18px;border-radius:18px;background:rgba(25,193,199,.08);border:1px solid rgba(25,193,199,.18);font-size:15px;line-height:1.55;color:#dff9fb}
-    .header{display:flex;justify-content:space-between;align-items:end;margin-bottom:18px}
+
+    .hero-note{
+      padding:18px;
+      border-radius:18px;
+      background:rgba(25,193,199,.08);
+      border:1px solid rgba(25,193,199,.18);
+      font-size:15px;
+      line-height:1.55;
+      color:#dff9fb
+    }
+
+    .header{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      margin-bottom:18px
+    }
     .header h2{font-size:34px;font-weight:800}
-    .header .sub{font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+    .header .sub{
+      font-size:13px;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      color:var(--muted)
+    }
+
     .content-grid{display:grid;gap:18px;height:calc(100% - 64px)}
     .two-col{grid-template-columns:1.1fr .9fr}
-    .card-dark{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:22px;box-shadow:0 16px 40px rgba(0,0,0,.18)}
+
+    .card-dark{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:22px;
+      padding:22px;
+      box-shadow:0 16px 40px rgba(0,0,0,.18)
+    }
     .card-dark h3{font-size:21px;margin-bottom:10px}
     .card-dark p,.card-dark li{font-size:15px;line-height:1.55;color:#d8dfed}
     .card-dark ul{margin:10px 0 0;padding-left:18px}
-    .callout{border-left:4px solid var(--accent);padding-left:14px;margin-top:14px;color:#d6e0f0}
+
+    .callout{
+      border-left:4px solid var(--accent);
+      padding-left:14px;
+      margin-top:14px;
+      color:#d6e0f0
+    }
+
     .legend{display:flex;flex-wrap:wrap;gap:10px 12px}
-    .badge{display:inline-flex;align-items:center;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.03em;border:1px solid transparent;white-space:nowrap}
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.03em;
+      border:1px solid transparent;
+      white-space:nowrap
+    }
     .ok{background:var(--ok);color:var(--ok-text);border-color:var(--ok-border)}
     .live{background:var(--live);color:var(--live-text);border-color:var(--live-border)}
     .prog{background:var(--prog);color:var(--prog-text);border-color:var(--prog-border)}
     .todo{background:var(--todo);color:var(--todo-text);border-color:var(--todo-border)}
     .block{background:var(--block);color:var(--block-text);border-color:var(--block-border)}
-    .roadmap-wrap{background:#f6f8fb;border-radius:22px;padding:16px 16px 12px;color:var(--ink);box-shadow:0 24px 50px rgba(0,0,0,.22);overflow:auto}
-    table.roadmap{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;font-size:13px}
-    .roadmap th,.roadmap td{border-right:1px solid #dbe4f0;border-bottom:1px solid #dbe4f0;vertical-align:top;padding:10px 10px 8px 10px}
+
+    .roadmap-wrap{
+      background:#f6f8fb;
+      border-radius:22px;
+      padding:16px 16px 12px;
+      color:var(--ink);
+      box-shadow:0 24px 50px rgba(0,0,0,.22);
+      overflow:auto
+    }
+
+    table.roadmap{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      table-layout:fixed;
+      font-size:13px
+    }
+
+    .roadmap th,.roadmap td{
+      border-right:1px solid #dbe4f0;
+      border-bottom:1px solid #dbe4f0;
+      vertical-align:top;
+      padding:10px 10px 8px 10px
+    }
+
     .roadmap th:first-child,.roadmap td:first-child{border-left:1px solid #dbe4f0}
-    .roadmap thead th{background:#eef3f9;font-size:14px;font-weight:800;color:#1f2e49}
+    .roadmap thead th{
+      background:#eef3f9;
+      font-size:14px;
+      font-weight:800;
+      color:#1f2e49
+    }
     .roadmap thead th:first-child{border-top-left-radius:14px}
     .roadmap thead th:last-child{border-top-right-radius:14px}
-    .dept{font-weight:800;color:#44546b;background:#fbfcfe;width:14%}
+
+    .dept{
+      font-weight:800;
+      color:#44546b;
+      background:#fbfcfe;
+      width:14%
+    }
+
     .task-list{display:flex;flex-direction:column;gap:7px}
-    .task{display:block;padding:7px 9px;border-radius:10px;border:1px solid transparent;font-weight:700;line-height:1.25}
+    .task{
+      display:block;
+      padding:7px 9px;
+      border-radius:10px;
+      border:1px solid transparent;
+      font-weight:700;
+      line-height:1.25
+    }
     .task small{display:block;font-weight:600;opacity:.88;margin-top:3px}
     .task.ok{background:var(--ok);color:var(--ok-text);border-color:var(--ok-border)}
     .task.live{background:var(--live);color:var(--live-text);border-color:var(--live-border)}
     .task.prog{background:var(--prog);color:var(--prog-text);border-color:var(--prog-border)}
     .task.todo{background:var(--todo);color:var(--todo-text);border-color:var(--todo-border)}
     .task.block{background:var(--block);color:var(--block-text);border-color:var(--block-border)}
-    .split{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;height:calc(100% - 64px)}
+
+    .split{
+      display:grid;
+      grid-template-columns:1.25fr .75fr;
+      gap:18px;
+      height:calc(100% - 64px)
+    }
+
     .mini-grid{display:grid;gap:14px}
     .mini-grid.two{grid-template-columns:1fr 1fr}
     .mini-grid.three{grid-template-columns:1fr 1fr 1fr}
     .num{font-size:30px;font-weight:800;color:#fff}
-    .mini{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px}
-    .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start;position:relative;margin-top:10px}
-    .timeline:before{content:"";position:absolute;left:8%;right:8%;top:42px;height:3px;background:linear-gradient(90deg, rgba(25,193,199,.25), rgba(25,193,199,.55), rgba(25,193,199,.25));border-radius:999px}
+    .mini{
+      font-size:13px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      margin-bottom:7px
+    }
+
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+      align-items:start;
+      position:relative;
+      margin-top:10px
+    }
+    .timeline:before{
+      content:"";
+      position:absolute;
+      left:8%;
+      right:8%;
+      top:42px;
+      height:3px;
+      background:linear-gradient(90deg, rgba(25,193,199,.25), rgba(25,193,199,.55), rgba(25,193,199,.25));
+      border-radius:999px
+    }
     .step{position:relative;padding-top:64px}
-    .step:before{content:"";position:absolute;top:26px;left:50%;transform:translateX(-50%);width:22px;height:22px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(25,193,199,.14);z-index:2}
-    .step .box{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:16px;min-height:170px}
+    .step:before{
+      content:"";
+      position:absolute;
+      top:26px;
+      left:50%;
+      transform:translateX(-50%);
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 6px rgba(25,193,199,.14);
+      z-index:2
+    }
+    .step .box{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;
+      padding:16px;
+      min-height:170px
+    }
     .step h3{font-size:19px;margin-bottom:8px}
     .step p{font-size:15px;line-height:1.5;color:#d8dfed}
-    .footer-note{position:absolute;bottom:24px;left:34px;right:34px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
-    .nav{position:fixed;right:24px;bottom:20px;display:flex;gap:10px;z-index:20}
-    .btn{width:44px;height:44px;border:none;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font-size:20px;cursor:pointer;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12)}
+
+    .footer-note{
+      position:absolute;
+      bottom:24px;
+      left:34px;
+      right:34px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:13px;
+      color:var(--muted)
+    }
+
+    .nav{
+      position:fixed;
+      right:24px;
+      bottom:20px;
+      display:flex;
+      gap:10px;
+      z-index:20
+    }
+    .btn{
+      width:44px;
+      height:44px;
+      border:none;
+      border-radius:50%;
+      background:rgba(255,255,255,.1);
+      color:#fff;
+      font-size:20px;
+      cursor:pointer;
+      backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,.12)
+    }
     .btn:hover{background:rgba(255,255,255,.18)}
-    .pager{position:fixed;left:50%;transform:translateX(-50%);bottom:30px;display:flex;gap:8px;z-index:20}
-    .dotp{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.2)}
-    .dotp.active{background:var(--accent);box-shadow:0 0 0 5px rgba(25,193,199,.15)}
+
+    .pager{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:30px;
+      display:flex;
+      gap:8px;
+      z-index:20
+    }
+    .dotp{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:rgba(255,255,255,.24);
+      border:1px solid rgba(255,255,255,.2)
+    }
+    .dotp.active{
+      background:var(--accent);
+      box-shadow:0 0 0 5px rgba(25,193,199,.15)
+    }
 
     .foundation-grid{
       display:grid;
@@ -121,16 +393,9 @@
       gap:18px;
       height:calc(100% - 64px);
     }
-    .foundation-grid .card-dark{
-      height:100%;
-    }
-    .foundation-grid .span-2{
-      grid-row:span 2;
-    }
-    .foundation-grid .card-dark h3{
-      font-size:21px;
-      margin-bottom:10px;
-    }
+    .foundation-grid .card-dark{height:100%}
+    .foundation-grid .span-2{grid-row:span 2}
+    .foundation-grid .card-dark h3{font-size:21px;margin-bottom:10px}
     .foundation-grid .card-dark h4{
       font-size:16px;
       margin:16px 0 8px;
@@ -143,10 +408,194 @@
       color:#d8dfed;
     }
 
+    .payroll-hero{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:28px;
+      height:calc(100% - 64px);
+      align-items:center;
+    }
+
+    .payroll-copy{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      min-width:0;
+    }
+
+    .payroll-subtitle{
+      font-size:16px;
+      line-height:1.55;
+      color:#d6deec;
+      max-width:700px;
+      margin-bottom:22px;
+    }
+
+    .payroll-check-card{
+      position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      padding:22px 24px 20px 24px;
+      box-shadow:0 18px 40px rgba(0,0,0,.22);
+      overflow:hidden;
+    }
+
+    .payroll-check-card:before{
+      content:"";
+      position:absolute;
+      width:150px;
+      height:150px;
+      left:-40px;
+      top:-40px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(25,193,199,.18), rgba(25,193,199,0));
+      pointer-events:none;
+    }
+
+    .payroll-check-head{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:14px;
+      position:relative;
+      z-index:1;
+    }
+
+    .payroll-check-icon{
+      width:72px;
+      height:72px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:34px;
+      background:rgba(25,193,199,.08);
+      border:1px solid rgba(25,193,199,.22);
+      box-shadow:0 0 0 8px rgba(25,193,199,.05);
+      flex:0 0 auto;
+    }
+
+    .payroll-check-head h3{
+      margin:0;
+      font-size:22px;
+      line-height:1.2;
+    }
+
+    .payroll-check-list{
+      margin:0;
+      padding-left:22px;
+      position:relative;
+      z-index:1;
+    }
+
+    .payroll-check-list li{
+      margin-bottom:5px;
+      color:#d8dfed;
+      line-height:1.55;
+      font-size:15px;
+    }
+
+    .payroll-check-note{
+      margin-top:14px;
+      font-size:13px;
+      color:var(--muted);
+      position:relative;
+      z-index:1;
+    }
+
+    .payroll-flow{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      position:relative;
+    }
+
+    .payroll-metric{
+      width:100%;
+      max-width:360px;
+      border-radius:20px;
+      padding:18px 20px;
+      box-shadow:0 18px 40px rgba(0,0,0,.24);
+    }
+
+    .payroll-metric.top{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .payroll-metric.mid{
+      background:linear-gradient(180deg, rgba(240,164,93,.16), rgba(240,164,93,.08));
+      border:1px solid rgba(240,164,93,.7);
+      text-align:center;
+      box-shadow:0 0 0 1px rgba(240,164,93,.22), 0 18px 44px rgba(0,0,0,.24);
+    }
+
+    .payroll-metric.bottom{
+      background:linear-gradient(180deg, rgba(255,208,120,.12), rgba(255,208,120,.05));
+      border:1px solid rgba(255,208,120,.55);
+      box-shadow:0 0 0 1px rgba(255,208,120,.14), 0 18px 44px rgba(0,0,0,.24);
+    }
+
+    .payroll-metric-row{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+    }
+
+    .payroll-metric-icon{
+      font-size:28px;
+      line-height:1;
+      flex:0 0 auto;
+      margin-top:2px;
+    }
+
+    .payroll-metric .label{
+      font-size:14px;
+      color:var(--muted);
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      margin-bottom:6px;
+    }
+
+    .payroll-metric .value{
+      font-size:22px;
+      font-weight:800;
+      line-height:1.2;
+      color:#fff;
+    }
+
+    .payroll-metric .value.big{font-size:28px}
+    .payroll-metric .sub{
+      font-size:15px;
+      line-height:1.45;
+      color:#d9e1ef;
+      margin-top:4px;
+    }
+
+    .payroll-metric.bottom .value{color:#ffd27d}
+
+    .payroll-arrow{
+      font-size:36px;
+      line-height:1;
+      color:var(--accent);
+      text-shadow:0 0 18px rgba(25,193,199,.35);
+    }
+
+    .payroll-arrow.warm{
+      color:#ffcf82;
+      text-shadow:0 0 18px rgba(255,207,130,.28);
+    }
+
     @media (max-width: 1200px){
       .cover,.split,.content-grid.two-col,.mini-grid.three,.timeline{grid-template-columns:1fr}
       .foundation-grid{grid-template-columns:1fr;grid-template-rows:auto;height:auto}
       .foundation-grid .span-2{grid-row:auto}
+      .payroll-hero{grid-template-columns:1fr;height:auto}
+      .payroll-flow{align-items:stretch}
+      .payroll-metric{max-width:none}
       .slide{overflow:auto}
       html,body,.deck{overflow:auto;height:auto}
       .slide{position:relative;opacity:1;transform:none;pointer-events:auto;height:auto;min-height:100vh}
@@ -222,7 +671,7 @@
             </div>
           </div>
         </div>
-       </div>
+      </div>
     </section>
 
     <section class="slide">
@@ -230,7 +679,7 @@
         <div class="header">
           <div>
             <div class="sub">Roadmap Q1 2026</div>
-            <h2>WAF -Pianificazione gennaio · febbraio · marzo</h2>
+            <h2>WAF - Pianificazione gennaio · febbraio · marzo</h2>
           </div>
           <div class="legend">
             <span class="badge ok">stato leggibile e incorporato</span>
@@ -264,6 +713,7 @@
                   <td class="dept">ACCENTURE</td>
                   <td><div class="task-list"><span class="task ok">SKIP CVP</span><span class="task ok">BO Post Sales</span><span class="task ok">Quality Check</span><span class="task ok">BO Dealer</span></div></td>
                   <td><div class="task-list"><span class="task ok">Report per agent Dealer Care</span><span class="task ok">Report per agent Post Sales</span></div></td>
+                  <td></td>
                 </tr>
                 <tr>
                   <td class="dept">Recruiting &amp; Training</td>
@@ -298,15 +748,15 @@
               <h3>Cosa abbiamo fatto</h3>
               <ul>
                 <li>Abbiamo ristrutturato la payroll da capo</li>
- 		<li>Abbiamo documentato il processo di Payroll</li>
- 		<li>Abbiamo analizzato come funziona Odoo e tutte le anomalie che ha</li>
- 		<li>Abbiamo fatto delivery di +6 reports in un periodo di <3 mesi</li>
+                <li>Abbiamo documentato il processo di Payroll</li>
+                <li>Abbiamo analizzato come funziona Odoo e tutte le anomalie che ha</li>
+                <li>Abbiamo fatto delivery di +6 reports in un periodo di &lt; 3 mesi</li>
               </ul>
-              <h3>Pending/Blocchi</h3>
+              <h3 style="margin-top:14px">Pending/Blocchi</h3>
               <ul>
-                <li>Richiesta fatta per la db di odoo</li>
- 		<li>Mapping di agente/TL/FM/CSDM</li>
-               </ul>
+                <li>Richiesta fatta per la DB di Odoo</li>
+                <li>Mapping di agente / TL / FM / CSDM</li>
+              </ul>
             </div>
             <div class="card-dark">
               <div class="mini">Commento manageriale</div>
@@ -323,7 +773,7 @@
         <div class="header">
           <div>
             <div class="sub">Roadmap Q2 2026</div>
-            <h2>WAF -Pianificazione aprile · maggio · giugno</h2>
+            <h2>WAF - Pianificazione aprile · maggio · giugno</h2>
           </div>
           <div class="legend"><span class="badge todo">focus su backlog, dettagli e nuovi stream</span></div>
         </div>
@@ -398,6 +848,84 @@
               <div class="mini">Nota operativa</div>
               <h3>Capacità e sequenziamento</h3>
               <p>La pianificazione è intenzionalmente flessibile: adattiamo le priorità in funzione del valore business e delle dipendenze operative.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="frame">
+        <div class="header">
+          <div>
+            <div class="sub">Operational effort</div>
+            <h2>Effort operativo per il payroll</h2>
+          </div>
+          <div class="legend">
+            <span class="badge prog">manual checks · external dependencies</span>
+          </div>
+        </div>
+
+        <div class="payroll-hero">
+          <div class="payroll-copy">
+            <div class="payroll-subtitle">
+              La mancata automazione di numerosi controlli sul payroll richiede un effort elevato
+              e rallenta il processo complessivo. Le tempistiche finali dipendono non solo dall’elaborazione interna,
+              ma anche dalle validazioni e dalla risoluzione di anomalie con Ops e HR.
+            </div>
+
+            <div class="payroll-check-card">
+              <div class="payroll-check-head">
+                <div class="payroll-check-icon">🗂️</div>
+                <h3>Payroll: Controlli manuali</h3>
+              </div>
+
+              <ul class="payroll-check-list">
+                <li>Formato date e matching ore</li>
+                <li>ID ripetuti o duplicati</li>
+                <li>Turni non completi,senza nome oppure duplicati/li>
+                <li>Check delle ferie (check se mancano le ferie caricati, modifiche manuali dovuti a i problemi di odoo)</li>
+                <li>Sovrapposizioni delle ore tra training e ferie</li>
+                <li>Orari fuori contratto o metodo pagamento</li>
+                <li>ID associati a più nomi / nomi associati a più ID</li>
+		<li>Check delle ore lavorate o ferie inserite dopo la validita' del contratto</li>
+                <li>Seniority e altre validazioni di ricerca</li>
+              </ul>
+
+              <div class="payroll-check-note">
+                Risultati e tempistiche dipendenti anche da altri dipartimenti (Ops, HR).
+              </div>
+            </div>
+          </div>
+
+          <div class="payroll-flow">
+            <div class="payroll-metric top">
+              <div class="payroll-metric-row">
+                <div class="payroll-metric-icon">🕒</div>
+                <div>
+                  <div class="value">Payroll operativo (Agenti & Staff) </div>
+                  <div class="sub">40 ore produttive</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="payroll-arrow">↓</div>
+
+            <div class="payroll-metric mid">
+              <div class="value big">2–3 giorni</div>
+              <div class="sub">checks manuali</div>
+            </div>
+
+            <div class="payroll-arrow warm">↓</div>
+
+            <div class="payroll-metric bottom">
+              <div class="payroll-metric-row">
+                <div class="payroll-metric-icon">📅</div>
+                <div>
+                  <div class="value">Tempo per payroll</div>
+                  <div class="sub"><strong>Fino a 2 settimane</strong><br>inclusi bonus + checks</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -683,52 +1211,52 @@
       </div>
     </section>
 
-<section class="slide">
-  <div class="frame">
-    <div class="header">
-      <div>
-        <div class="sub">Foundation work</div>
-        <h2>Valore strategico del lavoro abilitante</h2>
+    <section class="slide">
+      <div class="frame">
+        <div class="header">
+          <div>
+            <div class="sub">Foundation work</div>
+            <h2>Valore strategico del lavoro abilitante</h2>
+          </div>
+          <div class="legend"><span class="badge prog">high impact · low visibility</span></div>
+        </div>
+
+        <div class="foundation-grid">
+          <div class="card-dark">
+            <div class="mini">Architettura dati</div>
+            <h3>Evoluzione dell’ecosistema dati</h3>
+            <p>Attualmente una parte dei flussi dati è gestita tramite <strong>NiFi</strong> e <strong>dbt</strong>, con trasformazioni intermedie. L’evoluzione verso un <strong>Data Warehouse strutturato</strong> rappresenta un passaggio strategico per rafforzare standardizzazione, scalabilità e affidabilità. Prima di avviare questa transizione è necessario completare una fase preliminare di analisi tecnica e valutazione degli impatti.</p>
+          </div>
+
+          <div class="card-dark">
+            <div class="mini">Messaggio chiave</div>
+            <h3>Come valutare correttamente Data Analytics</h3>
+            <ul>
+              <li>non solo report consegnati, ma anche stabilità del layer dati;</li>
+              <li>non solo output frontend, ma riduzione del rischio operativo;</li>
+              <li>non solo velocità di delivery, ma costruzione di una base sostenibile nel lungo periodo.</li>
+            </ul>
+          </div>
+
+          <div class="card-dark">
+            <div class="mini">Qualità e affidabilità</div>
+            <h3>Attività ad alta complessità operativa</h3>
+
+            <h4>1) WAF · Analisi Odoo</h4>
+            <p>È stata condotta un’analisi approfondita delle anomalie e delle criticità legate a Odoo. Si tratta di un’attività ad elevato effort analitico che, pur non traducendosi immediatamente in output visibili, è essenziale per consolidare accuratezza, coerenza e affidabilità delle delivery future.</p>
+
+            <h4>2) Numbers · Analisi business e mapping</h4>
+            <p>È stato sviluppato un lavoro strutturato sui KPI di business e sui mapping a supporto di <strong>Sales</strong> e <strong>Mod Pagamenti</strong>. Anche in questo caso si tratta di un’attività abilitante, ad alta intensità analitica, fondamentale per costruire una reportistica più solida, coerente e scalabile nel tempo.</p>
+          </div>
+
+          <div class="card-dark">
+            <div class="mini">Conclusione esecutiva</div>
+            <h3>Priorità strategica</h3>
+            <p>Il dipartimento genera valore sia attraverso i deliverable visibili sia tramite il consolidamento del background tecnologico e informativo. Questa componente, meno immediata da percepire, è quella che abilita qualità, automazione e affidabilità su tutta la roadmap futura.</p>
+          </div>
+        </div>
       </div>
-      <div class="legend"><span class="badge prog">high impact · low visibility</span></div>
-    </div>
-
-    <div class="foundation-grid">
-      <div class="card-dark">
-        <div class="mini">Architettura dati</div>
-        <h3>Evoluzione dell’ecosistema dati</h3>
-        <p>Attualmente una parte dei flussi dati è gestita tramite <strong>NiFi</strong> e <strong>dbt</strong>, con trasformazioni intermedie. L’evoluzione verso un <strong>Data Warehouse strutturato</strong> rappresenta un passaggio strategico per rafforzare standardizzazione, scalabilità e affidabilità. Prima di avviare questa transizione è necessario completare una fase preliminare di analisi tecnica e valutazione degli impatti.</p>
-      </div>
-
-      <div class="card-dark">
-        <div class="mini">Messaggio chiave</div>
-        <h3>Come valutare correttamente Data Analytics</h3>
-        <ul>
-          <li>non solo report consegnati, ma anche stabilità del layer dati;</li>
-          <li>non solo output frontend, ma riduzione del rischio operativo;</li>
-          <li>non solo velocità di delivery, ma costruzione di una base sostenibile nel lungo periodo.</li>
-        </ul>
-      </div>
-
-      <div class="card-dark">
-        <div class="mini">Qualità e affidabilità</div>
-        <h3>Attività ad alta complessità operativa</h3>
-
-        <h4>1) WAF · Analisi Odoo</h4>
-        <p>È stata condotta un’analisi approfondita delle anomalie e delle criticità legate a Odoo. Si tratta di un’attività ad elevato effort analitico che, pur non traducendosi immediatamente in output visibili, è essenziale per consolidare accuratezza, coerenza e affidabilità delle delivery future.</p>
-
-        <h4>2) Numbers · Analisi business e mapping</h4>
-        <p>È stato sviluppato un lavoro strutturato sui KPI di business e sui mapping a supporto di <strong>Sales</strong> e <strong>Mod Pagamenti</strong>. Anche in questo caso si tratta di un’attività abilitante, ad alta intensità analitica, fondamentale per costruire una reportistica più solida, coerente e scalabile nel tempo.</p>
-      </div>
-
-      <div class="card-dark">
-        <div class="mini">Conclusione esecutiva</div>
-        <h3>Priorità strategica</h3>
-        <p>Il dipartimento genera valore sia attraverso i deliverable visibili sia tramite il consolidamento del background tecnologico e informativo. Questa componente, meno immediata da percepire, è quella che abilita qualità, automazione e affidabilità su tutta la roadmap futura.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
   </div>
 
@@ -742,6 +1270,7 @@
     const slides = [...document.querySelectorAll('.slide')];
     const pager = document.getElementById('pager');
     let index = 0;
+
     function renderPager(){
       pager.innerHTML = '';
       slides.forEach((_,i)=>{
@@ -751,17 +1280,21 @@
         pager.appendChild(d);
       });
     }
+
     function go(i){
       index=(i+slides.length)%slides.length;
       slides.forEach((s,k)=>s.classList.toggle('active',k===index));
       renderPager();
     }
+
     document.getElementById('prev').addEventListener('click',()=>go(index-1));
     document.getElementById('next').addEventListener('click',()=>go(index+1));
+
     document.addEventListener('keydown',e=>{
       if(e.key==='ArrowRight' || e.key==='PageDown' || e.key===' ') go(index+1);
       if(e.key==='ArrowLeft' || e.key==='PageUp') go(index-1);
     });
+
     renderPager();
   </script>
 </body>
