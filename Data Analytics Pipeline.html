@@ -1,1301 +1,1968 @@
 <!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data & Analytics | Roadmap Executive Q1-Q2 2026</title>
-  <style>
-    :root {
-      --bg:#0c1526;
-      --bg2:#111d34;
-      --panel:#15233d;
-      --panel2:#1a2945;
-      --card:#ffffff;
-      --ink:#152033;
-      --text:#f7f9fc;
-      --muted:#aeb8ca;
-      --line:rgba(255,255,255,.11);
-      --accent:#19c1c7;
-      --accent-soft:rgba(25,193,199,.12);
-      --ok:#dff2dd;
-      --ok-border:#8bb986;
-      --ok-text:#2e5a2d;
-      --live:#d6f3e8;
-      --live-border:#57b58d;
-      --live-text:#1d684f;
-      --prog:#ffe4cc;
-      --prog-border:#f0a45d;
-      --prog-text:#9a5209;
-      --todo:#dbe7ff;
-      --todo-border:#84a3de;
-      --todo-text:#31507f;
-      --block:#ffd7d7;
-      --block-border:#dd7474;
-      --block-text:#8e2d2d;
-      --shadow:0 24px 60px rgba(0,0,0,.28);
-    }
+<html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data &amp; Analytics | Roadmap Executive Q1-Q2 2026</title>
+<style>
+:root{
+  --bg:#0c1526;--bg2:#111d34;--text:#f7f9fc;--muted:#aeb8ca;
+  --accent:#19c1c7;--accent-soft:rgba(25,193,199,.12);
+  --ok:#dff2dd;--ok-b:#8bb986;--ok-t:#2e5a2d;Q
+  --live:#d6f3e8;--live-b:#57b58d;--live-t:#1d684f;
+  --prog:#ffe4cc;--prog-b:#f0a45d;--prog-t:#9a5209;
+  --todo:#dbe7ff;--todo-b:#84a3de;--todo-t:#31507f;
+  --block:#ffd7d7;--block-b:#dd7474;--block-t:#8e2d2d;
+  --shadow:0 24px 60px rgba(0,0,0,.28);
+  --ink:#152033;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(135deg,var(--bg),var(--bg2));color:var(--text);overflow:hidden}
+.deck{position:relative;width:100vw;height:100vh}
+.slide{position:absolute;inset:0;padding:2.8vh 2.8vw;opacity:0;transform:translateX(32px) scale(.985);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
+.slide.active{opacity:1;transform:none;pointer-events:auto}
+.frame{height:100%;border:1px solid rgba(255,255,255,.12);border-radius:28px;background:radial-gradient(circle at 15% 10%,rgba(25,193,199,.10),transparent 18%),radial-gradient(circle at 88% 18%,rgba(25,193,199,.07),transparent 16%),linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));box-shadow:var(--shadow);padding:28px 34px;position:relative;overflow:hidden}
+.frame:before,.frame:after{content:"";position:absolute;border:1px solid rgba(25,193,199,.08);border-radius:50%}
+.frame:before{width:380px;height:380px;left:-160px;top:-160px}
+.frame:after{width:220px;height:220px;left:48px;top:-40px}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1,h2,h3,h4,p{margin:0}
+.cover{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;height:100%;align-items:center}
+.title{font-size:clamp(44px,5.4vw,78px);font-weight:800;line-height:1.02;margin-top:18px}
+.subtitle{margin-top:18px;font-size:clamp(20px,2vw,28px);line-height:1.35;color:#d1d9e8;max-width:720px}
+.accent-line{width:92px;height:6px;border-radius:999px;background:linear-gradient(90deg,var(--accent),rgba(25,193,199,.15));margin:18px 0 26px}
+.meta{margin-top:28px;color:var(--muted);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+.hero-panel{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:26px;min-height:62vh;display:flex;flex-direction:column;justify-content:space-between}
+.hero-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:16px}
+.stat .n{font-size:30px;font-weight:800;color:#fff}
+.stat .l{font-size:13px;color:#d1d8e6;line-height:1.35;margin-top:6px}
+.hero-note{padding:18px;border-radius:18px;background:rgba(25,193,199,.08);border:1px solid rgba(25,193,199,.18);font-size:15px;line-height:1.55;color:#dff9fb}
+.header{display:flex;justify-content:space-between;align-items:end;margin-bottom:18px}
+.header h2{font-size:34px;font-weight:800}
+.header .sub{font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:10px 12px}
+.badge{display:inline-flex;align-items:center;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.03em;border:1px solid transparent;white-space:nowrap}
+.ok{background:var(--ok);color:var(--ok-t);border-color:var(--ok-b)}
+.live{background:var(--live);color:var(--live-t);border-color:var(--live-b)}
+.prog{background:var(--prog);color:var(--prog-t);border-color:var(--prog-b)}
+.todo{background:var(--todo);color:var(--todo-t);border-color:var(--todo-b)}
+.block{background:var(--block);color:var(--block-t);border-color:var(--block-b)}
+.content-grid{display:grid;gap:18px;height:calc(100% - 64px)}
+.two-col{grid-template-columns:1.1fr .9fr}
+.card-dark{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:22px;box-shadow:0 16px 40px rgba(0,0,0,.18)}
+.card-dark h3{font-size:21px;margin-bottom:10px}
+.card-dark p,.card-dark li{font-size:15px;line-height:1.55;color:#d8dfed}
+.card-dark ul{margin:10px 0 0;padding-left:18px}
+.callout{border-left:4px solid var(--accent);padding-left:14px;margin-top:14px;color:#d6e0f0}
+.mini-grid{display:grid;gap:14px}
+.mini-grid.two{grid-template-columns:1fr 1fr}
+.mini{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px}
+.split{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;height:calc(100% - 64px)}
+/* Roadmap table */
+.roadmap-wrap{background:#f6f8fb;border-radius:22px;padding:16px 16px 12px;color:var(--ink);box-shadow:0 24px 50px rgba(0,0,0,.22);overflow:auto}
+table.roadmap{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;font-size:13px}
+.roadmap th,.roadmap td{border-right:1px solid #dbe4f0;border-bottom:1px solid #dbe4f0;vertical-align:top;padding:10px 10px 8px 10px}
+.roadmap th:first-child,.roadmap td:first-child{border-left:1px solid #dbe4f0}
+.roadmap thead th{background:#eef3f9;font-size:14px;font-weight:800;color:#1f2e49}
+.roadmap thead th:first-child{border-top-left-radius:14px}
+.roadmap thead th:last-child{border-top-right-radius:14px}
+.dept{font-weight:800;color:#44546b;background:#fbfcfe;width:14%}
+.task-list{display:flex;flex-direction:column;gap:7px}
+.task{display:block;padding:7px 9px;border-radius:10px;border:1px solid transparent;font-weight:700;line-height:1.25}
+.task small{display:block;font-weight:600;opacity:.88;margin-top:3px}
+.task.ok{background:var(--ok);color:var(--ok-t);border-color:var(--ok-b)}
+.task.live{background:var(--live);color:var(--live-t);border-color:var(--live-b)}
+.task.prog{background:var(--prog);color:var(--prog-t);border-color:var(--prog-b)}
+.task.todo{background:var(--todo);color:var(--todo-t);border-color:var(--todo-b)}
+.task.block{background:var(--block);color:var(--block-t);border-color:var(--block-b)}
+/* Timeline */
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start;position:relative;margin-top:10px}
+.timeline:before{content:"";position:absolute;left:8%;right:8%;top:42px;height:3px;background:linear-gradient(90deg,rgba(25,193,199,.25),rgba(25,193,199,.55),rgba(25,193,199,.25));border-radius:999px}
+.step{position:relative;padding-top:64px}
+.step:before{content:"";position:absolute;top:26px;left:50%;transform:translateX(-50%);width:22px;height:22px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(25,193,199,.14);z-index:2}
+.step .box{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:16px;min-height:170px}
+.step h3{font-size:19px;margin-bottom:8px}
+.step p{font-size:15px;line-height:1.5;color:#d8dfed}
+/* Foundation grid */
+.foundation-grid{display:grid;grid-template-columns:1.1fr .9fr;grid-template-rows:1fr 1fr;gap:18px;height:calc(100% - 64px)}
+.foundation-grid .card-dark{height:100%}
+.foundation-grid .card-dark h4{font-size:16px;margin:16px 0 8px;color:#f2f6fd}
+/* Payroll */
+.payroll-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;height:calc(100% - 64px);align-items:center}
+.payroll-check-card{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:22px 24px 20px;box-shadow:0 18px 40px rgba(0,0,0,.22);overflow:hidden}
+.payroll-check-card:before{content:"";position:absolute;width:150px;height:150px;left:-40px;top:-40px;border-radius:50%;background:radial-gradient(circle,rgba(25,193,199,.18),rgba(25,193,199,0));pointer-events:none}
+.payroll-check-head{display:flex;align-items:center;gap:16px;margin-bottom:14px;position:relative;z-index:1}
+.payroll-check-icon{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;background:rgba(25,193,199,.08);border:1px solid rgba(25,193,199,.22);box-shadow:0 0 0 8px rgba(25,193,199,.05);flex:0 0 auto}
+.payroll-check-list{margin:0;padding-left:22px;position:relative;z-index:1}
+.payroll-check-list li{margin-bottom:5px;color:#d8dfed;line-height:1.55;font-size:15px}
+.payroll-check-note{margin-top:14px;font-size:13px;color:var(--muted);position:relative;z-index:1}
+.payroll-flow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+.payroll-metric{width:100%;max-width:360px;border-radius:20px;padding:18px 20px;box-shadow:0 18px 40px rgba(0,0,0,.24)}
+.payroll-metric.top{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.12)}
+.payroll-metric.mid{background:linear-gradient(180deg,rgba(240,164,93,.16),rgba(240,164,93,.08));border:1px solid rgba(240,164,93,.7);text-align:center}
+.payroll-metric.bottom{background:linear-gradient(180deg,rgba(255,208,120,.12),rgba(255,208,120,.05));border:1px solid rgba(255,208,120,.55)}
+.payroll-metric-row{display:flex;align-items:flex-start;gap:14px}
+.payroll-metric-icon{font-size:28px;line-height:1;flex:0 0 auto;margin-top:2px}
+.payroll-metric .label{font-size:14px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.payroll-metric .value{font-size:22px;font-weight:800;line-height:1.2;color:#fff}
+.payroll-metric .value.big{font-size:28px}
+.payroll-metric .sub{font-size:15px;line-height:1.45;color:#d9e1ef;margin-top:4px}
+.payroll-metric.bottom .value{color:#ffd27d}
+.payroll-arrow{font-size:36px;line-height:1;color:var(--accent);text-shadow:0 0 18px rgba(25,193,199,.35)}
+.payroll-arrow.warm{color:#ffcf82;text-shadow:0 0 18px rgba(255,207,130,.28)}
+.payroll-subtitle{font-size:16px;line-height:1.55;color:#d6deec;max-width:700px;margin-bottom:22px}
+/* Nav */
+.nav{position:fixed;right:24px;bottom:20px;display:flex;gap:10px;z-index:20}
+.btn{width:44px;height:44px;border:none;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font-size:20px;cursor:pointer;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12)}
+.btn:hover{background:rgba(255,255,255,.18)}
+.pager{position:fixed;left:50%;transform:translateX(-50%);bottom:30px;display:flex;gap:8px;z-index:20}
+.dotp{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.2);cursor:pointer}
+.dotp.active{background:var(--accent);box-shadow:0 0 0 5px rgba(25,193,199,.15)}
 
-    *{box-sizing:border-box}
-    html,body{
-      margin:0;
-      height:100%;
-      font-family:Inter,Segoe UI,Arial,sans-serif;
-      background:linear-gradient(135deg,var(--bg),var(--bg2));
-      color:var(--text);
-      overflow:hidden
-    }
+/* ===== EDIT MODE ===== */
+.edit-bar{position:fixed;bottom:72px;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:10px;background:rgba(10,18,35,.94);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:8px 18px;backdrop-filter:blur(14px);box-shadow:0 8px 32px rgba(0,0,0,.45);transition:all .3s ease}
+.eb-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:999px;padding:6px 16px;font-size:13px;cursor:pointer;font-weight:600;transition:background .2s,transform .1s;display:flex;align-items:center;gap:6px}
+.eb-btn:hover{background:rgba(255,255,255,.18);transform:translateY(-1px)}
+.eb-btn.active-edit{background:rgba(25,193,199,.25);border-color:rgba(25,193,199,.5);color:#7ee8ec}
+.eb-btn.save-btn{background:rgba(25,193,199,.15);border-color:rgba(25,193,199,.35);color:#85e8ec}
+.eb-btn.add-slide-btn{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+.eb-btn.danger-btn{background:rgba(220,80,80,.12);border-color:rgba(220,80,80,.35);color:#ff8a8a}
+.eb-btn.danger-btn:hover{background:rgba(220,80,80,.25);color:#ffd0d0}
+.eb-sep{width:1px;height:20px;background:rgba(255,255,255,.15)}
+.save-status{font-size:12px;color:var(--muted)}
+.edit-badge{position:fixed;top:16px;right:16px;background:rgba(25,193,199,.15);border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:.1em;z-index:50;display:none}
+body.edit-mode .edit-badge{display:block}
 
-    .deck{position:relative;width:100vw;height:100vh}
-    .slide{
-      position:absolute;
-      inset:0;
-      padding:2.8vh 2.8vw;
-      opacity:0;
-      transform:translateX(32px) scale(.985);
-      transition:opacity .45s ease,transform .45s ease;
-      pointer-events:none
-    }
-    .slide.active{opacity:1;transform:none;pointer-events:auto}
+/* Edit mode task interactions */
+body.edit-mode .task.editable{cursor:pointer;transition:outline .15s,box-shadow .15s}
+body.edit-mode .task.editable:hover{outline:2px dashed rgba(25,193,199,.7);outline-offset:2px;box-shadow:0 0 0 4px rgba(25,193,199,.08)}
+.add-task-btn{display:flex;align-items:center;justify-content:center;padding:5px 8px;background:transparent;border:1px dashed rgba(90,120,180,.4);border-radius:8px;color:rgba(100,130,180,.75);font-size:11px;cursor:pointer;margin-top:4px;width:100%;transition:all .2s}
+.add-task-btn:hover{background:rgba(90,120,180,.1);border-color:rgba(90,120,180,.7);color:rgba(130,160,220,.9)}
+.add-row-cell{text-align:center;border-top:1px dashed rgba(90,120,180,.25)!important;padding:8px!important}
+.add-row-btn{background:transparent;border:1px dashed rgba(90,120,180,.35);color:rgba(100,130,180,.7);border-radius:8px;padding:6px 20px;cursor:pointer;font-size:12px;transition:all .2s}
+.add-row-btn:hover{background:rgba(90,120,180,.1);color:rgba(130,160,220,.9)}
+.del-row-btn{float:right;background:rgba(220,80,80,.12);border:1px solid rgba(220,80,80,.25);color:#e87a7a;border-radius:4px;width:18px;height:18px;font-size:11px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;margin-left:4px;line-height:1}
+.del-row-btn:hover{background:rgba(220,80,80,.25)}
+.dept-editable{outline:none;display:inline-block}
+body.edit-mode .dept-editable:focus{outline:1px dashed rgba(25,193,199,.5);border-radius:3px;padding:1px 3px}
+.slide-title-wrap{display:flex;align-items:center;gap:10px}
+.title-edit-btn{background:rgba(25,193,199,.12);border:1px solid rgba(25,193,199,.25);color:var(--accent);border-radius:6px;padding:3px 8px;font-size:12px;cursor:pointer;display:none}
+body.edit-mode .title-edit-btn{display:block}
 
-    .frame{
-      height:100%;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:28px;
-      background:
-        radial-gradient(circle at 15% 10%, rgba(25,193,199,.10), transparent 18%),
-        radial-gradient(circle at 88% 18%, rgba(25,193,199,.07), transparent 16%),
-        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      box-shadow: var(--shadow);
-      padding:28px 34px;
-      position:relative;
-      overflow:hidden
-    }
-
-    .frame:before,.frame:after{
-      content:"";
-      position:absolute;
-      border:1px solid rgba(25,193,199,.08);
-      border-radius:50%
-    }
-    .frame:before{width:380px;height:380px;left:-160px;top:-160px}
-    .frame:after{width:220px;height:220px;left:48px;top:-40px}
-
-    .kicker{
-      font-size:12px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--accent);
-      font-weight:700
-    }
-
-    h1,h2,h3,h4,p{margin:0}
-
-    .cover{
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:26px;
-      height:100%;
-      align-items:center
-    }
-
-    .title{
-      font-size:clamp(44px,5.4vw,78px);
-      font-weight:800;
-      line-height:1.02;
-      margin-top:18px
-    }
-
-    .subtitle{
-      margin-top:18px;
-      font-size:clamp(20px,2vw,28px);
-      line-height:1.35;
-      color:#d1d9e8;
-      max-width:720px
-    }
-
-    .accent-line{
-      width:92px;
-      height:6px;
-      border-radius:999px;
-      background:linear-gradient(90deg,var(--accent),rgba(25,193,199,.15));
-      margin:18px 0 26px
-    }
-
-    .meta{
-      margin-top:28px;
-      color:var(--muted);
-      font-size:14px;
-      letter-spacing:.08em;
-      text-transform:uppercase
-    }
-
-    .hero-panel{
-      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:24px;
-      padding:26px;
-      min-height:62vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between
-    }
-
-    .hero-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .stat{
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.09);
-      border-radius:18px;
-      padding:16px
-    }
-    .stat .n{font-size:30px;font-weight:800;color:#fff}
-    .stat .l{font-size:13px;color:#d1d8e6;line-height:1.35;margin-top:6px}
-
-    .hero-note{
-      padding:18px;
-      border-radius:18px;
-      background:rgba(25,193,199,.08);
-      border:1px solid rgba(25,193,199,.18);
-      font-size:15px;
-      line-height:1.55;
-      color:#dff9fb
-    }
-
-    .header{
-      display:flex;
-      justify-content:space-between;
-      align-items:end;
-      margin-bottom:18px
-    }
-    .header h2{font-size:34px;font-weight:800}
-    .header .sub{
-      font-size:13px;
-      letter-spacing:.15em;
-      text-transform:uppercase;
-      color:var(--muted)
-    }
-
-    .content-grid{display:grid;gap:18px;height:calc(100% - 64px)}
-    .two-col{grid-template-columns:1.1fr .9fr}
-
-    .card-dark{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:22px;
-      padding:22px;
-      box-shadow:0 16px 40px rgba(0,0,0,.18)
-    }
-    .card-dark h3{font-size:21px;margin-bottom:10px}
-    .card-dark p,.card-dark li{font-size:15px;line-height:1.55;color:#d8dfed}
-    .card-dark ul{margin:10px 0 0;padding-left:18px}
-
-    .callout{
-      border-left:4px solid var(--accent);
-      padding-left:14px;
-      margin-top:14px;
-      color:#d6e0f0
-    }
-
-    .legend{display:flex;flex-wrap:wrap;gap:10px 12px}
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      padding:7px 12px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.03em;
-      border:1px solid transparent;
-      white-space:nowrap
-    }
-    .ok{background:var(--ok);color:var(--ok-text);border-color:var(--ok-border)}
-    .live{background:var(--live);color:var(--live-text);border-color:var(--live-border)}
-    .prog{background:var(--prog);color:var(--prog-text);border-color:var(--prog-border)}
-    .todo{background:var(--todo);color:var(--todo-text);border-color:var(--todo-border)}
-    .block{background:var(--block);color:var(--block-text);border-color:var(--block-border)}
-
-    .roadmap-wrap{
-      background:#f6f8fb;
-      border-radius:22px;
-      padding:16px 16px 12px;
-      color:var(--ink);
-      box-shadow:0 24px 50px rgba(0,0,0,.22);
-      overflow:auto
-    }
-
-    table.roadmap{
-      width:100%;
-      border-collapse:separate;
-      border-spacing:0;
-      table-layout:fixed;
-      font-size:13px
-    }
-
-    .roadmap th,.roadmap td{
-      border-right:1px solid #dbe4f0;
-      border-bottom:1px solid #dbe4f0;
-      vertical-align:top;
-      padding:10px 10px 8px 10px
-    }
-
-    .roadmap th:first-child,.roadmap td:first-child{border-left:1px solid #dbe4f0}
-    .roadmap thead th{
-      background:#eef3f9;
-      font-size:14px;
-      font-weight:800;
-      color:#1f2e49
-    }
-    .roadmap thead th:first-child{border-top-left-radius:14px}
-    .roadmap thead th:last-child{border-top-right-radius:14px}
-
-    .dept{
-      font-weight:800;
-      color:#44546b;
-      background:#fbfcfe;
-      width:14%
-    }
-
-    .task-list{display:flex;flex-direction:column;gap:7px}
-    .task{
-      display:block;
-      padding:7px 9px;
-      border-radius:10px;
-      border:1px solid transparent;
-      font-weight:700;
-      line-height:1.25
-    }
-    .task small{display:block;font-weight:600;opacity:.88;margin-top:3px}
-    .task.ok{background:var(--ok);color:var(--ok-text);border-color:var(--ok-border)}
-    .task.live{background:var(--live);color:var(--live-text);border-color:var(--live-border)}
-    .task.prog{background:var(--prog);color:var(--prog-text);border-color:var(--prog-border)}
-    .task.todo{background:var(--todo);color:var(--todo-text);border-color:var(--todo-border)}
-    .task.block{background:var(--block);color:var(--block-text);border-color:var(--block-border)}
-
-    .split{
-      display:grid;
-      grid-template-columns:1.25fr .75fr;
-      gap:18px;
-      height:calc(100% - 64px)
-    }
-
-    .mini-grid{display:grid;gap:14px}
-    .mini-grid.two{grid-template-columns:1fr 1fr}
-    .mini-grid.three{grid-template-columns:1fr 1fr 1fr}
-    .num{font-size:30px;font-weight:800;color:#fff}
-    .mini{
-      font-size:13px;
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:.1em;
-      margin-bottom:7px
-    }
-
-    .timeline{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:16px;
-      align-items:start;
-      position:relative;
-      margin-top:10px
-    }
-    .timeline:before{
-      content:"";
-      position:absolute;
-      left:8%;
-      right:8%;
-      top:42px;
-      height:3px;
-      background:linear-gradient(90deg, rgba(25,193,199,.25), rgba(25,193,199,.55), rgba(25,193,199,.25));
-      border-radius:999px
-    }
-    .step{position:relative;padding-top:64px}
-    .step:before{
-      content:"";
-      position:absolute;
-      top:26px;
-      left:50%;
-      transform:translateX(-50%);
-      width:22px;
-      height:22px;
-      border-radius:50%;
-      background:var(--accent);
-      box-shadow:0 0 0 6px rgba(25,193,199,.14);
-      z-index:2
-    }
-    .step .box{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:18px;
-      padding:16px;
-      min-height:170px
-    }
-    .step h3{font-size:19px;margin-bottom:8px}
-    .step p{font-size:15px;line-height:1.5;color:#d8dfed}
-
-    .footer-note{
-      position:absolute;
-      bottom:24px;
-      left:34px;
-      right:34px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      font-size:13px;
-      color:var(--muted)
-    }
-
-    .nav{
-      position:fixed;
-      right:24px;
-      bottom:20px;
-      display:flex;
-      gap:10px;
-      z-index:20
-    }
-    .btn{
-      width:44px;
-      height:44px;
-      border:none;
-      border-radius:50%;
-      background:rgba(255,255,255,.1);
-      color:#fff;
-      font-size:20px;
-      cursor:pointer;
-      backdrop-filter:blur(8px);
-      border:1px solid rgba(255,255,255,.12)
-    }
-    .btn:hover{background:rgba(255,255,255,.18)}
-
-    .pager{
-      position:fixed;
-      left:50%;
-      transform:translateX(-50%);
-      bottom:30px;
-      display:flex;
-      gap:8px;
-      z-index:20
-    }
-    .dotp{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      background:rgba(255,255,255,.24);
-      border:1px solid rgba(255,255,255,.2)
-    }
-    .dotp.active{
-      background:var(--accent);
-      box-shadow:0 0 0 5px rgba(25,193,199,.15)
-    }
-
-    .foundation-grid{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      grid-template-rows:1fr 1fr;
-      gap:18px;
-      height:calc(100% - 64px);
-    }
-    .foundation-grid .card-dark{height:100%}
-    .foundation-grid .span-2{grid-row:span 2}
-    .foundation-grid .card-dark h3{font-size:21px;margin-bottom:10px}
-    .foundation-grid .card-dark h4{
-      font-size:16px;
-      margin:16px 0 8px;
-      color:#f2f6fd;
-    }
-    .foundation-grid .card-dark p,
-    .foundation-grid .card-dark li{
-      font-size:15px;
-      line-height:1.55;
-      color:#d8dfed;
-    }
-
-    .payroll-hero{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:28px;
-      height:calc(100% - 64px);
-      align-items:center;
-    }
-
-    .payroll-copy{
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      min-width:0;
-    }
-
-    .payroll-subtitle{
-      font-size:16px;
-      line-height:1.55;
-      color:#d6deec;
-      max-width:700px;
-      margin-bottom:22px;
-    }
-
-    .payroll-check-card{
-      position:relative;
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:22px;
-      padding:22px 24px 20px 24px;
-      box-shadow:0 18px 40px rgba(0,0,0,.22);
-      overflow:hidden;
-    }
-
-    .payroll-check-card:before{
-      content:"";
-      position:absolute;
-      width:150px;
-      height:150px;
-      left:-40px;
-      top:-40px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(25,193,199,.18), rgba(25,193,199,0));
-      pointer-events:none;
-    }
-
-    .payroll-check-head{
-      display:flex;
-      align-items:center;
-      gap:16px;
-      margin-bottom:14px;
-      position:relative;
-      z-index:1;
-    }
-
-    .payroll-check-icon{
-      width:72px;
-      height:72px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:34px;
-      background:rgba(25,193,199,.08);
-      border:1px solid rgba(25,193,199,.22);
-      box-shadow:0 0 0 8px rgba(25,193,199,.05);
-      flex:0 0 auto;
-    }
-
-    .payroll-check-head h3{
-      margin:0;
-      font-size:22px;
-      line-height:1.2;
-    }
-
-    .payroll-check-list{
-      margin:0;
-      padding-left:22px;
-      position:relative;
-      z-index:1;
-    }
-
-    .payroll-check-list li{
-      margin-bottom:5px;
-      color:#d8dfed;
-      line-height:1.55;
-      font-size:15px;
-    }
-
-    .payroll-check-note{
-      margin-top:14px;
-      font-size:13px;
-      color:var(--muted);
-      position:relative;
-      z-index:1;
-    }
-
-    .payroll-flow{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:18px;
-      position:relative;
-    }
-
-    .payroll-metric{
-      width:100%;
-      max-width:360px;
-      border-radius:20px;
-      padding:18px 20px;
-      box-shadow:0 18px 40px rgba(0,0,0,.24);
-    }
-
-    .payroll-metric.top{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.12);
-    }
-
-    .payroll-metric.mid{
-      background:linear-gradient(180deg, rgba(240,164,93,.16), rgba(240,164,93,.08));
-      border:1px solid rgba(240,164,93,.7);
-      text-align:center;
-      box-shadow:0 0 0 1px rgba(240,164,93,.22), 0 18px 44px rgba(0,0,0,.24);
-    }
-
-    .payroll-metric.bottom{
-      background:linear-gradient(180deg, rgba(255,208,120,.12), rgba(255,208,120,.05));
-      border:1px solid rgba(255,208,120,.55);
-      box-shadow:0 0 0 1px rgba(255,208,120,.14), 0 18px 44px rgba(0,0,0,.24);
-    }
-
-    .payroll-metric-row{
-      display:flex;
-      align-items:flex-start;
-      gap:14px;
-    }
-
-    .payroll-metric-icon{
-      font-size:28px;
-      line-height:1;
-      flex:0 0 auto;
-      margin-top:2px;
-    }
-
-    .payroll-metric .label{
-      font-size:14px;
-      color:var(--muted);
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      margin-bottom:6px;
-    }
-
-    .payroll-metric .value{
-      font-size:22px;
-      font-weight:800;
-      line-height:1.2;
-      color:#fff;
-    }
-
-    .payroll-metric .value.big{font-size:28px}
-    .payroll-metric .sub{
-      font-size:15px;
-      line-height:1.45;
-      color:#d9e1ef;
-      margin-top:4px;
-    }
-
-    .payroll-metric.bottom .value{color:#ffd27d}
-
-    .payroll-arrow{
-      font-size:36px;
-      line-height:1;
-      color:var(--accent);
-      text-shadow:0 0 18px rgba(25,193,199,.35);
-    }
-
-    .payroll-arrow.warm{
-      color:#ffcf82;
-      text-shadow:0 0 18px rgba(255,207,130,.28);
-    }
-
-    @media (max-width: 1200px){
-      .cover,.split,.content-grid.two-col,.mini-grid.three,.timeline{grid-template-columns:1fr}
-      .foundation-grid{grid-template-columns:1fr;grid-template-rows:auto;height:auto}
-      .foundation-grid .span-2{grid-row:auto}
-      .payroll-hero{grid-template-columns:1fr;height:auto}
-      .payroll-flow{align-items:stretch}
-      .payroll-metric{max-width:none}
-      .slide{overflow:auto}
-      html,body,.deck{overflow:auto;height:auto}
-      .slide{position:relative;opacity:1;transform:none;pointer-events:auto;height:auto;min-height:100vh}
-      .nav,.pager{display:none}
-      .footer-note{position:static;margin-top:10px}
-    }
-  </style>
+/* ===== MODALS ===== */
+.modal-overlay{position:fixed;inset:0;background:rgba(5,10,20,.72);z-index:100;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(5px)}
+.modal-box{background:#13213b;border:1px solid rgba(255,255,255,.15);border-radius:22px;padding:26px;width:460px;max-width:92vw;box-shadow:0 32px 80px rgba(0,0,0,.55);animation:popIn .25s ease}
+@keyframes popIn{from{opacity:0;transform:scale(.92) translateY(8px)}to{opacity:1;transform:none}}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.modal-head span{font-size:17px;font-weight:800}
+.modal-close-btn{background:rgba(255,255,255,.08);border:none;color:var(--muted);border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+.modal-close-btn:hover{background:rgba(255,255,255,.15);color:#fff}
+.modal-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:14px 0 6px;display:block}
+.modal-input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;color:#fff;padding:10px 14px;font-size:15px;outline:none;font-family:inherit}
+.modal-input:focus{border-color:var(--accent)}
+select.modal-input option{background:#13213b;color:#fff}
+.status-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.status-pill{padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;border:2px solid transparent;opacity:.65;transition:all .15s}
+.status-pill:hover{opacity:.9;transform:translateY(-1px)}
+.status-pill.sel{opacity:1;border-color:rgba(0,0,0,.25)!important;transform:scale(1.05)}
+.modal-footer{display:flex;justify-content:space-between;align-items:center;margin-top:22px}
+.modal-btn{padding:9px 20px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .15s}
+.modal-btn.primary{background:var(--accent);color:#0c1526}
+.modal-btn.primary:hover{background:#15d4da}
+.modal-btn.ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,.15)}
+.modal-btn.danger{background:transparent;color:#e87a7a;border:1px solid rgba(220,80,80,.3)}
+.modal-btn.danger:hover{background:rgba(220,80,80,.12)}
+</style>
 </head>
-<body>
-  <div class="deck">
-
-    <section class="slide active">
-      <div class="frame cover">
-        <div>
-          <div class="kicker">Executive review | Q1-Q2 2026</div>
-          <div class="accent-line"></div>
-          <h1 class="title">Data &amp; Analytics</h1>
-          <p class="subtitle">Roadmap corporate delle pipeline, stato avanzamento deliverable e attività infrastrutturali che sostengono la delivery nel medio periodo.</p>
-          <div class="meta">C-Level briefing · panoramica task &amp; delivered reports</div>
+<body class="edit-mode">
+<div class="deck" id="deck"><section class="slide"><div class="frame cover">
+    <div>
+      <div class="kicker">Executive review | Q1-Q2 2026</div>
+      <div class="accent-line"></div>
+      <h1 class="title">Data &amp; Analytics</h1>
+      <p class="subtitle">Roadmap corporate delle pipeline, stato avanzamento deliverable e attività infrastrutturali che sostengono la delivery nel medio periodo.</p>
+      <div class="meta">C-Level briefing · panoramica task &amp; delivered reports</div>
+    </div>
+    <div class="hero-panel">
+      <div>
+        <div class="mini">Messaggi chiave</div>
+        <div class="hero-stat-grid">
+          <div class="stat"><div class="n">2</div><div class="l">trimestri con visibilità della pianificazione operativa</div></div>
+          <div class="stat"><div class="n">8+</div><div class="l">perimetri dipartimentali/campagne da gestire in parallelo</div></div>
+          <div class="stat"><div class="n">Multi</div><div class="l">dipendenze dati e richieste ad hoc che impattano le priorità</div></div>
+          <div class="stat"><div class="n">Focus</div><div class="l">scalabilità, qualità dati, standardizzazione e reportistica</div></div>
         </div>
-        <div class="hero-panel">
-          <div>
-            <div class="mini">Messaggi chiave</div>
-            <div class="hero-stat-grid">
-              <div class="stat"><div class="n">2</div><div class="l">trimestri con visibilità della pianificazione operativa</div></div>
-              <div class="stat"><div class="n">8+</div><div class="l">perimetri dipartimentali/campagne da gestire in parallelo</div></div>
-              <div class="stat"><div class="n">Multi</div><div class="l">dipendenze dati e richieste ad hoc che impattano le priorità</div></div>
-              <div class="stat"><div class="n">Focus</div><div class="l">scalabilità, qualità dati, standardizzazione e reportistica</div></div>
-            </div>
+      </div>
+      <div class="hero-note">L'obiettivo non è solo la consegna rapida di report e dashboard, ma la costruzione di una base dati affidabile e sostenibile, capace di supportare crescita, automazione e decisioni più veloci.</div>
+    </div>
+  </div></section><section class="slide"><div class="frame">
+    <div class="header">
+      <div><div class="sub">Executive summary</div><h2>Lettura manageriale della pipeline</h2></div>
+      <div class="legend">
+        <span class="badge ok">Completato / report creato</span>
+        <span class="badge live">Live / ongoing</span>
+        <span class="badge prog">In progress</span>
+        <span class="badge todo">Da fare</span>
+        <span class="badge block">Bloccato</span>
+      </div>
+    </div>
+    <div class="content-grid two-col">
+      <div class="card-dark">
+        <h3>Cosa rappresenta questa vista</h3>
+        <p>La roadmap mostra le iniziative pianificate per area, distinguendo task di delivery visibile e attività di consolidamento del layer dati. La pipeline è stata costruita per garantire equilibrio tra urgenze di business, manutenzione dell'ecosistema reportistico e sviluppo di nuove capability.</p>
+        <div class="callout">Le variazioni di priorità durante il trimestre generano inevitabilmente slittamenti sulle attività già schedulate, perché richiedono riallocazione immediata di capacità e focus del team.</div>
+      </div>
+      <div class="mini-grid">
+        <div class="card-dark">
+          <div class="mini">Dipendenze</div>
+          <h3>Vincoli esterni alla funzione</h3>
+          <ul>
+            <li>Assenza o ritardo dei dati necessari per alcuni report;</li>
+            <li>Allineamenti interfunzionali non sempre sotto il controllo di Data Analytics;</li>
+            <li>Priorità ad hoc che interrompono la sequenza pianificata.</li>
+          </ul>
+        </div>
+        <div class="card-dark">
+          <div class="mini">Criterio di valutazione</div>
+          <h3>Delivery + infrastruttura</h3>
+          <p>La performance del dipartimento non può essere misurata solo sul numero di report consegnati. Va considerato anche tutto il lavoro di sistemazione del background: analisi dei flussi, validazione, trasformazioni, qualità dati e readiness architetturale.</p>
+        </div>
+      </div>
+    </div>
+  </div></section><section class="slide"><div class="frame">
+    <div class="header">
+      <div>
+        <div class="sub">Roadmap Q1 2026</div>
+        <div class="slide-title-wrap"><h2>WAF — Pianificazione gennaio · febbraio · marzo</h2><button class="title-edit-btn" onclick="openTitleModal('waf-q1')">✏ titolo</button></div>
+      </div>
+      <div class="legend"><span class="badge ok">stato leggibile e incorporato</span></div>
+    </div>
+    <div class="split">
+      
+    <div class="roadmap-wrap">
+      <table class="roadmap">
+        <thead><tr><th style="width:14%">Dipartimento</th><th style="width:28%">Gennaio</th><th style="width:28%">Febbraio</th><th style="width:28%">Marzo</th></tr></thead>
+        <tbody><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q1',0)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q1',0,this.textContent)">OPS &amp; STAFF</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q1',0,0,0)">Payroll introduction</span><span class="task ok editable" onclick="openTaskModal('waf-q1',0,0,1)">Payroll</span><button class="add-task-btn" onclick="openAddTask('waf-q1',0,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q1',0,1,0)">Payroll handover</span><span class="task ok editable" onclick="openTaskModal('waf-q1',0,1,1)">Payroll</span><span class="task ok editable" onclick="openTaskModal('waf-q1',0,1,2)">Payroll documentation</span><button class="add-task-btn" onclick="openAddTask('waf-q1',0,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q1',0,2,0)">Payroll</span><span class="task ok editable" onclick="openTaskModal('waf-q1',0,2,1)">Implementazione controlli settimanali</span><button class="add-task-btn" onclick="openAddTask('waf-q1',0,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q1',1)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q1',1,this.textContent)">HR</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q1',1,0,0)">Sick Leave</span><span class="task ok editable" onclick="openTaskModal('waf-q1',1,0,1)">Introduzione Odoo</span><span class="task ok editable" onclick="openTaskModal('waf-q1',1,0,2)">Check anomalie Odoo</span><button class="add-task-btn" onclick="openAddTask('waf-q1',1,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q1',1,1,0)">Anomalie Odoo vs DB</span><span class="task block editable" onclick="openTaskModal('waf-q1',1,1,1)">Allineamento Leaves DB</span><span class="task block editable" onclick="openTaskModal('waf-q1',1,1,2)">Attrition</span><button class="add-task-btn" onclick="openAddTask('waf-q1',1,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q1',1,2,0)">Dashboard Remaining Leaves</span><span class="task ok editable" onclick="openTaskModal('waf-q1',1,2,1)">Documentazione Remaining Leaves</span><span class="task ok editable" onclick="openTaskModal('waf-q1',1,2,2)">Attrition - Workforce</span><span class="task ok editable" onclick="openTaskModal('waf-q1',1,2,3)">Attendance</span><button class="add-task-btn" onclick="openAddTask('waf-q1',1,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q1',2)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q1',2,this.textContent)">ACCENTURE</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q1',2,0,0)">SKIP CVP</span><span class="task ok editable" onclick="openTaskModal('waf-q1',2,0,1)">BO Post Sales</span><span class="task ok editable" onclick="openTaskModal('waf-q1',2,0,2)">Quality Check</span><span class="task ok editable" onclick="openTaskModal('waf-q1',2,0,3)">BO Dealer</span><button class="add-task-btn" onclick="openAddTask('waf-q1',2,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q1',2,1,0)">Report per agent Dealer Care</span><span class="task ok editable" onclick="openTaskModal('waf-q1',2,1,1)">Report per agent Post Sales</span><button class="add-task-btn" onclick="openAddTask('waf-q1',2,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q1',2,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q1',3)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q1',3,this.textContent)">Recruiting &amp; Training</span></td><td><div class="task-list"><span class="task block editable" onclick="openTaskModal('waf-q1',3,0,0)">Candidates per stage</span><span class="task block editable" onclick="openTaskModal('waf-q1',3,0,1)">Demand &amp; Achieved</span><span class="task block editable" onclick="openTaskModal('waf-q1',3,0,2)">Cost Analysis</span><span class="task block editable" onclick="openTaskModal('waf-q1',3,0,3)">Candidates per stage of training</span><button class="add-task-btn" onclick="openAddTask('waf-q1',3,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task block editable" onclick="openTaskModal('waf-q1',3,1,0)">Candidates per stage</span><span class="task block editable" onclick="openTaskModal('waf-q1',3,1,1)">Demand &amp; Achieved</span><span class="task block editable" onclick="openTaskModal('waf-q1',3,1,2)">Cost Analysis</span><span class="task block editable" onclick="openTaskModal('waf-q1',3,1,3)">Candidates per stage of training</span><button class="add-task-btn" onclick="openAddTask('waf-q1',3,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task prog editable" onclick="openTaskModal('waf-q1',3,2,0)">Candidates per stage</span><button class="add-task-btn" onclick="openAddTask('waf-q1',3,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q1',4)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q1',4,this.textContent)">COO</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q1',4,0,0)">Site con tutti i report</span><button class="add-task-btn" onclick="openAddTask('waf-q1',4,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q1',4,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q1',4,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q1',5)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q1',5,this.textContent)">Other Campaigns</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q1',5,0,0)">Mio Dottore PBI</span><span class="task ok editable" onclick="openTaskModal('waf-q1',5,0,1)">Mio Dottore Excel</span><span class="task ok editable" onclick="openTaskModal('waf-q1',5,0,2)">Just Eat bonus template</span><span class="task ok editable" onclick="openTaskModal('waf-q1',5,0,3)">Divora PBI</span><button class="add-task-btn" onclick="openAddTask('waf-q1',5,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q1',5,1,0)">Mio Dottore PBI</span><span class="task ok editable" onclick="openTaskModal('waf-q1',5,1,1)">Mio Dottore Excel</span><span class="task ok editable" onclick="openTaskModal('waf-q1',5,1,2)">Mio Dottore add SL</span><span class="task ok editable" onclick="openTaskModal('waf-q1',5,1,3)">Divora PBI</span><button class="add-task-btn" onclick="openAddTask('waf-q1',5,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q1',5,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q1',6)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q1',6,this.textContent)">Budgeting</span></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q1',6,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q1',6,1,0)">Introduzione budgeting</span><button class="add-task-btn" onclick="openAddTask('waf-q1',6,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q1',6,2,0)">Automazione budgeting</span><button class="add-task-btn" onclick="openAddTask('waf-q1',6,2)">＋ Aggiungi</button></div></td></tr><tr><td colspan="4" class="add-row-cell"><button class="add-row-btn" onclick="addRow('waf-q1')">＋ Nuova riga dipartimento</button></td></tr></tbody>
+      </table>
+    </div>
+      <div class="mini-grid"><div class="card-dark"><div class="mini">Lettura Q1</div><h3 style="font-size:20px;margin-bottom:8px">Cosa abbiamo fatto</h3><ul style="margin:8px 0 0;padding-left:18px"><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Ristrutturazione della payroll da capo</li><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Documentazione del processo di Payroll</li><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Analisi anomalie Odoo</li><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Delivery di +6 report in &lt; 3 mesi</li></ul><h3 style="font-size:18px;margin:14px 0 6px">Pending / Blocchi</h3><ul style="margin:0;padding-left:18px"><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Richiesta fatta per la DB di Odoo</li><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Mapping agente / TL / FM / CSDM</li></ul></div><div class="card-dark"><div class="mini">Commento manageriale</div><h3 style="font-size:20px;margin-bottom:8px">Dove si concentra il valore</h3><p style="font-size:15px;line-height:1.55;color:#d8dfed;margin-top:6px">Nel trimestre il team ha coperto contemporaneamente delivery visibile, documentazione, handover e controlli ricorrenti. Questo riduce rischio operativo e migliora la continuità di servizio.</p></div></div>
+    </div>
+  </div></section><section class="slide"><div class="frame">
+    <div class="header">
+      <div>
+        <div class="sub">Roadmap Q2 2026</div>
+        <div class="slide-title-wrap"><h2>WAF — Pianificazione aprile · maggio · giugno</h2><button class="title-edit-btn" onclick="openTitleModal('waf-q2')">✏ titolo</button></div>
+      </div>
+      <div class="legend"><span class="badge todo">focus su backlog, dettagli e nuovi stream</span></div>
+    </div>
+    <div class="split">
+      
+    <div class="roadmap-wrap">
+      <table class="roadmap">
+        <thead><tr><th style="width:14%">Dipartimento</th><th style="width:28%">Aprile</th><th style="width:28%">Maggio</th><th style="width:28%">Giugno</th></tr></thead>
+        <tbody><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q2',0)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q2',0,this.textContent)">OPS &amp; STAFF</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q2',0,0,0)">Payroll</span><button class="add-task-btn" onclick="openAddTask('waf-q2',0,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task todo editable" onclick="openTaskModal('waf-q2',0,1,0)">Payroll</span><button class="add-task-btn" onclick="openAddTask('waf-q2',0,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q2',0,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q2',1)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q2',1,this.textContent)">HR</span></td><td><div class="task-list"><span class="task block editable" onclick="openTaskModal('waf-q2',1,0,0)">Absenteeism report</span><span class="task ok editable" onclick="openTaskModal('waf-q2',1,0,1)">Attrition - detailed view da aggiungere</span><span class="task ok editable" onclick="openTaskModal('waf-q2',1,0,2)">Remaining Leaves - detailed view da aggiungere</span><button class="add-task-btn" onclick="openAddTask('waf-q2',1,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q2',1,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q2',1,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q2',2)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q2',2,this.textContent)">Recruiting &amp; Training</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q2',2,0,0)">Candidates per stage</span><span class="task prog editable" onclick="openTaskModal('waf-q2',2,0,1)">Demand &amp; Achieved</span><span class="task ok editable" onclick="openTaskModal('waf-q2',2,0,2)">Cost Analysis</span><span class="task ok editable" onclick="openTaskModal('waf-q2',2,0,3)">Candidates per stage of training</span><button class="add-task-btn" onclick="openAddTask('waf-q2',2,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task todo editable" onclick="openTaskModal('waf-q2',2,1,0)">Training</span><button class="add-task-btn" onclick="openAddTask('waf-q2',2,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q2',2,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q2',3)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q2',3,this.textContent)">COO</span></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q2',3,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q2',3,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task todo editable" onclick="openTaskModal('waf-q2',3,2,0)">GM - Economics</span><button class="add-task-btn" onclick="openAddTask('waf-q2',3,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q2',4)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q2',4,this.textContent)">KLARNA</span></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q2',4,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task todo editable" onclick="openTaskModal('waf-q2',4,1,0)">Introduction with data</span><span class="task todo editable" onclick="openTaskModal('waf-q2',4,1,1)">Daily Report x activity</span><span class="task todo editable" onclick="openTaskModal('waf-q2',4,1,2)">Agent Report</span><button class="add-task-btn" onclick="openAddTask('waf-q2',4,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q2',4,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q2',5)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q2',5,this.textContent)">Other Campaigns</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('waf-q2',5,0,0)">Report -Groupon CO</span><span class="task ok editable" onclick="openTaskModal('waf-q2',5,0,1)">Report - Groupon MO</span><button class="add-task-btn" onclick="openAddTask('waf-q2',5,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q2',5,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q2',5,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('waf-q2',6)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('waf-q2',6,this.textContent)">Architecture of Data Flow</span></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('waf-q2',6,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task todo editable" onclick="openTaskModal('waf-q2',6,1,0)">Reorganizing Mapping</span><button class="add-task-btn" onclick="openAddTask('waf-q2',6,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task todo editable" onclick="openTaskModal('waf-q2',6,2,0)">Evoluzione architetturale del background dati</span><button class="add-task-btn" onclick="openAddTask('waf-q2',6,2)">＋ Aggiungi</button></div></td></tr><tr><td colspan="4" class="add-row-cell"><button class="add-row-btn" onclick="addRow('waf-q2')">＋ Nuova riga dipartimento</button></td></tr></tbody>
+      </table>
+    </div>
+      <div class="mini-grid"><div class="card-dark"><div class="mini">Lettura Q2</div><h3 style="font-size:20px;margin-bottom:8px">Direzione del trimestre</h3><ul style="margin:8px 0 0;padding-left:18px"><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Completamento viste dettagliate HR</li><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Ripresa del report per Recruiting</li><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Avvio report Klarna e estensione del perimetro</li></ul></div><div class="card-dark"><div class="mini">Nota operativa</div><h3 style="font-size:20px;margin-bottom:8px">Capacità e sequenziamento</h3><p style="font-size:15px;line-height:1.55;color:#d8dfed;margin-top:6px">La pianificazione è intenzionalmente flessibile: adattiamo le priorità in funzione del valore business e delle dipendenze operative.</p></div></div>
+    </div>
+  </div></section><section class="slide"><div class="frame">
+    <div class="header">
+      <div><div class="sub">Operational effort</div><h2>Effort operativo per il payroll</h2></div>
+      <div class="legend"><span class="badge prog">manual checks · external dependencies</span></div>
+    </div>
+    <div class="payroll-hero">
+      <div>
+        <p class="payroll-subtitle">La mancata automazione di numerosi controlli sul payroll richiede un effort elevato e rallenta il processo complessivo. Le tempistiche finali dipendono non solo dall'elaborazione interna, ma anche dalle validazioni e dalla risoluzione di anomalie con Ops e HR.</p>
+        <div class="payroll-check-card">
+          <div class="payroll-check-head">
+            <div class="payroll-check-icon">🗂️</div>
+            <h3>Payroll: Controlli manuali</h3>
           </div>
-          <div class="hero-note">
-            L'obiettivo non è solo la consegna rapida di report e dashboard, ma la costruzione di una base dati affidabile e sostenibile, capace di supportare crescita, automazione e decisioni più veloci.
+          <ul class="payroll-check-list">
+            <li>Formato date e matching ore</li>
+            <li>ID ripetuti o duplicati</li>
+            <li>Turni non completi, senza nome oppure duplicati</li>
+            <li>Check delle ferie (mancanti, modifiche manuali per problemi Odoo)</li>
+            <li>Sovrapposizioni tra training e ferie</li>
+            <li>Orari fuori contratto o metodo pagamento</li>
+            <li>ID associati a più nomi / nomi associati a più ID</li>
+            <li>Check ore lavorate o ferie inserite dopo la validità del contratto</li>
+            <li>Seniority e altre validazioni di ricerca</li>
+          </ul>
+          <div class="payroll-check-note">Risultati e tempistiche dipendenti anche da altri dipartimenti (Ops, HR).</div>
+        </div>
+      </div>
+      <div class="payroll-flow">
+        <div class="payroll-metric top">
+          <div class="payroll-metric-row">
+            <div class="payroll-metric-icon">🕒</div>
+            <div><div class="value">Payroll operativo (Agenti &amp; Staff)</div><div class="sub">40 ore produttive</div></div>
+          </div>
+        </div>
+        <div class="payroll-arrow">↓</div>
+        <div class="payroll-metric mid"><div class="value big">2–3 giorni</div><div class="sub">checks manuali</div></div>
+        <div class="payroll-arrow warm">↓</div>
+        <div class="payroll-metric bottom">
+          <div class="payroll-metric-row">
+            <div class="payroll-metric-icon">📅</div>
+            <div><div class="value">Tempo per payroll</div><div class="sub"><strong>Fino a 2 settimane</strong><br>inclusi bonus + checks</div></div>
           </div>
         </div>
       </div>
-    </section>
-
-    <section class="slide">
-      <div class="frame">
-        <div class="header">
-          <div>
-            <div class="sub">Executive summary</div>
-            <h2>Lettura manageriale della pipeline</h2>
-          </div>
-          <div class="legend">
-            <span class="badge ok">Completato / report creato</span>
-            <span class="badge live">Live / ongoing</span>
-            <span class="badge prog">In progress</span>
-            <span class="badge todo">Da fare</span>
-            <span class="badge block">Bloccato</span>
-          </div>
-        </div>
-        <div class="content-grid two-col">
-          <div class="card-dark">
-            <h3>Cosa rappresenta questa vista</h3>
-            <p>La roadmap mostra le iniziative pianificate per area, distinguendo task di delivery visibile e attività di consolidamento del layer dati. La pipeline è stata costruita per garantire equilibrio tra urgenze di business, manutenzione dell'ecosistema reportistico e sviluppo di nuove capability.</p>
-            <div class="callout">Le variazioni di priorità durante il trimestre generano inevitabilmente slittamenti sulle attività già schedulate, perché richiedono riallocazione immediata di capacità e focus del team.</div>
-          </div>
-          <div class="mini-grid">
-            <div class="card-dark">
-              <div class="mini">Dipendenze</div>
-              <h3>Vincoli esterni alla funzione</h3>
-              <ul>
-                <li>Assenza o ritardo dei dati necessari per alcuni report;</li>
-                <li>Allineamenti interfunzionali non sempre sotto il controllo di Data Analytics;</li>
-                <li>Priorità ad hoc che interrompono la sequenza pianificata.</li>
-              </ul>
-            </div>
-            <div class="card-dark">
-              <div class="mini">Criterio di valutazione</div>
-              <h3>Delivery + infrastruttura</h3>
-              <p>La performance del dipartimento non può essere misurata solo sul numero di report consegnati. Va considerato anche tutto il lavoro di sistemazione del background: analisi dei flussi, validazione, trasformazioni, qualità dati e readiness architetturale.</p>
-            </div>
-          </div>
-        </div>
+    </div>
+  </div></section><section class="slide"><div class="frame">
+    <div class="header">
+      <div>
+        <div class="sub">Roadmap Q1 2026</div>
+        <div class="slide-title-wrap"><h2>Numbers — Pianificazione gennaio · febbraio · marzo</h2><button class="title-edit-btn" onclick="openTitleModal('numbers-q1')">✏ titolo</button></div>
       </div>
-    </section>
-
-    <section class="slide">
-      <div class="frame">
-        <div class="header">
-          <div>
-            <div class="sub">Roadmap Q1 2026</div>
-            <h2>WAF - Pianificazione gennaio · febbraio · marzo</h2>
-          </div>
-          <div class="legend">
-            <span class="badge ok">stato leggibile e incorporato</span>
-          </div>
-        </div>
-        <div class="split">
-          <div class="roadmap-wrap">
-            <table class="roadmap">
-              <thead>
-                <tr>
-                  <th>Dipartimento</th>
-                  <th>Gennaio</th>
-                  <th>Febbraio</th>
-                  <th>Marzo</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="dept">OPS &amp; STAFF</td>
-                  <td><div class="task-list"><span class="task ok">Payroll introduction</span><span class="task ok">Payroll</span></div></td>
-                  <td><div class="task-list"><span class="task ok">Payroll handover</span><span class="task ok">Payroll</span><span class="task ok">Payroll documentation</span></div></td>
-                  <td><div class="task-list"><span class="task ok">Payroll</span><span class="task ok">Implementazione controlli settimanali</span></div></td>
-                </tr>
-                <tr>
-                  <td class="dept">HR</td>
-                  <td><div class="task-list"><span class="task ok">Sick Leave</span><span class="task ok">Introduzione Odoo</span><span class="task ok">Check anomalie Odoo</span></div></td>
-                  <td><div class="task-list"><span class="task ok">Anomalie Odoo vs DB</span><span class="task block">Allineamento Leaves DB</span><span class="task block">Attrition</span></div></td>
-                  <td><div class="task-list"><span class="task ok">Dashboard Remaining Leaves</span><span class="task ok">Documentazione Remaining Leaves</span><span class="task ok">Attrition - Workforce</span><span class="task ok">Attendance</span></div></td>
-                </tr>
-                <tr>
-                  <td class="dept">ACCENTURE</td>
-                  <td><div class="task-list"><span class="task ok">SKIP CVP</span><span class="task ok">BO Post Sales</span><span class="task ok">Quality Check</span><span class="task ok">BO Dealer</span></div></td>
-                  <td><div class="task-list"><span class="task ok">Report per agent Dealer Care</span><span class="task ok">Report per agent Post Sales</span></div></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">Recruiting &amp; Training</td>
-                  <td><div class="task-list"><span class="task block">Candidates per stage</span><span class="task block">Demand &amp; Achieved</span><span class="task block">Cost Analysis</span><span class="task block">Candidates per stage of training</span></div></td>
-                  <td><div class="task-list"><span class="task block">Candidates per stage</span><span class="task block">Demand &amp; Achieved</span><span class="task block">Cost Analysis</span><span class="task block">Candidates per stage of training</span></div></td>
-                  <td><div class="task-list"><span class="task prog">Candidates per stage</span></div></td>
-                </tr>
-                <tr>
-                  <td class="dept">COO</td>
-                  <td><div class="task-list"><span class="task ok">Site con tutti i report</span></div></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">Other Campaigns</td>
-                  <td><div class="task-list"><span class="task ok">Mio Dottore PBI</span><span class="task ok">Mio Dottore Excel</span><span class="task ok">Just Eat bonus template</span><span class="task ok">Divora PBI</span></div></td>
-                  <td><div class="task-list"><span class="task ok">Mio Dottore PBI</span><span class="task ok">Mio Dottore Excel</span><span class="task ok">Mio Dottore add SL</span><span class="task ok">Divora PBI</span></div></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">Budgeting</td>
-                  <td></td>
-                  <td><div class="task-list"><span class="task ok">Introduzione budgeting</span></div></td>
-                  <td><div class="task-list"><span class="task ok">Automazione budgeting</span></div></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="mini-grid">
-            <div class="card-dark">
-              <div class="mini">Lettura Q1</div>
-              <h3>Cosa abbiamo fatto</h3>
-              <ul>
-                <li>Abbiamo ristrutturato la payroll da capo</li>
-                <li>Abbiamo documentato il processo di Payroll</li>
-                <li>Abbiamo analizzato come funziona Odoo e tutte le anomalie che ha</li>
-                <li>Abbiamo fatto delivery di +6 reports in un periodo di &lt; 3 mesi</li>
-              </ul>
-              <h3 style="margin-top:14px">Pending/Blocchi</h3>
-              <ul>
-                <li>Richiesta fatta per la DB di Odoo</li>
-                <li>Mapping di agente / TL / FM / CSDM</li>
-              </ul>
-            </div>
-            <div class="card-dark">
-              <div class="mini">Commento manageriale</div>
-              <h3>Dove si concentra il valore</h3>
-              <p>Nel trimestre il team ha coperto contemporaneamente delivery visibile, documentazione, handover e controlli ricorrenti. Questo riduce rischio operativo e migliora la continuità di servizio, anche quando non produce immediatamente un nuovo dashboard da mostrare.</p>
-            </div>
-          </div>
-        </div>
+      <div class="legend"><span class="badge todo">business unit numbers</span></div>
+    </div>
+    <div class="split">
+      
+    <div class="roadmap-wrap">
+      <table class="roadmap">
+        <thead><tr><th style="width:14%">Dipartimento</th><th style="width:28%">Gennaio</th><th style="width:28%">Febbraio</th><th style="width:28%">Marzo</th></tr></thead>
+        <tbody><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q1',0)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q1',0,this.textContent)">C-LEVEL</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',0,0,0)">Mokup iniziale Looker</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',0,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',0,1,0)">Sales Dashboard - Analysis</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',0,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',0,2,0)">Sales Dashboard</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',0,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q1',1)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q1',1,this.textContent)">Diretta / Indiretta</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',1,0,0)">Assessment</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',1,0,1)">Check Tools</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',1,0,2)">Check Mapping &amp; KPIs</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',1,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',1,1,0)">Mapping Statuses</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',1,1,1)">Mapping prodotti</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',1,1,2)">Mapping area / BU / commesse</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',1,1,3)">Sales Dashboard - Analysis</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',1,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',1,2,0)">Sales Dashboard</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',1,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q1',2)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q1',2,this.textContent)">RETAIL</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',2,0,0)">Assessment v1</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',2,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',2,1,0)">Analisi dati su DB</span><span class="task block editable" onclick="openTaskModal('numbers-q1',2,1,1)">Assessment v2</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',2,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',2,2,0)">Assessment v2</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',2,2,1)">Mapping</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',2,2,2)">Dashboard Attivazioni Vodafone</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',2,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q1',3)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q1',3,this.textContent)">PERFORMANCE</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',3,0,0)">Adjust the dashboard</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',3,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',3,1,0)">Assessment</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',3,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q1',3,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q1',4)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q1',4,this.textContent)">RENT</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',4,0,0)">Dashboard Looker</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',4,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q1',4,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q1',4,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q1',5)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q1',5,this.textContent)">VOICE</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',5,0,0)">Analisi CB</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',5,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q1',5,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q1',5,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q1',6)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q1',6,this.textContent)">PRE-BILLING</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',6,0,0)">Assessment</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',6,0,1)">Check Tools</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',6,0,2)">Handover P1</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',6,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task prog editable" onclick="openTaskModal('numbers-q1',6,1,0)">Mapping Statuses</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',6,1,1)">Handover P2</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',6,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q1',6,2,0)">Listini on DB</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',6,2,1)">Trasformazione Payout - Area Diretta</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',6,2,2)">Trasformazione Payout - Area Spark</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',6,2,3)">Trasformazione Payout - Area Partner Pro</span><span class="task ok editable" onclick="openTaskModal('numbers-q1',6,2,4)">Trasformazione Payout - Area Agency</span><button class="add-task-btn" onclick="openAddTask('numbers-q1',6,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q1',7)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q1',7,this.textContent)">Architecture of Data Flow</span></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q1',7,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q1',7,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q1',7,2)">＋ Aggiungi</button></div></td></tr><tr><td colspan="4" class="add-row-cell"><button class="add-row-btn" onclick="addRow('numbers-q1')">＋ Nuova riga dipartimento</button></td></tr></tbody>
+      </table>
+    </div>
+      <div class="mini-grid"><div class="card-dark"><div class="mini">Lettura Q1</div><h3 style="font-size:20px;margin-bottom:8px">Focus del trimestre</h3><ul style="margin:8px 0 0;padding-left:18px"><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Impostazione dashboard commerciali e manageriali</li><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Assessment e mapping funzionali per KPI e Looker</li><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Avanzamento progressivo su Sales, Retail, Pre-Billing</li></ul></div><div class="card-dark"><div class="mini">Nota operativa</div><h3 style="font-size:20px;margin-bottom:8px">Dipendenze da mapping e dati</h3><p style="font-size:15px;line-height:1.55;color:#d8dfed;margin-top:6px">Nel perimetro Numbers una parte rilevante del lavoro dipende da mapping, qualità del DB e definizione delle logiche commerciali.</p><ul style="margin:8px 0 0;padding-left:18px"><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Elevata complessità di mapping nella Sales Table</li><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Criticità strutturali nel modulo Pagamenti</li><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Manutenzione parzialmente manuale</li></ul></div></div>
+    </div>
+  </div></section><section class="slide"><div class="frame">
+    <div class="header">
+      <div>
+        <div class="sub">Roadmap Q2 2026</div>
+        <div class="slide-title-wrap"><h2>Numbers — Pianificazione aprile · maggio · giugno</h2><button class="title-edit-btn" onclick="openTitleModal('numbers-q2')">✏ titolo</button></div>
       </div>
-    </section>
-
-    <section class="slide">
-      <div class="frame">
-        <div class="header">
-          <div>
-            <div class="sub">Roadmap Q2 2026</div>
-            <h2>WAF - Pianificazione aprile · maggio · giugno</h2>
-          </div>
-          <div class="legend"><span class="badge todo">focus su backlog, dettagli e nuovi stream</span></div>
-        </div>
-        <div class="split">
-          <div class="roadmap-wrap">
-            <table class="roadmap">
-              <thead>
-                <tr>
-                  <th>Dipartimento</th>
-                  <th>Aprile</th>
-                  <th>Maggio</th>
-                  <th>Giugno</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="dept">OPS &amp; STAFF</td>
-                  <td><div class="task-list"><span class="task todo">Payroll</span></div></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">HR</td>
-                  <td><div class="task-list"><span class="task block">Absenteeism report</span><span class="task todo">Attrition - detailed view da aggiungere</span><span class="task todo">Remaining Leaves - detailed view da aggiungere</span></div></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">Recruiting &amp; Training</td>
-                  <td><div class="task-list"><span class="task prog">Candidates per stage</span><span class="task todo">Demand &amp; Achieved</span><span class="task todo">Cost Analysis</span><span class="task todo">Candidates per stage of training</span></div></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">COO</td>
-                  <td></td>
-                  <td></td>
-                  <td><div class="task-list"><span class="task todo">GM - Economics</span></div></td>
-                </tr>
-                <tr>
-                  <td class="dept">KLARNA</td>
-                  <td></td>
-                  <td><div class="task-list"><span class="task todo">Introduction with data</span><span class="task todo">Daily Report x activity</span><span class="task todo">Agent Report</span></div></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">Other Campaigns</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">Architecture of Data Flow</td>
-                  <td></td>
-                  <td></td>
-                  <td><div class="task-list"><span class="task todo">Evoluzione architetturale del background dati</span></div></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="mini-grid">
-            <div class="card-dark">
-              <div class="mini">Lettura Q2</div>
-              <h3>Direzione del trimestre successivo</h3>
-              <ul>
-                <li>Completamento viste dettagliate HR</li>
-                <li>Ripresa del report per Recruiting</li>
-                <li>Avvio dei report per Klarna e progressiva estensione del perimetro.</li>
-              </ul>
-            </div>
-            <div class="card-dark">
-              <div class="mini">Nota operativa</div>
-              <h3>Capacità e sequenziamento</h3>
-              <p>La pianificazione è intenzionalmente flessibile: adattiamo le priorità in funzione del valore business e delle dipendenze operative.</p>
-            </div>
-          </div>
-        </div>
+      <div class="legend"><span class="badge todo">estensione reporting e data flow</span></div>
+    </div>
+    <div class="split">
+      
+    <div class="roadmap-wrap">
+      <table class="roadmap">
+        <thead><tr><th style="width:14%">Dipartimento</th><th style="width:28%">Aprile</th><th style="width:28%">Maggio</th><th style="width:28%">Giugno</th></tr></thead>
+        <tbody><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q2',0)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q2',0,this.textContent)">C-LEVEL</span></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',0,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',0,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',0,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q2',1)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q2',1,this.textContent)">Diretta / Indiretta</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q2',1,0,0)">Sales Dashboard - V3</span><button class="add-task-btn" onclick="openAddTask('numbers-q2',1,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',1,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task todo editable" onclick="openTaskModal('numbers-q2',1,2,0)">Sales Dashboard - Input Economics</span><button class="add-task-btn" onclick="openAddTask('numbers-q2',1,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q2',2)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q2',2,this.textContent)">RETAIL</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q2',2,0,0)">Report Attivazioni Retail v2</span><span class="task ok editable" onclick="openTaskModal('numbers-q2',2,0,1)">Report vendite accessori</span><button class="add-task-btn" onclick="openAddTask('numbers-q2',2,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task todo editable" onclick="openTaskModal('numbers-q2',2,1,0)">Report extra marginalita'</span><span class="task todo editable" onclick="openTaskModal('numbers-q2',2,1,1)">Report vendite</span><button class="add-task-btn" onclick="openAddTask('numbers-q2',2,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',2,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q2',3)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q2',3,this.textContent)">PERFORMANCE</span></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',3,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task todo editable" onclick="openTaskModal('numbers-q2',3,1,0)">Spostamenti dei report su Looker</span><button class="add-task-btn" onclick="openAddTask('numbers-q2',3,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task todo editable" onclick="openTaskModal('numbers-q2',3,2,0)">Report Full Chain</span><button class="add-task-btn" onclick="openAddTask('numbers-q2',3,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q2',4)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q2',4,this.textContent)">RENT</span></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',4,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',4,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',4,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q2',5)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q2',5,this.textContent)">VOICE</span></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',5,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',5,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',5,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q2',6)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q2',6,this.textContent)">PRE-BILLING</span></td><td><div class="task-list"><span class="task ok editable" onclick="openTaskModal('numbers-q2',6,0,0)">Trasformazione Payout - Area Ciccone</span><span class="task ok editable" onclick="openTaskModal('numbers-q2',6,0,1)">Trasformazione Payout - Area CB WIND</span><span class="task block editable" onclick="openTaskModal('numbers-q2',6,0,2)">Trasformazione Payout - Area Rent</span><span class="task ok editable" onclick="openTaskModal('numbers-q2',6,0,3)">Trasformazione Payout - Area UPS BO</span><button class="add-task-btn" onclick="openAddTask('numbers-q2',6,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task prog editable" onclick="openTaskModal('numbers-q2',6,1,0)">Manutenzione anagrafica - Check con Angelo</span><span class="task ok editable" onclick="openTaskModal('numbers-q2',6,1,1)">DB Payout</span><span class="task prog editable" onclick="openTaskModal('numbers-q2',6,1,2)">DB Storico pagamenti</span><span class="task todo editable" onclick="openTaskModal('numbers-q2',6,1,3)">Aggiunta del check sui valori di contratti</span><button class="add-task-btn" onclick="openAddTask('numbers-q2',6,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',6,2)">＋ Aggiungi</button></div></td></tr><tr><td class="dept"><button class="del-row-btn" onclick="deleteRow('numbers-q2',7)" title="Elimina riga">×</button><span class="dept-editable" contenteditable="true" onblur="updateDept('numbers-q2',7,this.textContent)">Architecture of Data Flow</span></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',7,0)">＋ Aggiungi</button></div></td><td><div class="task-list"><button class="add-task-btn" onclick="openAddTask('numbers-q2',7,1)">＋ Aggiungi</button></div></td><td><div class="task-list"><span class="task todo editable" onclick="openTaskModal('numbers-q2',7,2,0)">Assessment NiFi</span><span class="task todo editable" onclick="openTaskModal('numbers-q2',7,2,1)">Passaggio da NiFi su Data Warehouse</span><button class="add-task-btn" onclick="openAddTask('numbers-q2',7,2)">＋ Aggiungi</button></div></td></tr><tr><td colspan="4" class="add-row-cell"><button class="add-row-btn" onclick="addRow('numbers-q2')">＋ Nuova riga dipartimento</button></td></tr></tbody>
+      </table>
+    </div>
+      <div class="mini-grid"><div class="card-dark"><div class="mini">Lettura Q2</div><h3 style="font-size:20px;margin-bottom:8px">Evoluzione del perimetro</h3><ul style="margin:8px 0 0;padding-left:18px"><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Estensione capability commerciali e retail</li><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Rafforzamento del layer Pre-Billing e payout</li><li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">Avvio attività architetturali sul data flow</li></ul></div><div class="card-dark"><div class="mini">Nota strategica</div><h3 style="font-size:20px;margin-bottom:8px">Delivery + readiness architetturale</h3><p style="font-size:15px;line-height:1.55;color:#d8dfed;margin-top:6px">Il secondo trimestre combina nuovi report di business con attività di preparazione infrastrutturale, aumentando la copertura funzionale senza perdere di vista la sostenibilità del modello dati.</p></div></div>
+    </div>
+  </div></section><section class="slide"><div class="frame">
+    <div class="header">
+      <div><div class="sub">Operating model</div><h2>Sprint di delivery Data Analytics</h2></div>
+      <div class="legend"><span class="badge live">modello operativo standard</span></div>
+    </div>
+    <div class="timeline">
+      <div class="step"><div class="box"><h3>Fase 1 · Assessment</h3><p>Comprensione del bisogno business, mappatura del prodotto/report richiesto, verifica delle fonti e prima identificazione dei rischi di disponibilità dati.</p></div></div>
+      <div class="step"><div class="box"><h3>Fase 2 · Design</h3><p>Definizione della struttura del report, KPI, logica di calcolo, layout di consumo e dipendenze tecniche. Qui si decidono standard e priorità di implementazione.</p></div></div>
+      <div class="step"><div class="box"><h3>Fase 3 · Collect Data &amp; Transformation</h3><p>Raccolta dati, trasformazioni, controlli di qualità, allineamenti con DB e sistemi sorgente, implementazione delle metriche e costruzione del report finale.</p></div></div>
+      <div class="step"><div class="box"><h3>Fase 4 · Go-Live</h3><p>Condivisione del report, handover, documentazione, tuning finale e passaggio alla fase di monitoraggio o manutenzione ricorrente.</p></div></div>
+    </div>
+  </div></section><section class="slide active"><div class="frame">
+    <div class="header">
+      <div><div class="sub">Foundation work</div><h2>Valore strategico del lavoro abilitante</h2></div>
+      <div class="legend"><span class="badge prog">high impact · low visibility</span></div>
+    </div>
+    <div class="foundation-grid">
+      <div class="card-dark">
+        <div class="mini">Architettura dati</div>
+        <h3>Evoluzione dell'ecosistema dati</h3>
+        <p>Attualmente una parte dei flussi dati è gestita tramite <strong>NiFi</strong> e <strong>dbt</strong>, con trasformazioni intermedie. L'evoluzione verso un <strong>Data Warehouse strutturato</strong> rappresenta un passaggio strategico per rafforzare standardizzazione, scalabilità e affidabilità.</p>
       </div>
-    </section>
-
-    <section class="slide">
-      <div class="frame">
-        <div class="header">
-          <div>
-            <div class="sub">Operational effort</div>
-            <h2>Effort operativo per il payroll</h2>
-          </div>
-          <div class="legend">
-            <span class="badge prog">manual checks · external dependencies</span>
-          </div>
-        </div>
-
-        <div class="payroll-hero">
-          <div class="payroll-copy">
-            <div class="payroll-subtitle">
-              La mancata automazione di numerosi controlli sul payroll richiede un effort elevato
-              e rallenta il processo complessivo. Le tempistiche finali dipendono non solo dall’elaborazione interna,
-              ma anche dalle validazioni e dalla risoluzione di anomalie con Ops e HR.
-            </div>
-
-            <div class="payroll-check-card">
-              <div class="payroll-check-head">
-                <div class="payroll-check-icon">🗂️</div>
-                <h3>Payroll: Controlli manuali</h3>
-              </div>
-
-              <ul class="payroll-check-list">
-                <li>Formato date e matching ore</li>
-                <li>ID ripetuti o duplicati</li>
-                <li>Turni non completi,senza nome oppure duplicati/li>
-                <li>Check delle ferie (check se mancano le ferie caricati, modifiche manuali dovuti a i problemi di odoo)</li>
-                <li>Sovrapposizioni delle ore tra training e ferie</li>
-                <li>Orari fuori contratto o metodo pagamento</li>
-                <li>ID associati a più nomi / nomi associati a più ID</li>
-		<li>Check delle ore lavorate o ferie inserite dopo la validita' del contratto</li>
-                <li>Seniority e altre validazioni di ricerca</li>
-              </ul>
-
-              <div class="payroll-check-note">
-                Risultati e tempistiche dipendenti anche da altri dipartimenti (Ops, HR).
-              </div>
-            </div>
-          </div>
-
-          <div class="payroll-flow">
-            <div class="payroll-metric top">
-              <div class="payroll-metric-row">
-                <div class="payroll-metric-icon">🕒</div>
-                <div>
-                  <div class="value">Payroll operativo (Agenti & Staff) </div>
-                  <div class="sub">40 ore produttive</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="payroll-arrow">↓</div>
-
-            <div class="payroll-metric mid">
-              <div class="value big">2–3 giorni</div>
-              <div class="sub">checks manuali</div>
-            </div>
-
-            <div class="payroll-arrow warm">↓</div>
-
-            <div class="payroll-metric bottom">
-              <div class="payroll-metric-row">
-                <div class="payroll-metric-icon">📅</div>
-                <div>
-                  <div class="value">Tempo per payroll</div>
-                  <div class="sub"><strong>Fino a 2 settimane</strong><br>inclusi bonus + checks</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="card-dark">
+        <div class="mini">Messaggio chiave</div>
+        <h3>Come valutare correttamente Data Analytics</h3>
+        <ul>
+          <li>Non solo report consegnati, ma anche stabilità del layer dati;</li>
+          <li>Non solo output frontend, ma riduzione del rischio operativo;</li>
+          <li>Non solo velocità di delivery, ma costruzione di una base sostenibile nel lungo periodo.</li>
+        </ul>
       </div>
-    </section>
-
-    <section class="slide">
-      <div class="frame">
-        <div class="header">
-          <div>
-            <div class="sub">Roadmap Q1 2026</div>
-            <h2>Numbers – Pianificazione gennaio · febbraio · marzo</h2>
-          </div>
-          <div class="legend">
-            <span class="badge todo">business unit numbers</span>
-          </div>
-        </div>
-        <div class="split">
-          <div class="roadmap-wrap">
-            <table class="roadmap">
-              <thead>
-                <tr>
-                  <th>Dipartimento</th>
-                  <th>Gennaio</th>
-                  <th>Febbraio</th>
-                  <th>Marzo</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="dept">C-LEVEL</td>
-                  <td><div class="task-list"><span class="task ok">Mokup iniziale Looker</span></div></td>
-                  <td><div class="task-list"><span class="task ok">Sales Dashboard - Analysis</span></div></td>
-                  <td><div class="task-list"><span class="task ok">Sales Dashboard</span></div></td>
-                </tr>
-                <tr>
-                  <td class="dept">Diretta/Indiretta</td>
-                  <td><div class="task-list">
-                    <span class="task ok">Assessment</span>
-                    <span class="task ok">Check Tools</span>
-                    <span class="task ok">Check Mapping &amp; KPIs</span>
-                  </div></td>
-                  <td><div class="task-list">
-                    <span class="task ok">Mapping Statuses</span>
-                    <span class="task ok">Mapping prodotti</span>
-                    <span class="task ok">Mapping area / BU / commesse</span>
-                    <span class="task ok">Sales Dashboard - Analysis</span>
-                  </div></td>
-                  <td><div class="task-list">
-                    <span class="task ok">Sales Dashboard</span>
-                  </div></td>
-                </tr>
-                <tr>
-                  <td class="dept">RETAIL</td>
-                  <td><div class="task-list">
-                    <span class="task ok">Assessment v1</span>
-                  </div></td>
-                  <td><div class="task-list">
-                    <span class="task ok">Analisi dati su DB</span>
-                    <span class="task block">Assessment v2</span>
-                  </div></td>
-                  <td><div class="task-list">
-                    <span class="task ok">Assessment v2</span>
-                    <span class="task ok">Mapping</span>
-                    <span class="task ok">Dashboard Attivazioni Vodafone</span>
-                  </div></td>
-                </tr>
-                <tr>
-                  <td class="dept">PERFORMANCE</td>
-                  <td><div class="task-list"><span class="task ok">Adjust the dashboard</span></div></td>
-                  <td><div class="task-list"><span class="task ok">Assessment</span></div></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">RENT</td>
-                  <td><div class="task-list"><span class="task ok">Dashboard Looker</span></div></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">VOICE</td>
-                  <td><div class="task-list"><span class="task ok">Analisi CB</span></div></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">PRE-BILLING</td>
-                  <td><div class="task-list">
-                    <span class="task ok">Assessment</span>
-                    <span class="task ok">Check Tools</span>
-                    <span class="task ok">Handover P1</span>
-                  </div></td>
-                  <td><div class="task-list">
-                    <span class="task prog">Mapping Statuses</span>
-                    <span class="task ok">Handover P2</span>
-                  </div></td>
-                  <td><div class="task-list">
-                    <span class="task ok">Listini on DB</span>
-                    <span class="task ok">Trasformazione Payout - Area Diretta</span>
-                    <span class="task ok">Trasformazione Payout - Area Spark</span>
-                    <span class="task ok">Trasformazione Payout - Area Partner Pro</span>
-                    <span class="task ok">Trasformazione Payout - Area Agency</span>
-                  </div></td>
-                </tr>
-                <tr>
-                  <td class="dept">ARCHITECTURE OF DATA FLOW</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="mini-grid">
-            <div class="card-dark">
-              <div class="mini">Lettura Q1</div>
-              <h3>Focus del trimestre</h3>
-              <ul>
-                <li>Impostazione iniziale delle dashboard commerciali e manageriali.</li>
-                <li>Assessment e mapping funzionali per abilitare KPI e viste Looker.</li>
-                <li>Avanzamento progressivo su Sales, Retail e Pre-Billing.</li>
-              </ul>
-            </div>
-            <div class="card-dark">
-              <div class="mini">Nota operativa</div>
-              <h3>Dipendenze da mapping e dati</h3>
-              <p>Nel perimetro Numbers una parte rilevante del lavoro dipende da mapping, qualità del DB e definizione delle logiche commerciali. Per questo motivo alcune attività passano da assessment e analisi prima di arrivare alla delivery finale.</p>
-              <ul>
-                <li>Elevata complessità di mapping nella Sales Table.</li>
-                <li>Criticità strutturali nel modulo Pagamenti (listini e anagrafica).</li>
-                <li>Manutenzione parzialmente manuale e dipendente da altri dipartimenti.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      <div class="card-dark">
+        <div class="mini">Qualità e affidabilità</div>
+        <h3>Attività ad alta complessità operativa</h3>
+        <h4>1) WAF · Analisi Odoo</h4>
+        <p>Analisi approfondita delle anomalie e criticità legate a Odoo: elevato effort analitico, essenziale per consolidare accuratezza e affidabilità delle delivery future.</p>
+        <h4>2) Numbers · Analisi business e mapping</h4>
+        <p>Lavoro strutturato sui KPI di business e mapping a supporto di <strong>Sales</strong> e <strong>Mod Pagamenti</strong>: attività abilitante, fondamentale per una reportistica più solida e scalabile.</p>
       </div>
-    </section>
-
-    <section class="slide">
-      <div class="frame">
-        <div class="header">
-          <div>
-            <div class="sub">Roadmap Q2 2026</div>
-            <h2>Numbers – Pianificazione aprile · maggio · giugno</h2>
-          </div>
-          <div class="legend"><span class="badge todo">estensione reporting e data flow</span></div>
-        </div>
-        <div class="split">
-          <div class="roadmap-wrap">
-            <table class="roadmap">
-              <thead>
-                <tr>
-                  <th>Dipartimento</th>
-                  <th>Aprile</th>
-                  <th>Maggio</th>
-                  <th>Giugno</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="dept">C-LEVEL</td>
-                  <td></td>
-                  <td><div class="task-list"><span class="task todo">Sales Dashboard - Input Economics</span></div></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">Diretta/Indiretta</td>
-                  <td><div class="task-list"><span class="task todo">Sales Dashboard - V3</span></div></td>
-                  <td><div class="task-list"><span class="task todo">Sales Dashboard - Input Economics</span></div></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">RETAIL</td>
-                  <td><div class="task-list">
-                    <span class="task todo">Report Vendite Retail</span>
-                    <span class="task todo">Margine economico vendite Retail</span>
-                    <span class="task todo">Report magazzino</span>
-                  </div></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">PERFORMANCE</td>
-                  <td></td>
-                  <td><div class="task-list"><span class="task todo">Spostamenti dei report su Looker</span></div></td>
-                  <td><div class="task-list"><span class="task todo">Report Full Chain</span></div></td>
-                </tr>
-                <tr>
-                  <td class="dept">RENT</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">VOICE</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">PRE-BILLING</td>
-                  <td><div class="task-list">
-                    <span class="task todo">Trasformazione Payout - Area Ciccone</span>
-                    <span class="task todo">Trasformazione Payout - Area CB WIND</span>
-                    <span class="task todo">Trasformazione Payout - Area Rent</span>
-                    <span class="task todo">Trasformazione Payout - Area UPS BO</span>
-                  </div></td>
-                  <td><div class="task-list">
-					<span class="task todo">Manutenzione anagrafica</span>
-                    <span class="task todo">DB Payout</span>
-                    <span class="task todo">DB Storico pagamenti</span>
-                    <span class="task todo">Aggiunta del check sui valori di contratti</span>
-                  </div></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="dept">ARCHITECTURE OF DATA FLOW</td>
-                  <td></td>
-                  <td></td>
-                  <td><div class="task-list">
-                    <span class="task todo">Assessment NiFi</span>
-                    <span class="task todo">Passaggio da NiFi su Data Warehouse</span>
-                  </div></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="mini-grid">
-            <div class="card-dark">
-              <div class="mini">Lettura Q2</div>
-              <h3>Evoluzione del perimetro</h3>
-              <ul>
-                <li>Estensione delle capability commerciali e retail.</li>
-                <li>Rafforzamento del layer Pre-Billing e dei payout.</li>
-                <li>Avvio delle attività architetturali sul data flow.</li>
-              </ul>
-            </div>
-            <div class="card-dark">
-              <div class="mini">Nota strategica</div>
-              <h3>Delivery + readiness architetturale</h3>
-              <p>Il secondo trimestre combina nuovi report di business con attività di preparazione infrastrutturale. Questo approccio consente di aumentare la copertura funzionale senza perdere di vista la sostenibilità del modello dati.</p>
-            </div>
-          </div>
-        </div>
+      <div class="card-dark">
+        <div class="mini">Conclusione esecutiva</div>
+        <h3>Priorità strategica</h3>
+        <p>Il dipartimento genera valore sia attraverso i deliverable visibili sia tramite il consolidamento del background tecnologico e informativo. Questa componente, meno immediata da percepire, è quella che abilita qualità, automazione e affidabilità su tutta la roadmap futura.</p>
       </div>
-    </section>
+    </div>
+  </div></section></div>
 
-    <section class="slide">
-      <div class="frame">
-        <div class="header">
-          <div>
-            <div class="sub">Operating model</div>
-            <h2>Sprint di delivery Data Analytics</h2>
-          </div>
-          <div class="legend"><span class="badge live">modello operativo standard</span></div>
-        </div>
-        <div class="timeline">
-          <div class="step">
-            <div class="box">
-              <h3>Fase 1 · Assessment</h3>
-              <p>Comprensione del bisogno business, mappatura del prodotto/report richiesto, verifica delle fonti e prima identificazione dei rischi di disponibilità dati.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="box">
-              <h3>Fase 2 · Design</h3>
-              <p>Definizione della struttura del report, KPI, logica di calcolo, layout di consumo e dipendenze tecniche. Qui si decidono standard e priorità di implementazione.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="box">
-              <h3>Fase 3 · Collect Data &amp; Transformation</h3>
-              <p>Raccolta dati, trasformazioni, controlli di qualità, allineamenti con DB e sistemi sorgente, implementazione delle metriche e costruzione del report finale.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="box">
-              <h3>Fase 4 · Go-Live</h3>
-              <p>Condivisione del report, handover, documentazione, tuning finale e passaggio alla fase di monitoraggio o manutenzione ricorrente.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="nav">
+  <button class="btn" id="prev">‹</button>
+  <button class="btn" id="next">›</button>
+</div>
+<div class="pager" id="pager"><div class="dotp"></div><div class="dotp"></div><div class="dotp"></div><div class="dotp"></div><div class="dotp"></div><div class="dotp"></div><div class="dotp"></div><div class="dotp"></div><div class="dotp active"></div></div>
+<div class="edit-badge">✏ EDIT MODE</div>
 
-    <section class="slide">
-      <div class="frame">
-        <div class="header">
-          <div>
-            <div class="sub">Foundation work</div>
-            <h2>Valore strategico del lavoro abilitante</h2>
-          </div>
-          <div class="legend"><span class="badge prog">high impact · low visibility</span></div>
-        </div>
-
-        <div class="foundation-grid">
-          <div class="card-dark">
-            <div class="mini">Architettura dati</div>
-            <h3>Evoluzione dell’ecosistema dati</h3>
-            <p>Attualmente una parte dei flussi dati è gestita tramite <strong>NiFi</strong> e <strong>dbt</strong>, con trasformazioni intermedie. L’evoluzione verso un <strong>Data Warehouse strutturato</strong> rappresenta un passaggio strategico per rafforzare standardizzazione, scalabilità e affidabilità. Prima di avviare questa transizione è necessario completare una fase preliminare di analisi tecnica e valutazione degli impatti.</p>
-          </div>
-
-          <div class="card-dark">
-            <div class="mini">Messaggio chiave</div>
-            <h3>Come valutare correttamente Data Analytics</h3>
-            <ul>
-              <li>non solo report consegnati, ma anche stabilità del layer dati;</li>
-              <li>non solo output frontend, ma riduzione del rischio operativo;</li>
-              <li>non solo velocità di delivery, ma costruzione di una base sostenibile nel lungo periodo.</li>
-            </ul>
-          </div>
-
-          <div class="card-dark">
-            <div class="mini">Qualità e affidabilità</div>
-            <h3>Attività ad alta complessità operativa</h3>
-
-            <h4>1) WAF · Analisi Odoo</h4>
-            <p>È stata condotta un’analisi approfondita delle anomalie e delle criticità legate a Odoo. Si tratta di un’attività ad elevato effort analitico che, pur non traducendosi immediatamente in output visibili, è essenziale per consolidare accuratezza, coerenza e affidabilità delle delivery future.</p>
-
-            <h4>2) Numbers · Analisi business e mapping</h4>
-            <p>È stato sviluppato un lavoro strutturato sui KPI di business e sui mapping a supporto di <strong>Sales</strong> e <strong>Mod Pagamenti</strong>. Anche in questo caso si tratta di un’attività abilitante, ad alta intensità analitica, fondamentale per costruire una reportistica più solida, coerente e scalabile nel tempo.</p>
-          </div>
-
-          <div class="card-dark">
-            <div class="mini">Conclusione esecutiva</div>
-            <h3>Priorità strategica</h3>
-            <p>Il dipartimento genera valore sia attraverso i deliverable visibili sia tramite il consolidamento del background tecnologico e informativo. Questa componente, meno immediata da percepire, è quella che abilita qualità, automazione e affidabilità su tutta la roadmap futura.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
+<!-- Edit bar -->
+<div class="edit-bar" id="editBar">
+  <button class="eb-btn active-edit" id="toggleEdit">✕ Esci da modifica</button>
+  <div id="editTools" style="display: flex; gap: 8px; align-items: center;" class="eb-tools">
+    <div class="eb-sep"></div>
+    <button class="eb-btn add-slide-btn" id="addSlideBtn">＋ Nuova slide</button>
+    <button class="eb-btn danger-btn" id="deleteSlideBtn">🗑 Elimina slide</button>
+    <button class="eb-btn save-btn" id="saveBtn">💾 Salva</button>
+    <span class="save-status" id="saveStatus">Creazione file HTML…</span>
   </div>
+</div>
 
-  <div class="nav">
-    <button class="btn" id="prev">&#8249;</button>
-    <button class="btn" id="next">&#8250;</button>
+<!-- Task modal -->
+<div class="modal-overlay" id="taskModal" style="display: none;">
+  <div class="modal-box">
+    <div class="modal-head">
+      <span>✏️ Modifica task</span>
+      <button class="modal-close-btn" onclick="closeTaskModal()">✕</button>
+    </div>
+    <label class="modal-label">Testo del task</label>
+    <input class="modal-input" id="taskText" type="text" placeholder="Descrizione task...">
+    <label class="modal-label">Stato</label>
+    <div class="status-pills" id="statusPills"><button class="status-pill" onclick="selectStatus('ok')" style="background:var(--ok);color:var(--ok-t);border-color:var(--ok-b)">Completato</button><button class="status-pill" onclick="selectStatus('live')" style="background:var(--live);color:var(--live-t);border-color:var(--live-b)">Live</button><button class="status-pill sel" onclick="selectStatus('prog')" style="background:var(--prog);color:var(--prog-t);border-color:var(--prog-b)">In progress</button><button class="status-pill" onclick="selectStatus('todo')" style="background:var(--todo);color:var(--todo-t);border-color:var(--todo-b)">Da fare</button><button class="status-pill" onclick="selectStatus('block')" style="background:var(--block);color:var(--block-t);border-color:var(--block-b)">Bloccato</button></div>
+    <div class="modal-footer">
+      <button class="modal-btn danger" id="deleteTaskBtn" style="display: block;">🗑 Elimina</button>
+      <button class="modal-btn primary" onclick="saveTask()">Salva</button>
+    </div>
   </div>
-  <div class="pager" id="pager"></div>
+</div>
 
-  <script>
-    const slides = [...document.querySelectorAll('.slide')];
-    const pager = document.getElementById('pager');
-    let index = 0;
+<!-- Add slide modal -->
+<div class="modal-overlay" id="addSlideModal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-head">
+      <span>＋ Nuova slide roadmap</span>
+      <button class="modal-close-btn" onclick="document.getElementById('addSlideModal').style.display='none'">✕</button>
+    </div>
+    <label class="modal-label">Sezione (es. WAF, Numbers, Klarna…)</label>
+    <input class="modal-input" id="newSection" type="text" placeholder="es. WAF">
+    <label class="modal-label">Trimestre / Periodo</label>
+    <input class="modal-input" id="newQuarter" type="text" placeholder="es. Q3 2026">
+    <label class="modal-label">Mesi (separati da virgola)</label>
+    <input class="modal-input" id="newMonths" type="text" value="Luglio, Agosto, Settembre">
+    <label class="modal-label">Nota laterale (opzionale)</label>
+    <input class="modal-input" id="newNote" type="text" placeholder="es. Fase di espansione…">
+    <div class="modal-footer">
+      <button class="modal-btn ghost" onclick="document.getElementById('addSlideModal').style.display='none'">Annulla</button>
+      <button class="modal-btn primary" onclick="createNewSlide()">Crea slide</button>
+    </div>
+  </div>
+</div>
 
-    function renderPager(){
-      pager.innerHTML = '';
-      slides.forEach((_,i)=>{
-        const d=document.createElement('div');
-        d.className='dotp'+(i===index?' active':'');
-        d.addEventListener('click',()=>go(i));
-        pager.appendChild(d);
-      });
+<!-- Edit slide title modal -->
+<div class="modal-overlay" id="titleModal" style="display: none;">
+  <div class="modal-box" style="width:400px">
+    <div class="modal-head">
+      <span>Modifica titolo slide</span>
+      <button class="modal-close-btn" onclick="document.getElementById('titleModal').style.display='none'">✕</button>
+    </div>
+    <label class="modal-label">Sottotitolo sezione</label>
+    <input class="modal-input" id="titleSub" type="text">
+    <label class="modal-label">Titolo principale</label>
+    <input class="modal-input" id="titleMain" type="text">
+    <div class="modal-footer">
+      <button class="modal-btn ghost" onclick="document.getElementById('titleModal').style.display='none'">Annulla</button>
+      <button class="modal-btn primary" onclick="saveSlideTitle()">Salva</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+const DEFAULT_DATA = {
+  "slides": [
+    {
+      "id": "cover",
+      "type": "cover"
+    },
+    {
+      "id": "summary",
+      "type": "summary"
+    },
+    {
+      "id": "waf-q1",
+      "type": "roadmap",
+      "sub": "Roadmap Q1 2026",
+      "title": "WAF — Pianificazione gennaio · febbraio · marzo",
+      "legend": {
+        "text": "stato leggibile e incorporato",
+        "status": "ok"
+      },
+      "months": [
+        "Gennaio",
+        "Febbraio",
+        "Marzo"
+      ],
+      "rows": [
+        {
+          "dept": "OPS & STAFF",
+          "cells": [
+            [
+              {
+                "t": "Payroll introduction",
+                "s": "ok"
+              },
+              {
+                "t": "Payroll",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Payroll handover",
+                "s": "ok"
+              },
+              {
+                "t": "Payroll",
+                "s": "ok"
+              },
+              {
+                "t": "Payroll documentation",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Payroll",
+                "s": "ok"
+              },
+              {
+                "t": "Implementazione controlli settimanali",
+                "s": "ok"
+              }
+            ]
+          ]
+        },
+        {
+          "dept": "HR",
+          "cells": [
+            [
+              {
+                "t": "Sick Leave",
+                "s": "ok"
+              },
+              {
+                "t": "Introduzione Odoo",
+                "s": "ok"
+              },
+              {
+                "t": "Check anomalie Odoo",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Anomalie Odoo vs DB",
+                "s": "ok"
+              },
+              {
+                "t": "Allineamento Leaves DB",
+                "s": "block"
+              },
+              {
+                "t": "Attrition",
+                "s": "block"
+              }
+            ],
+            [
+              {
+                "t": "Dashboard Remaining Leaves",
+                "s": "ok"
+              },
+              {
+                "t": "Documentazione Remaining Leaves",
+                "s": "ok"
+              },
+              {
+                "t": "Attrition - Workforce",
+                "s": "ok"
+              },
+              {
+                "t": "Attendance",
+                "s": "ok"
+              }
+            ]
+          ]
+        },
+        {
+          "dept": "ACCENTURE",
+          "cells": [
+            [
+              {
+                "t": "SKIP CVP",
+                "s": "ok"
+              },
+              {
+                "t": "BO Post Sales",
+                "s": "ok"
+              },
+              {
+                "t": "Quality Check",
+                "s": "ok"
+              },
+              {
+                "t": "BO Dealer",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Report per agent Dealer Care",
+                "s": "ok"
+              },
+              {
+                "t": "Report per agent Post Sales",
+                "s": "ok"
+              }
+            ],
+            []
+          ]
+        },
+        {
+          "dept": "Recruiting & Training",
+          "cells": [
+            [
+              {
+                "t": "Candidates per stage",
+                "s": "block"
+              },
+              {
+                "t": "Demand & Achieved",
+                "s": "block"
+              },
+              {
+                "t": "Cost Analysis",
+                "s": "block"
+              },
+              {
+                "t": "Candidates per stage of training",
+                "s": "block"
+              }
+            ],
+            [
+              {
+                "t": "Candidates per stage",
+                "s": "block"
+              },
+              {
+                "t": "Demand & Achieved",
+                "s": "block"
+              },
+              {
+                "t": "Cost Analysis",
+                "s": "block"
+              },
+              {
+                "t": "Candidates per stage of training",
+                "s": "block"
+              }
+            ],
+            [
+              {
+                "t": "Candidates per stage",
+                "s": "prog"
+              }
+            ]
+          ]
+        },
+        {
+          "dept": "COO",
+          "cells": [
+            [
+              {
+                "t": "Site con tutti i report",
+                "s": "ok"
+              }
+            ],
+            [],
+            []
+          ]
+        },
+        {
+          "dept": "Other Campaigns",
+          "cells": [
+            [
+              {
+                "t": "Mio Dottore PBI",
+                "s": "ok"
+              },
+              {
+                "t": "Mio Dottore Excel",
+                "s": "ok"
+              },
+              {
+                "t": "Just Eat bonus template",
+                "s": "ok"
+              },
+              {
+                "t": "Divora PBI",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Mio Dottore PBI",
+                "s": "ok"
+              },
+              {
+                "t": "Mio Dottore Excel",
+                "s": "ok"
+              },
+              {
+                "t": "Mio Dottore add SL",
+                "s": "ok"
+              },
+              {
+                "t": "Divora PBI",
+                "s": "ok"
+              }
+            ],
+            []
+          ]
+        },
+        {
+          "dept": "Budgeting",
+          "cells": [
+            [],
+            [
+              {
+                "t": "Introduzione budgeting",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Automazione budgeting",
+                "s": "ok"
+              }
+            ]
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "mini": "Lettura Q1",
+          "title": "Cosa abbiamo fatto",
+          "items": [
+            "Ristrutturazione della payroll da capo",
+            "Documentazione del processo di Payroll",
+            "Analisi anomalie Odoo",
+            "Delivery di +6 report in < 3 mesi"
+          ],
+          "extra": {
+            "title": "Pending / Blocchi",
+            "items": [
+              "Richiesta fatta per la DB di Odoo",
+              "Mapping agente / TL / FM / CSDM"
+            ]
+          }
+        },
+        {
+          "mini": "Commento manageriale",
+          "title": "Dove si concentra il valore",
+          "text": "Nel trimestre il team ha coperto contemporaneamente delivery visibile, documentazione, handover e controlli ricorrenti. Questo riduce rischio operativo e migliora la continuità di servizio."
+        }
+      ]
+    },
+    {
+      "id": "waf-q2",
+      "type": "roadmap",
+      "sub": "Roadmap Q2 2026",
+      "title": "WAF — Pianificazione aprile · maggio · giugno",
+      "legend": {
+        "text": "focus su backlog, dettagli e nuovi stream",
+        "status": "todo"
+      },
+      "months": [
+        "Aprile",
+        "Maggio",
+        "Giugno"
+      ],
+      "rows": [
+        {
+          "dept": "OPS & STAFF",
+          "cells": [
+            [
+              {
+                "t": "Payroll",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Payroll",
+                "s": "todo"
+              }
+            ],
+            []
+          ]
+        },
+        {
+          "dept": "HR",
+          "cells": [
+            [
+              {
+                "t": "Absenteeism report",
+                "s": "block"
+              },
+              {
+                "t": "Attrition - detailed view da aggiungere",
+                "s": "ok"
+              },
+              {
+                "t": "Remaining Leaves - detailed view da aggiungere",
+                "s": "ok"
+              }
+            ],
+            [],
+            []
+          ]
+        },
+        {
+          "dept": "Recruiting & Training",
+          "cells": [
+            [
+              {
+                "t": "Candidates per stage",
+                "s": "ok"
+              },
+              {
+                "t": "Demand & Achieved",
+                "s": "prog"
+              },
+              {
+                "t": "Cost Analysis",
+                "s": "ok"
+              },
+              {
+                "t": "Candidates per stage of training",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Training",
+                "s": "todo"
+              }
+            ],
+            []
+          ]
+        },
+        {
+          "dept": "COO",
+          "cells": [
+            [],
+            [],
+            [
+              {
+                "t": "GM - Economics",
+                "s": "todo"
+              }
+            ]
+          ]
+        },
+        {
+          "dept": "KLARNA",
+          "cells": [
+            [],
+            [
+              {
+                "t": "Introduction with data",
+                "s": "todo"
+              },
+              {
+                "t": "Daily Report x activity",
+                "s": "todo"
+              },
+              {
+                "t": "Agent Report",
+                "s": "todo"
+              }
+            ],
+            []
+          ]
+        },
+        {
+          "dept": "Other Campaigns",
+          "cells": [
+            [
+              {
+                "t": "Report -Groupon CO",
+                "s": "ok"
+              },
+              {
+                "t": "Report - Groupon MO",
+                "s": "ok"
+              }
+            ],
+            [],
+            []
+          ]
+        },
+        {
+          "dept": "Architecture of Data Flow",
+          "cells": [
+            [],
+            [
+              {
+                "t": "Reorganizing Mapping",
+                "s": "todo"
+              }
+            ],
+            [
+              {
+                "t": "Evoluzione architetturale del background dati",
+                "s": "todo"
+              }
+            ]
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "mini": "Lettura Q2",
+          "title": "Direzione del trimestre",
+          "items": [
+            "Completamento viste dettagliate HR",
+            "Ripresa del report per Recruiting",
+            "Avvio report Klarna e estensione del perimetro"
+          ]
+        },
+        {
+          "mini": "Nota operativa",
+          "title": "Capacità e sequenziamento",
+          "text": "La pianificazione è intenzionalmente flessibile: adattiamo le priorità in funzione del valore business e delle dipendenze operative."
+        }
+      ]
+    },
+    {
+      "id": "payroll",
+      "type": "payroll"
+    },
+    {
+      "id": "numbers-q1",
+      "type": "roadmap",
+      "sub": "Roadmap Q1 2026",
+      "title": "Numbers — Pianificazione gennaio · febbraio · marzo",
+      "legend": {
+        "text": "business unit numbers",
+        "status": "todo"
+      },
+      "months": [
+        "Gennaio",
+        "Febbraio",
+        "Marzo"
+      ],
+      "rows": [
+        {
+          "dept": "C-LEVEL",
+          "cells": [
+            [
+              {
+                "t": "Mokup iniziale Looker",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Sales Dashboard - Analysis",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Sales Dashboard",
+                "s": "ok"
+              }
+            ]
+          ]
+        },
+        {
+          "dept": "Diretta / Indiretta",
+          "cells": [
+            [
+              {
+                "t": "Assessment",
+                "s": "ok"
+              },
+              {
+                "t": "Check Tools",
+                "s": "ok"
+              },
+              {
+                "t": "Check Mapping & KPIs",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Mapping Statuses",
+                "s": "ok"
+              },
+              {
+                "t": "Mapping prodotti",
+                "s": "ok"
+              },
+              {
+                "t": "Mapping area / BU / commesse",
+                "s": "ok"
+              },
+              {
+                "t": "Sales Dashboard - Analysis",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Sales Dashboard",
+                "s": "ok"
+              }
+            ]
+          ]
+        },
+        {
+          "dept": "RETAIL",
+          "cells": [
+            [
+              {
+                "t": "Assessment v1",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Analisi dati su DB",
+                "s": "ok"
+              },
+              {
+                "t": "Assessment v2",
+                "s": "block"
+              }
+            ],
+            [
+              {
+                "t": "Assessment v2",
+                "s": "ok"
+              },
+              {
+                "t": "Mapping",
+                "s": "ok"
+              },
+              {
+                "t": "Dashboard Attivazioni Vodafone",
+                "s": "ok"
+              }
+            ]
+          ]
+        },
+        {
+          "dept": "PERFORMANCE",
+          "cells": [
+            [
+              {
+                "t": "Adjust the dashboard",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Assessment",
+                "s": "ok"
+              }
+            ],
+            []
+          ]
+        },
+        {
+          "dept": "RENT",
+          "cells": [
+            [
+              {
+                "t": "Dashboard Looker",
+                "s": "ok"
+              }
+            ],
+            [],
+            []
+          ]
+        },
+        {
+          "dept": "VOICE",
+          "cells": [
+            [
+              {
+                "t": "Analisi CB",
+                "s": "ok"
+              }
+            ],
+            [],
+            []
+          ]
+        },
+        {
+          "dept": "PRE-BILLING",
+          "cells": [
+            [
+              {
+                "t": "Assessment",
+                "s": "ok"
+              },
+              {
+                "t": "Check Tools",
+                "s": "ok"
+              },
+              {
+                "t": "Handover P1",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Mapping Statuses",
+                "s": "prog"
+              },
+              {
+                "t": "Handover P2",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Listini on DB",
+                "s": "ok"
+              },
+              {
+                "t": "Trasformazione Payout - Area Diretta",
+                "s": "ok"
+              },
+              {
+                "t": "Trasformazione Payout - Area Spark",
+                "s": "ok"
+              },
+              {
+                "t": "Trasformazione Payout - Area Partner Pro",
+                "s": "ok"
+              },
+              {
+                "t": "Trasformazione Payout - Area Agency",
+                "s": "ok"
+              }
+            ]
+          ]
+        },
+        {
+          "dept": "Architecture of Data Flow",
+          "cells": [
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "mini": "Lettura Q1",
+          "title": "Focus del trimestre",
+          "items": [
+            "Impostazione dashboard commerciali e manageriali",
+            "Assessment e mapping funzionali per KPI e Looker",
+            "Avanzamento progressivo su Sales, Retail, Pre-Billing"
+          ]
+        },
+        {
+          "mini": "Nota operativa",
+          "title": "Dipendenze da mapping e dati",
+          "text": "Nel perimetro Numbers una parte rilevante del lavoro dipende da mapping, qualità del DB e definizione delle logiche commerciali.",
+          "items": [
+            "Elevata complessità di mapping nella Sales Table",
+            "Criticità strutturali nel modulo Pagamenti",
+            "Manutenzione parzialmente manuale"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "numbers-q2",
+      "type": "roadmap",
+      "sub": "Roadmap Q2 2026",
+      "title": "Numbers — Pianificazione aprile · maggio · giugno",
+      "legend": {
+        "text": "estensione reporting e data flow",
+        "status": "todo"
+      },
+      "months": [
+        "Aprile",
+        "Maggio",
+        "Giugno"
+      ],
+      "rows": [
+        {
+          "dept": "C-LEVEL",
+          "cells": [
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "dept": "Diretta / Indiretta",
+          "cells": [
+            [
+              {
+                "t": "Sales Dashboard - V3",
+                "s": "ok"
+              }
+            ],
+            [],
+            [
+              {
+                "t": "Sales Dashboard - Input Economics",
+                "s": "todo"
+              }
+            ]
+          ]
+        },
+        {
+          "dept": "RETAIL",
+          "cells": [
+            [
+              {
+                "t": "Report Attivazioni Retail v2",
+                "s": "ok"
+              },
+              {
+                "t": "Report vendite accessori",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Report extra marginalita'",
+                "s": "todo"
+              },
+              {
+                "t": "Report vendite",
+                "s": "todo"
+              }
+            ],
+            []
+          ]
+        },
+        {
+          "dept": "PERFORMANCE",
+          "cells": [
+            [],
+            [
+              {
+                "t": "Spostamenti dei report su Looker",
+                "s": "todo"
+              }
+            ],
+            [
+              {
+                "t": "Report Full Chain",
+                "s": "todo"
+              }
+            ]
+          ]
+        },
+        {
+          "dept": "RENT",
+          "cells": [
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "dept": "VOICE",
+          "cells": [
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "dept": "PRE-BILLING",
+          "cells": [
+            [
+              {
+                "t": "Trasformazione Payout - Area Ciccone",
+                "s": "ok"
+              },
+              {
+                "t": "Trasformazione Payout - Area CB WIND",
+                "s": "ok"
+              },
+              {
+                "t": "Trasformazione Payout - Area Rent",
+                "s": "block"
+              },
+              {
+                "t": "Trasformazione Payout - Area UPS BO",
+                "s": "ok"
+              }
+            ],
+            [
+              {
+                "t": "Manutenzione anagrafica - Check con Angelo",
+                "s": "prog"
+              },
+              {
+                "t": "DB Payout",
+                "s": "ok"
+              },
+              {
+                "t": "DB Storico pagamenti",
+                "s": "prog"
+              },
+              {
+                "t": "Aggiunta del check sui valori di contratti",
+                "s": "todo"
+              }
+            ],
+            []
+          ]
+        },
+        {
+          "dept": "Architecture of Data Flow",
+          "cells": [
+            [],
+            [],
+            [
+              {
+                "t": "Assessment NiFi",
+                "s": "todo"
+              },
+              {
+                "t": "Passaggio da NiFi su Data Warehouse",
+                "s": "todo"
+              }
+            ]
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "mini": "Lettura Q2",
+          "title": "Evoluzione del perimetro",
+          "items": [
+            "Estensione capability commerciali e retail",
+            "Rafforzamento del layer Pre-Billing e payout",
+            "Avvio attività architetturali sul data flow"
+          ]
+        },
+        {
+          "mini": "Nota strategica",
+          "title": "Delivery + readiness architetturale",
+          "text": "Il secondo trimestre combina nuovi report di business con attività di preparazione infrastrutturale, aumentando la copertura funzionale senza perdere di vista la sostenibilità del modello dati."
+        }
+      ]
+    },
+    {
+      "id": "sprint",
+      "type": "sprint"
+    },
+    {
+      "id": "foundation",
+      "type": "foundation"
     }
+  ]
+};
 
-    function go(i){
-      index=(i+slides.length)%slides.length;
-      slides.forEach((s,k)=>s.classList.toggle('active',k===index));
-      renderPager();
+/* ============================================================
+   STATE
+   ============================================================ */
+let data = JSON.parse(JSON.stringify(DEFAULT_DATA));
+let idx = 0;
+let editMode = false;
+let modalCtx = null;   // {slideId, rowIdx, cellIdx, taskIdx}
+let titleCtx = null;   // slideId
+
+/* ============================================================
+   STATIC SLIDE RENDERERS
+   ============================================================ */
+function renderCover(){
+  return `<div class="frame cover">
+    <div>
+      <div class="kicker">Executive review | Q1-Q2 2026</div>
+      <div class="accent-line"></div>
+      <h1 class="title">Data &amp; Analytics</h1>
+      <p class="subtitle">Roadmap corporate delle pipeline, stato avanzamento deliverable e attività infrastrutturali che sostengono la delivery nel medio periodo.</p>
+      <div class="meta">C-Level briefing · panoramica task &amp; delivered reports</div>
+    </div>
+    <div class="hero-panel">
+      <div>
+        <div class="mini">Messaggi chiave</div>
+        <div class="hero-stat-grid">
+          <div class="stat"><div class="n">2</div><div class="l">trimestri con visibilità della pianificazione operativa</div></div>
+          <div class="stat"><div class="n">8+</div><div class="l">perimetri dipartimentali/campagne da gestire in parallelo</div></div>
+          <div class="stat"><div class="n">Multi</div><div class="l">dipendenze dati e richieste ad hoc che impattano le priorità</div></div>
+          <div class="stat"><div class="n">Focus</div><div class="l">scalabilità, qualità dati, standardizzazione e reportistica</div></div>
+        </div>
+      </div>
+      <div class="hero-note">L'obiettivo non è solo la consegna rapida di report e dashboard, ma la costruzione di una base dati affidabile e sostenibile, capace di supportare crescita, automazione e decisioni più veloci.</div>
+    </div>
+  </div>`;
+}
+
+function renderSummary(){
+  return `<div class="frame">
+    <div class="header">
+      <div><div class="sub">Executive summary</div><h2>Lettura manageriale della pipeline</h2></div>
+      <div class="legend">
+        <span class="badge ok">Completato / report creato</span>
+        <span class="badge live">Live / ongoing</span>
+        <span class="badge prog">In progress</span>
+        <span class="badge todo">Da fare</span>
+        <span class="badge block">Bloccato</span>
+      </div>
+    </div>
+    <div class="content-grid two-col">
+      <div class="card-dark">
+        <h3>Cosa rappresenta questa vista</h3>
+        <p>La roadmap mostra le iniziative pianificate per area, distinguendo task di delivery visibile e attività di consolidamento del layer dati. La pipeline è stata costruita per garantire equilibrio tra urgenze di business, manutenzione dell'ecosistema reportistico e sviluppo di nuove capability.</p>
+        <div class="callout">Le variazioni di priorità durante il trimestre generano inevitabilmente slittamenti sulle attività già schedulate, perché richiedono riallocazione immediata di capacità e focus del team.</div>
+      </div>
+      <div class="mini-grid">
+        <div class="card-dark">
+          <div class="mini">Dipendenze</div>
+          <h3>Vincoli esterni alla funzione</h3>
+          <ul>
+            <li>Assenza o ritardo dei dati necessari per alcuni report;</li>
+            <li>Allineamenti interfunzionali non sempre sotto il controllo di Data Analytics;</li>
+            <li>Priorità ad hoc che interrompono la sequenza pianificata.</li>
+          </ul>
+        </div>
+        <div class="card-dark">
+          <div class="mini">Criterio di valutazione</div>
+          <h3>Delivery + infrastruttura</h3>
+          <p>La performance del dipartimento non può essere misurata solo sul numero di report consegnati. Va considerato anche tutto il lavoro di sistemazione del background: analisi dei flussi, validazione, trasformazioni, qualità dati e readiness architetturale.</p>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderPayroll(){
+  return `<div class="frame">
+    <div class="header">
+      <div><div class="sub">Operational effort</div><h2>Effort operativo per il payroll</h2></div>
+      <div class="legend"><span class="badge prog">manual checks · external dependencies</span></div>
+    </div>
+    <div class="payroll-hero">
+      <div>
+        <p class="payroll-subtitle">La mancata automazione di numerosi controlli sul payroll richiede un effort elevato e rallenta il processo complessivo. Le tempistiche finali dipendono non solo dall'elaborazione interna, ma anche dalle validazioni e dalla risoluzione di anomalie con Ops e HR.</p>
+        <div class="payroll-check-card">
+          <div class="payroll-check-head">
+            <div class="payroll-check-icon">🗂️</div>
+            <h3>Payroll: Controlli manuali</h3>
+          </div>
+          <ul class="payroll-check-list">
+            <li>Formato date e matching ore</li>
+            <li>ID ripetuti o duplicati</li>
+            <li>Turni non completi, senza nome oppure duplicati</li>
+            <li>Check delle ferie (mancanti, modifiche manuali per problemi Odoo)</li>
+            <li>Sovrapposizioni tra training e ferie</li>
+            <li>Orari fuori contratto o metodo pagamento</li>
+            <li>ID associati a più nomi / nomi associati a più ID</li>
+            <li>Check ore lavorate o ferie inserite dopo la validità del contratto</li>
+            <li>Seniority e altre validazioni di ricerca</li>
+          </ul>
+          <div class="payroll-check-note">Risultati e tempistiche dipendenti anche da altri dipartimenti (Ops, HR).</div>
+        </div>
+      </div>
+      <div class="payroll-flow">
+        <div class="payroll-metric top">
+          <div class="payroll-metric-row">
+            <div class="payroll-metric-icon">🕒</div>
+            <div><div class="value">Payroll operativo (Agenti & Staff)</div><div class="sub">40 ore produttive</div></div>
+          </div>
+        </div>
+        <div class="payroll-arrow">↓</div>
+        <div class="payroll-metric mid"><div class="value big">2–3 giorni</div><div class="sub">checks manuali</div></div>
+        <div class="payroll-arrow warm">↓</div>
+        <div class="payroll-metric bottom">
+          <div class="payroll-metric-row">
+            <div class="payroll-metric-icon">📅</div>
+            <div><div class="value">Tempo per payroll</div><div class="sub"><strong>Fino a 2 settimane</strong><br>inclusi bonus + checks</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderSprint(){
+  return `<div class="frame">
+    <div class="header">
+      <div><div class="sub">Operating model</div><h2>Sprint di delivery Data Analytics</h2></div>
+      <div class="legend"><span class="badge live">modello operativo standard</span></div>
+    </div>
+    <div class="timeline">
+      <div class="step"><div class="box"><h3>Fase 1 · Assessment</h3><p>Comprensione del bisogno business, mappatura del prodotto/report richiesto, verifica delle fonti e prima identificazione dei rischi di disponibilità dati.</p></div></div>
+      <div class="step"><div class="box"><h3>Fase 2 · Design</h3><p>Definizione della struttura del report, KPI, logica di calcolo, layout di consumo e dipendenze tecniche. Qui si decidono standard e priorità di implementazione.</p></div></div>
+      <div class="step"><div class="box"><h3>Fase 3 · Collect Data &amp; Transformation</h3><p>Raccolta dati, trasformazioni, controlli di qualità, allineamenti con DB e sistemi sorgente, implementazione delle metriche e costruzione del report finale.</p></div></div>
+      <div class="step"><div class="box"><h3>Fase 4 · Go-Live</h3><p>Condivisione del report, handover, documentazione, tuning finale e passaggio alla fase di monitoraggio o manutenzione ricorrente.</p></div></div>
+    </div>
+  </div>`;
+}
+
+function renderFoundation(){
+  return `<div class="frame">
+    <div class="header">
+      <div><div class="sub">Foundation work</div><h2>Valore strategico del lavoro abilitante</h2></div>
+      <div class="legend"><span class="badge prog">high impact · low visibility</span></div>
+    </div>
+    <div class="foundation-grid">
+      <div class="card-dark">
+        <div class="mini">Architettura dati</div>
+        <h3>Evoluzione dell'ecosistema dati</h3>
+        <p>Attualmente una parte dei flussi dati è gestita tramite <strong>NiFi</strong> e <strong>dbt</strong>, con trasformazioni intermedie. L'evoluzione verso un <strong>Data Warehouse strutturato</strong> rappresenta un passaggio strategico per rafforzare standardizzazione, scalabilità e affidabilità.</p>
+      </div>
+      <div class="card-dark">
+        <div class="mini">Messaggio chiave</div>
+        <h3>Come valutare correttamente Data Analytics</h3>
+        <ul>
+          <li>Non solo report consegnati, ma anche stabilità del layer dati;</li>
+          <li>Non solo output frontend, ma riduzione del rischio operativo;</li>
+          <li>Non solo velocità di delivery, ma costruzione di una base sostenibile nel lungo periodo.</li>
+        </ul>
+      </div>
+      <div class="card-dark">
+        <div class="mini">Qualità e affidabilità</div>
+        <h3>Attività ad alta complessità operativa</h3>
+        <h4>1) WAF · Analisi Odoo</h4>
+        <p>Analisi approfondita delle anomalie e criticità legate a Odoo: elevato effort analitico, essenziale per consolidare accuratezza e affidabilità delle delivery future.</p>
+        <h4>2) Numbers · Analisi business e mapping</h4>
+        <p>Lavoro strutturato sui KPI di business e mapping a supporto di <strong>Sales</strong> e <strong>Mod Pagamenti</strong>: attività abilitante, fondamentale per una reportistica più solida e scalabile.</p>
+      </div>
+      <div class="card-dark">
+        <div class="mini">Conclusione esecutiva</div>
+        <h3>Priorità strategica</h3>
+        <p>Il dipartimento genera valore sia attraverso i deliverable visibili sia tramite il consolidamento del background tecnologico e informativo. Questa componente, meno immediata da percepire, è quella che abilita qualità, automazione e affidabilità su tutta la roadmap futura.</p>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   ROADMAP SLIDE RENDERER
+   ============================================================ */
+const STATUS_INFO = {
+  ok:{label:'Completato',bg:'var(--ok)',color:'var(--ok-t)',border:'var(--ok-b)'},
+  live:{label:'Live',bg:'var(--live)',color:'var(--live-t)',border:'var(--live-b)'},
+  prog:{label:'In progress',bg:'var(--prog)',color:'var(--prog-t)',border:'var(--prog-b)'},
+  todo:{label:'Da fare',bg:'var(--todo)',color:'var(--todo-t)',border:'var(--todo-b)'},
+  block:{label:'Bloccato',bg:'var(--block)',color:'var(--block-t)',border:'var(--block-b)'}
+};
+
+function renderTask(task, slideId, rowIdx, cellIdx, taskIdx){
+  const cls = `task ${task.s}${editMode ? ' editable' : ''}`;
+  const onclick = editMode ? `onclick="openTaskModal('${slideId}',${rowIdx},${cellIdx},${taskIdx})"` : '';
+  return `<span class="${cls}" ${onclick}>${escHtml(task.t)}</span>`;
+}
+
+function renderCell(cell, slideId, rowIdx, cellIdx){
+  const tasks = (cell||[]).map((t,ti)=>renderTask(t,slideId,rowIdx,cellIdx,ti)).join('');
+  const addBtn = editMode ? `<button class="add-task-btn" onclick="openAddTask('${slideId}',${rowIdx},${cellIdx})">＋ Aggiungi</button>` : '';
+  return `<div class="task-list">${tasks}${addBtn}</div>`;
+}
+
+function renderRoadmapNotes(notes){
+  return notes.map(n=>{
+    let body = '';
+    if(n.text) body += `<p style="font-size:15px;line-height:1.55;color:#d8dfed;margin-top:6px">${escHtml(n.text)}</p>`;
+    if(n.items) body += `<ul style="margin:8px 0 0;padding-left:18px">${n.items.map(i=>`<li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">${escHtml(i)}</li>`).join('')}</ul>`;
+    if(n.extra){
+      body += `<h3 style="font-size:18px;margin:14px 0 6px">${escHtml(n.extra.title)}</h3>`;
+      body += `<ul style="margin:0;padding-left:18px">${n.extra.items.map(i=>`<li style="font-size:14px;color:#d8dfed;line-height:1.5;margin-bottom:3px">${escHtml(i)}</li>`).join('')}</ul>`;
     }
+    return `<div class="card-dark"><div class="mini">${escHtml(n.mini)}</div><h3 style="font-size:20px;margin-bottom:8px">${escHtml(n.title)}</h3>${body}</div>`;
+  }).join('');
+}
 
-    document.getElementById('prev').addEventListener('click',()=>go(index-1));
-    document.getElementById('next').addEventListener('click',()=>go(index+1));
+function renderRoadmapSlide(slide){
+  const editBtn = editMode ? `<button class="title-edit-btn" onclick="openTitleModal('${slide.id}')">✏ titolo</button>` : '';
+  const legendBadge = `<span class="badge ${slide.legend.status}">${escHtml(slide.legend.text)}</span>`;
 
-    document.addEventListener('keydown',e=>{
-      if(e.key==='ArrowRight' || e.key==='PageDown' || e.key===' ') go(index+1);
-      if(e.key==='ArrowLeft' || e.key==='PageUp') go(index-1);
-    });
+  const cols = slide.months.length;
+  const colW = Math.floor(86/cols);
 
-    renderPager();
-  </script>
-</body>
-</html>
+  const thead = `<tr><th style="width:14%">Dipartimento</th>${slide.months.map(m=>`<th style="width:${colW}%">${escHtml(m)}</th>`).join('')}</tr>`;
+
+  const tbody = slide.rows.map((row,ri)=>{
+    const deptBtn = editMode ? `<button class="del-row-btn" onclick="deleteRow('${slide.id}',${ri})" title="Elimina riga">×</button>` : '';
+    const deptCell = `<td class="dept">${deptBtn}<span class="dept-editable" ${editMode?`contenteditable="true" onblur="updateDept('${slide.id}',${ri},this.textContent)"`:''}>${escHtml(row.dept)}</span></td>`;
+    const dataCells = slide.months.map((_,ci)=>`<td>${renderCell(row.cells[ci]||[], slide.id, ri, ci)}</td>`).join('');
+    return `<tr>${deptCell}${dataCells}</tr>`;
+  }).join('');
+
+  const addRowHtml = editMode ? `<tr><td colspan="${cols+1}" class="add-row-cell"><button class="add-row-btn" onclick="addRow('${slide.id}')">＋ Nuova riga dipartimento</button></td></tr>` : '';
+
+  const table = `
+    <div class="roadmap-wrap">
+      <table class="roadmap">
+        <thead>${thead}</thead>
+        <tbody>${tbody}${addRowHtml}</tbody>
+      </table>
+    </div>`;
+
+  const notes = renderRoadmapNotes(slide.notes||[]);
+
+  return `<div class="frame">
+    <div class="header">
+      <div>
+        <div class="sub">${escHtml(slide.sub)}</div>
+        <div class="slide-title-wrap"><h2>${escHtml(slide.title)}</h2>${editBtn}</div>
+      </div>
+      <div class="legend">${legendBadge}</div>
+    </div>
+    <div class="split">
+      ${table}
+      <div class="mini-grid">${notes}</div>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   MAIN RENDER
+   ============================================================ */
+function escHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') }
+
+function renderSlide(slide){
+  switch(slide.type){
+    case 'cover':      return renderCover();
+    case 'summary':    return renderSummary();
+    case 'payroll':    return renderPayroll();
+    case 'sprint':     return renderSprint();
+    case 'foundation': return renderFoundation();
+    case 'roadmap':    return renderRoadmapSlide(slide);
+    default:           return `<div class="frame"><h2>Slide: ${slide.id}</h2></div>`;
+  }
+}
+
+function render(){
+  const deck = document.getElementById('deck');
+  // Rebuild all slides
+  deck.innerHTML = '';
+  data.slides.forEach((slide,i)=>{
+    const sec = document.createElement('section');
+    sec.className = 'slide' + (i===idx ? ' active' : '');
+    sec.innerHTML = renderSlide(slide);
+    deck.appendChild(sec);
+  });
+  renderPager();
+}
+
+function renderPager(){
+  const pager = document.getElementById('pager');
+  pager.innerHTML = '';
+  data.slides.forEach((_,i)=>{
+    const d = document.createElement('div');
+    d.className = 'dotp' + (i===idx ? ' active':'');
+    d.onclick = ()=>go(i);
+    pager.appendChild(d);
+  });
+}
+
+function go(i){
+  idx = ((i%data.slides.length)+data.slides.length)%data.slides.length;
+  document.querySelectorAll('.slide').forEach((s,k)=>s.classList.toggle('active',k===idx));
+  renderPager();
+}
+
+/* ============================================================
+   EDIT MODE
+   ============================================================ */
+function toggleEditMode(){
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  const btn = document.getElementById('toggleEdit');
+  const tools = document.getElementById('editTools');
+  btn.textContent = editMode ? '✕ Esci da modifica' : '✏️ Modifica';
+  btn.classList.toggle('active-edit', editMode);
+  tools.style.display = editMode ? 'flex' : 'none';
+  render();
+}
+
+/* ============================================================
+   TASK MODAL
+   ============================================================ */
+const STATUSES = ['ok','live','prog','todo','block'];
+const STATUS_LABELS = {ok:'Completato',live:'Live',prog:'In progress',todo:'Da fare',block:'Bloccato'};
+
+let currentStatus = 'todo';
+
+function openTaskModal(slideId, rowIdx, cellIdx, taskIdx){
+  modalCtx = {slideId, rowIdx, cellIdx, taskIdx};
+  const slide = data.slides.find(s=>s.id===slideId);
+  const task = slide.rows[rowIdx].cells[cellIdx][taskIdx];
+  document.getElementById('taskText').value = task.t;
+  currentStatus = task.s;
+  renderStatusPills();
+  document.getElementById('deleteTaskBtn').onclick = ()=>{ deleteTask(); };
+  document.getElementById('taskModal').style.display = 'flex';
+  setTimeout(()=>document.getElementById('taskText').focus(),50);
+}
+
+function openAddTask(slideId, rowIdx, cellIdx){
+  modalCtx = {slideId, rowIdx, cellIdx, taskIdx:-1};
+  document.getElementById('taskText').value = '';
+  currentStatus = 'todo';
+  renderStatusPills();
+  document.getElementById('deleteTaskBtn').style.display = 'none';
+  document.getElementById('taskModal').style.display = 'flex';
+  setTimeout(()=>document.getElementById('taskText').focus(),50);
+}
+
+function renderStatusPills(){
+  const cont = document.getElementById('statusPills');
+  cont.innerHTML = STATUSES.map(s=>{
+    const info = STATUS_INFO[s];
+    return `<button class="status-pill${currentStatus===s?' sel':''}" onclick="selectStatus('${s}')" style="background:${info.bg};color:${info.color};border-color:${info.border}">${STATUS_LABELS[s]}</button>`;
+  }).join('');
+  document.getElementById('deleteTaskBtn').style.display = modalCtx&&modalCtx.taskIdx>=0 ? 'block':'none';
+}
+
+function selectStatus(s){
+  currentStatus = s;
+  renderStatusPills();
+}
+
+function saveTask(){
+  if(!modalCtx) return;
+  const text = document.getElementById('taskText').value.trim();
+  if(!text){ closeTaskModal(); return; }
+  const slide = data.slides.find(s=>s.id===modalCtx.slideId);
+  const cell = slide.rows[modalCtx.rowIdx].cells[modalCtx.cellIdx];
+  if(modalCtx.taskIdx>=0){
+    cell[modalCtx.taskIdx] = {t:text, s:currentStatus};
+  } else {
+    cell.push({t:text, s:currentStatus});
+  }
+  closeTaskModal();
+  render();
+}
+
+function deleteTask(){
+  if(!modalCtx||modalCtx.taskIdx<0) return;
+  const slide = data.slides.find(s=>s.id===modalCtx.slideId);
+  slide.rows[modalCtx.rowIdx].cells[modalCtx.cellIdx].splice(modalCtx.taskIdx,1);
+  closeTaskModal();
+  render();
+}
+
+function closeTaskModal(){
+  document.getElementById('taskModal').style.display='none';
+  modalCtx=null;
+}
+
+/* ============================================================
+   ROW MANAGEMENT
+   ============================================================ */
+function addRow(slideId){
+  const slide = data.slides.find(s=>s.id===slideId);
+  const emptyRow = {dept:'Nuovo Dipartimento', cells: slide.months.map(()=>[])};
+  slide.rows.push(emptyRow);
+  render();
+}
+
+function deleteRow(slideId, rowIdx){
+  if(!confirm('Eliminare questa riga?')) return;
+  const slide = data.slides.find(s=>s.id===slideId);
+  slide.rows.splice(rowIdx,1);
+  render();
+}
+
+function updateDept(slideId, rowIdx, text){
+  const slide = data.slides.find(s=>s.id===slideId);
+  slide.rows[rowIdx].dept = text.trim() || slide.rows[rowIdx].dept;
+}
+
+/* ============================================================
+   SLIDE TITLE MODAL
+   ============================================================ */
+function openTitleModal(slideId){
+  titleCtx = slideId;
+  const slide = data.slides.find(s=>s.id===slideId);
+  document.getElementById('titleSub').value = slide.sub;
+  document.getElementById('titleMain').value = slide.title;
+  document.getElementById('titleModal').style.display='flex';
+  setTimeout(()=>document.getElementById('titleSub').focus(),50);
+}
+
+function saveSlideTitle(){
+  if(!titleCtx) return;
+  const slide = data.slides.find(s=>s.id===titleCtx);
+  slide.sub = document.getElementById('titleSub').value.trim() || slide.sub;
+  slide.title = document.getElementById('titleMain').value.trim() || slide.title;
+  document.getElementById('titleModal').style.display='none';
+  titleCtx=null;
+  render();
+}
+
+/* ============================================================
+   ADD NEW SLIDE
+   ============================================================ */
+function createNewSlide(){
+  const section = document.getElementById('newSection').value.trim() || 'Nuova sezione';
+  const quarter = document.getElementById('newQuarter').value.trim() || 'Q3 2026';
+  const monthsRaw = document.getElementById('newMonths').value.trim() || 'Luglio, Agosto, Settembre';
+  const note = document.getElementById('newNote').value.trim() || 'Nuove attività in pianificazione.';
+  const months = monthsRaw.split(',').map(m=>m.trim()).filter(Boolean);
+  const newId = `slide-${Date.now()}`;
+  const newSlide = {
+    id: newId,
+    type: 'roadmap',
+    sub: `Roadmap ${quarter}`,
+    title: `${section} — Pianificazione ${months.join(' · ').toLowerCase()}`,
+    legend: {text:'nuove attività', status:'todo'},
+    months,
+    rows:[
+      {dept:'Nuovo Dipartimento', cells: months.map(()=>[])}
+    ],
+    notes:[
+      {mini:'Lettura',title:'Direzione del periodo',items:[note]}
+    ]
+  };
+  // Insert before static end slides (sprint, foundation)
+  const insertAt = data.slides.findIndex(s=>s.type==='sprint');
+  if(insertAt>=0) data.slides.splice(insertAt,0,newSlide);
+  else data.slides.push(newSlide);
+  document.getElementById('addSlideModal').style.display='none';
+  idx = data.slides.findIndex(s=>s.id===newId);
+  render();
+}
+
+/* ============================================================
+   DELETE CURRENT SLIDE
+   ============================================================ */
+function deleteCurrentSlide(){
+  const slide = data.slides[idx];
+
+  if(!editMode) return;
+
+  // Keep core/static slides protected
+  const protectedTypes = ['cover','summary','payroll','sprint','foundation'];
+  if(protectedTypes.includes(slide.type)){
+    alert('Questa slide è di sistema e non può essere eliminata. Puoi eliminare solo le slide roadmap create/modificabili.');
+    return;
+  }
+
+  if(!confirm('Sei sicura di voler eliminare questa slide?')) return;
+
+  data.slides.splice(idx, 1);
+
+  if(idx >= data.slides.length){
+    idx = data.slides.length - 1;
+  }
+
+  render();
+  const status = document.getElementById('saveStatus');
+  if(status){
+    status.textContent = 'Slide eliminata · ricordati di salvare';
+    setTimeout(()=>{ status.textContent=''; },3000);
+  }
+}
+
+/* ============================================================
+   STORAGE
+   ============================================================ */
+function saveData(){
+  const status = document.getElementById('saveStatus');
+  status.textContent = 'Creazione file HTML…';
+
+  try{
+    // IMPORTANT:
+    // Il browser non può sovrascrivere direttamente il file .html originale.
+    // Quindi il pulsante Salva crea e scarica un NUOVO file HTML con i dati aggiornati
+    // già incorporati dentro DEFAULT_DATA.
+
+    let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+    const updatedDefaultData = 'const DEFAULT_DATA = ' + JSON.stringify(data, null, 2) + ';\n\n/* ============================================================\n   STATE';
+
+    html = html.replace(
+      /const DEFAULT_DATA = [\s\S]*?;\s*\/\* ============================================================\s*STATE/,
+      updatedDefaultData
+    );
+
+    const blob = new Blob([html], {type:'text/html;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+
+    const now = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    const fileName = `roadmap_${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}_${pad(now.getHours())}-${pad(now.getMinutes())}.html`;
+
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+
+    status.textContent = '✓ HTML scaricato';
+    setTimeout(()=>{ status.textContent=''; },3000);
+  }catch(e){
+    status.textContent = '⚠ Errore salvataggio';
+    console.error(e);
+  }
+}
+
+function loadData(){
+  // I dati vengono letti direttamente dal DEFAULT_DATA incorporato nel file HTML.
+  // Non usiamo più localStorage, così il file inviato ad altri mantiene le modifiche.
+  data = JSON.parse(JSON.stringify(DEFAULT_DATA));
+}
+
+/* ============================================================
+   KEYBOARD & EVENTS
+   ============================================================ */
+document.getElementById('prev').onclick = ()=>go(idx-1);
+document.getElementById('next').onclick = ()=>go(idx+1);
+document.getElementById('toggleEdit').onclick = toggleEditMode;
+document.getElementById('saveBtn').onclick = saveData;
+document.getElementById('deleteSlideBtn').onclick = deleteCurrentSlide;
+document.getElementById('addSlideBtn').onclick = ()=>{
+  document.getElementById('newSection').value='';
+  document.getElementById('newQuarter').value='';
+  document.getElementById('newMonths').value='Luglio, Agosto, Settembre';
+  document.getElementById('newNote').value='';
+  document.getElementById('addSlideModal').style.display='flex';
+};
+
+document.addEventListener('keydown',e=>{
+  if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)) return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ') go(idx+1);
+  if(e.key==='ArrowLeft'||e.key==='PageUp') go(idx-1);
+  if(e.key==='Escape'){
+    document.getElementById('taskModal').style.display='none';
+    document.getElementById('addSlideModal').style.display='none';
+    document.getElementById('titleModal').style.display='none';
+  }
+});
+
+// Close modals on backdrop click
+['taskModal','addSlideModal','titleModal'].forEach(id=>{
+  document.getElementById(id).addEventListener('click',e=>{
+    if(e.target===e.currentTarget) e.currentTarget.style.display='none';
+  });
+});
+
+/* ============================================================
+   INIT
+   ============================================================ */
+(()=>{
+  loadData();
+  render();
+})();
+</script>
+
+</body></html>
