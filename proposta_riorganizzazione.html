@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riorganizzazione Data & Analytics</title>
+
+<style>
+:root {
+    --bg: #0f172a;
+    --slide: #111827;
+    --panel: #1e293b;
+    --blue: #60a5fa;
+    --green: #34d399;
+    --text: #ffffff;
+    --muted: #cbd5e1;
+    --line: #e5e7eb;
+    --rpa: #94a3b8;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 92%;
+    margin: auto;
+    padding: 40px 0;
+}
+
+.slide {
+    background: var(--slide);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+h1, h2 {
+    color: var(--blue);
+    margin-top: 0;
+}
+
+p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.highlight {
+    color: var(--green);
+    font-weight: bold;
+}
+
+/* ORGANIGRAMMA */
+.org-wrapper {
+    background: var(--panel);
+    border-radius: 18px;
+    padding: 34px 24px 42px;
+    margin-top: 24px;
+    overflow-x: auto;
+}
+
+.org-chart {
+    min-width: 950px;
+    text-align: center;
+    font-family: "Courier New", monospace;
+    position: relative;
+}
+
+.org-box {
+    display: inline-block;
+    background: #0f172a;
+    border: 1px solid #64748b;
+    border-radius: 12px;
+    padding: 14px 24px;
+    min-width: 210px;
+    box-shadow: 0 8px 18px rgba(0,0,0,.22);
+    color: white;
+}
+
+.org-box .role {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.org-box .budget {
+    margin-top: 8px;
+    color: white;
+    font-weight: bold;
+}
+
+.head {
+    border-color: var(--blue);
+}
+
+.senior {
+    border-color: #22d3ee;
+}
+
+.manager {
+    border-color: var(--blue);
+}
+
+.junior {
+    border-color: #a78bfa;
+}
+
+.rpa {
+    border: 1px dashed var(--rpa);
+    color: #e2e8f0;
+    opacity: .95;
+}
+
+.rpa .role {
+    color: #e2e8f0;
+}
+
+.rpa-note {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #cbd5e1;
+    font-family: Arial, sans-serif;
+}
+
+.level {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 70px;
+    margin-top: 0;
+    position: relative;
+}
+
+.level-2 {
+    margin-top: 78px;
+}
+
+.level-3 {
+    margin-top: 58px;
+}
+
+.connector-vertical {
+    width: 2px;
+    height: 38px;
+    background: var(--line);
+    margin: 0 auto;
+}
+
+.connector-horizontal {
+    height: 2px;
+    width: 610px;
+    background: var(--line);
+    margin: 0 auto;
+    position: relative;
+}
+
+.connector-horizontal::before,
+.connector-horizontal::after,
+.connector-horizontal span {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 38px;
+    background: var(--line);
+}
+
+.connector-horizontal::before {
+    left: 0;
+}
+
+.connector-horizontal::after {
+    right: 0;
+}
+
+.connector-horizontal span {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.manager-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.manager-column .connector-vertical {
+    height: 44px;
+    background: #a78bfa;
+}
+
+.rpa-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rpa-separate-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px dashed var(--rpa);
+    color: #e2e8f0;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #334155;
+    padding: 12px;
+    text-align: left;
+}
+
+table th {
+    background: var(--panel);
+}
+
+.pro-box {
+    background: var(--panel);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+ul li {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.note-box {
+    background: #0f172a;
+    border-left: 4px solid var(--green);
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 24px;
+    color: var(--muted);
+}
+
+@media print {
+    body { background: white; }
+    .slide {
+        page-break-after: always;
+        box-shadow: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="slide">
+    <h1>Proposta di Riorganizzazione Data & Analytics</h1>
+    <p>
+        Obiettivo: centralizzare Reporting, Analytics e Automation in una struttura più scalabile,
+        mantenendo RPA come opzione separata e attivabile in base alle necessità aziendali.
+    </p>
+</div>
+
+
+<div class="slide">
+    <h2>Da Struttura Separata a Funzione Integrata</h2>
+
+    <div class="pro-box">
+        <p>
+            Nella struttura attuale, <span class="highlight">Data</span> e <span class="highlight">Reporting</span>
+            risultano funzioni separate: il Reporting produce dashboard e reportistica, mentre le attività Data/Automation
+            sono gestite come area distinta.
+        </p>
+
+        <p>
+            Con la nuova proposta, chi si occupa di <span class="highlight">Reporting</span> entra pienamente
+            nella funzione <span class="highlight">Data & Analytics</span>: non solo produzione di report, ma anche
+            gestione del dato, analisi, controllo KPI, qualità delle informazioni e supporto al decision making.
+        </p>
+    </div>
+
+    <div class="pro-box">
+        <ul>
+            <li><span class="highlight">Prima:</span> Data e Reporting erano separati, con priorità e responsabilità non sempre allineate.</li>
+            <li><span class="highlight">Dopo:</span> Reporting diventa parte della funzione Data & Analytics.</li>
+            <li><span class="highlight">Risultato:</span> chi fa reporting lavora anche sul dato, migliorando qualità, ownership e comprensione del business.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <h2>Separazione tra Data Analytics e RPA</h2>
+
+    <div class="pro-box">
+        <p>
+            La parte <span class="highlight">Automation/RPA</span> viene distinta dalla struttura core Data & Analytics.
+            Questo permette di evitare sovrapposizioni tra attività di analisi/reporting e sviluppo RPA.
+        </p>
+
+        <p>
+            L’eventuale inserimento di un <span class="highlight">Senior Senior RPA Developer</span> rappresenta una scelta
+            specialistica separata, da attivare quando il volume di automazioni lo giustifica.
+        </p>
+    </div>
+
+    <div class="pro-box">
+        <ul>
+            <li><span class="highlight">Data & Analytics:</span> focus su dati, KPI, reporting, analisi e governance.</li>
+            <li><span class="highlight">Senior RPA Developer Senior:</span> focus su automazioni operative, processi ripetitivi e sviluppo RPA.</li>
+            <li><span class="highlight">Vantaggio:</span> competenze più chiare, maggiore specializzazione e migliore controllo dei costi.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <h2>Struttura Organizzativa Proposta</h2>
+
+    <div class="org-wrapper">
+        <div class="org-chart">
+
+            <div class="org-box head">
+                <div class="role">Head of Data & Analytics</div>
+                <div class="budget">€3000</div>
+            </div>
+
+            <div class="connector-vertical"></div>
+            <div class="connector-horizontal"><span></span></div>
+
+            <div class="level level-2">
+                <div class="org-box senior">
+                    <div class="role">Senior Data Analyst</div>
+                    <div class="budget">€1500</div>
+                </div>
+
+                <div class="manager-column">
+                    <div class="org-box manager">
+                        <div class="role">Data Analytics Manager</div>
+                        <div class="budget">€2500</div>
+                    </div>
+
+                    <div class="connector-vertical"></div>
+
+                    <div class="org-box junior">
+                        <div class="role">Junior Data Analyst</div>
+                        <div class="budget">€800</div>
+                    </div>
+                </div>
+
+                <div class="rpa-column">
+                    <div class="rpa-separate-label">Opzionale / Separato</div>
+                    <div class="org-box rpa">
+                        <div class="role">Senior Senior RPA Developer</div>
+                        <div class="budget">€1600 - €2000</div>
+                        <div class="rpa-note">
+                            Non incluso nella struttura core.<br>
+                            Possibile inserimento futuro come vertical separata sotto Data & Analytics.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="note-box">
+        <strong>Nota manageriale:</strong> RPA non viene presentato come ruolo obbligatorio immediato,
+        ma come opzione separata. Può essere integrato in futuro nella gerarchia Data & Analytics
+        solo se il volume di automazioni e le priorità aziendali lo giustificano.
+    </div>
+</div>
+
+<div class="slide">
+    <h2>Confronto Costi</h2>
+
+    <table>
+        <tr>
+            <th>Struttura Attuale</th>
+            <th>Budget</th>
+        </tr>
+        <tr>
+            <td>Data Automation</td>
+            <td>€3000</td>
+        </tr>
+        <tr>
+            <td>RPA</td>
+            <td>€1600</td>
+        </tr>
+        <tr>
+            <td>Head of Data Analytics</td>
+            <td>€2500</td>
+        </tr>
+        <tr>
+            <td>Reporting Manager</td>
+            <td>€2200</td>
+        </tr>
+        <tr>
+            <th>Totale</th>
+            <th>€9300</th>
+        </tr>
+    </table>
+
+    <br>
+
+    <table>
+        <tr>
+            <th>Nuova Struttura</th>
+            <th>Budget</th>
+        </tr>
+        <tr>
+            <td>Head of Data & Analytics</td>
+            <td>€3000</td>
+        </tr>
+        <tr>
+            <td>Senior Data Analyst</td>
+            <td>€1500</td>
+        </tr>
+        <tr>
+            <td>Data Analytics Manager</td>
+            <td>€2500</td>
+        </tr>
+        <tr>
+            <td>Junior Data Analyst</td>
+            <td>€800</td>
+        </tr>
+        <tr>
+            <td>Senior Senior RPA Developer opzionale</td>
+            <td>€1600 - €2000</td>
+        </tr>
+        <tr>
+            <th>Totale struttura core senza RPA</th>
+            <th>€7800</th>
+        </tr>
+        <tr>
+            <th>Totale con RPA opzionale</th>
+            <th>€9400 - €9800</th>
+        </tr>
+    </table>
+</div>
+
+<div class="slide">
+    <h2>Vantaggi Strategici</h2>
+
+    <div class="pro-box">
+        <ul>
+            <li><span class="highlight">Centralizzazione:</span> Reporting, Automation e Analytics sotto un’unica funzione.</li>
+            <li><span class="highlight">Scalabilità:</span> struttura pronta per crescita futura e nuovi progetti.</li>
+            <li><span class="highlight">Flessibilità:</span> RPA resta opzionale e viene attivato solo se serve davvero.</li>
+            <li><span class="highlight">Riduzione del rischio:</span> minore dipendenza da singole risorse.</li>
+            <li><span class="highlight">Maggiore governance:</span> standardizzazione di processi, KPI e flussi dati.</li>
+            <li><span class="highlight">Percorso di crescita:</span> definizione chiara della carriera interna.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <h2>Benefici per il Business</h2>
+
+    <div class="pro-box">
+        <ul>
+            <li>Maggiore velocità nella delivery di dashboard e analisi.</li>
+            <li>Migliore coordinamento tra dati, reporting e automazioni.</li>
+            <li>Ottimizzazione dei costi mantenendo quasi invariato il budget complessivo solo se RPA viene attivato.</li>
+            <li>Team più strutturato e meno frammentato.</li>
+            <li>Maggiore capacità di supportare management e decision making.</li>
+            <li>Struttura moderna allineata ai modelli Data-Driven.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <h2>Visione Futuro</h2>
+
+    <p>
+        La funzione <span class="highlight">Data & Analytics</span> diventa un centro strategico aziendale
+        capace di integrare progressivamente:
+    </p>
+
+    <div class="pro-box">
+        <ul>
+            <li>Business Intelligence</li>
+            <li>Reporting Governance</li>
+            <li>Data Automation</li>
+            <li>Advanced Analytics</li>
+            <li>RPA / AI Automation, tramite Senior RPA Developer come step successivo e opzionale</li>
+        </ul>
+    </div>
+
+    <p style="margin-top:30px;">
+        <strong>Obiettivo finale:</strong> trasformare il dipartimento da funzione operativa
+        a leva strategica per la crescita aziendale.
+    </p>
+</div>
+
+</div>
+
+</body>
+</html>
