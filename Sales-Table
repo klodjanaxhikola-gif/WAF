@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sales Table | Numbers Futuristic Brand Presentation</title>
+<style>
+  :root{
+    --dark:#1F144E;
+    --dark2:#100936;
+    --dark3:#08041d;
+    --violet:#6047D8;
+    --violet2:#8c78ff;
+    --yellow:#E8FB1A;
+    --silver:#D8D9DE;
+    --white:#ffffff;
+    --muted:rgba(216,217,222,.72);
+    --line:rgba(216,217,222,.14);
+    --glass:rgba(31,20,78,.50);
+    --glass2:rgba(96,71,216,.16);
+    --shadow:0 40px 110px rgba(0,0,0,.55);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:var(--dark3);color:var(--silver);font-family:"Arial Narrow","Roboto Condensed","Segoe UI Condensed",Inter,Arial,sans-serif;}
+  body:before{content:"";position:fixed;inset:0;z-index:-5;background:
+    radial-gradient(circle at 78% 14%, rgba(232,251,26,.16), transparent 23%),
+    radial-gradient(circle at 14% 78%, rgba(96,71,216,.34), transparent 34%),
+    linear-gradient(135deg,#08041d 0%,#1F144E 52%,#130934 100%);}
+  body:after{content:"";position:fixed;inset:-30%;z-index:-4;background:
+    repeating-linear-gradient(100deg, transparent 0 68px, rgba(232,251,26,.08) 69px 70px, transparent 71px 132px),
+    repeating-linear-gradient(20deg, transparent 0 80px, rgba(216,217,222,.045) 81px 82px, transparent 83px 160px);
+    opacity:.45;animation:gridDrift 22s linear infinite;}
+  @keyframes gridDrift{to{transform:translate3d(-90px,40px,0)}}
+  .noise{position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .app{height:100vh;display:grid;grid-template-columns:292px 1fr;}
+  aside{padding:30px 22px;border-right:1px solid rgba(216,217,222,.16);background:linear-gradient(180deg,rgba(31,20,78,.72),rgba(8,4,29,.54));backdrop-filter:blur(20px);display:flex;flex-direction:column;gap:22px;position:relative;overflow:hidden}
+  aside:before{content:"";position:absolute;width:280px;height:880px;background:linear-gradient(180deg,rgba(96,71,216,.38),rgba(232,251,26,.12));transform:skewX(-20deg);left:-190px;top:-80px;filter:blur(1px);opacity:.75}
+  .brand{position:relative;display:flex;align-items:center;gap:14px;z-index:1}.n-logo{width:64px;height:48px;position:relative;filter:drop-shadow(0 18px 24px rgba(96,71,216,.4))}.n-logo:before,.n-logo:after{content:"";position:absolute;inset:0;background:var(--violet);clip-path:polygon(0 48%,34% 30%,51% 43%,100% 18%,100% 58%,66% 77%,49% 64%,0 92%)}.n-logo:after{background:var(--yellow);transform:translate(8px,8px);z-index:-1;opacity:.95}.brand-copy strong{display:block;color:white;font-size:26px;letter-spacing:-.06em;line-height:.9;text-transform:uppercase}.brand-copy span{display:block;color:var(--yellow);font-size:11px;margin-top:7px;letter-spacing:.34em;text-transform:uppercase}
+  .nav{position:relative;z-index:1;margin-top:16px;display:flex;flex-direction:column;gap:8px}.nav button{all:unset;cursor:pointer;padding:12px 13px;border-radius:17px;border:1px solid transparent;display:grid;grid-template-columns:42px 1fr;align-items:center;color:rgba(216,217,222,.66);font-size:11px;letter-spacing:.16em;text-transform:uppercase;transition:.25s;background:rgba(255,255,255,.025)}.nav button:hover{transform:translateX(4px);border-color:rgba(232,251,26,.26);color:white}.nav button.active{color:white;background:linear-gradient(90deg,rgba(96,71,216,.34),rgba(232,251,26,.07));border-color:rgba(232,251,26,.34);box-shadow:inset 4px 0 0 var(--yellow),0 18px 35px rgba(0,0,0,.18)}.nav .num{font-size:18px;color:var(--yellow);font-weight:900;font-style:italic;transform:skewX(-20deg);display:inline-block}.footer{position:relative;z-index:1;margin-top:auto;color:rgba(216,217,222,.54);font-size:11px;letter-spacing:.16em;text-transform:uppercase}.kbd{margin-top:14px;display:flex;gap:8px}.key{border:1px solid rgba(216,217,222,.16);padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.035)}
+  main{padding:24px;display:flex;flex-direction:column;gap:14px}.stage{position:relative;flex:1;border-radius:34px;border:1px solid rgba(216,217,222,.18);overflow:hidden;background:linear-gradient(135deg,rgba(31,20,78,.94),rgba(12,7,38,.84));box-shadow:var(--shadow);isolation:isolate}.stage:before{content:"";position:absolute;inset:0;z-index:0;background:
+    radial-gradient(circle at 82% 24%,rgba(232,251,26,.13),transparent 18%),
+    radial-gradient(circle at 18% 76%,rgba(96,71,216,.42),transparent 26%),
+    linear-gradient(115deg,rgba(255,255,255,.03),transparent 45%)}.stage:after{content:"";position:absolute;right:-10%;top:-5%;height:112%;width:58%;z-index:1;background:linear-gradient(135deg,rgba(96,71,216,.62),rgba(232,251,26,.16));clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,38% 50%);opacity:.72;mix-blend-mode:screen;filter:blur(.2px)}
+  .pattern{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.12;background-size:190px 140px;background-image:url("data:image/svg+xml,%3Csvg width='190' height='140' viewBox='0 0 190 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 68L63 43L91 63L180 22V74L125 99L95 78L14 119Z' fill='%23E8FB1A'/%3E%3C/svg%3E");animation:patternShift 38s linear infinite}@keyframes patternShift{to{background-position:900px -420px}}
+  .scanline{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(232,251,26,.11),transparent);height:160px;top:-160px;animation:scan 5.8s linear infinite}@keyframes scan{to{top:100%}}
+  .slide{position:absolute;inset:0;display:none;padding:52px 66px 116px;z-index:4;overflow:hidden}.slide.active{display:block}.slide.leaving{display:block;z-index:3}.content{position:relative;z-index:4;max-width:900px}.kicker{display:inline-flex;align-items:center;gap:12px;color:var(--yellow);font-weight:900;font-size:12px;letter-spacing:.36em;text-transform:uppercase;margin-bottom:22px}.kicker:before{content:"";width:54px;height:8px;background:var(--violet);clip-path:polygon(0 50%,38% 0,52% 42%,100% 0,100% 58%,65% 100%,49% 62%,0 100%)}
+  h1,h2,h3,p{margin:0}h1,h2{font-family:"Arial Narrow","Roboto Condensed","Segoe UI Condensed",Impact,sans-serif;text-transform:uppercase;color:white;font-weight:900;letter-spacing:-.075em}h1{font-size:clamp(62px,8vw,118px);line-height:.78;max-width:950px}h2{font-size:clamp(44px,5.6vw,82px);line-height:.82;max-width:940px}.accent{color:var(--yellow);text-shadow:0 0 35px rgba(232,251,26,.30)}.violet{color:var(--violet2)}.lead{margin-top:20px;color:rgba(216,217,222,.84);font-size:18px;line-height:1.42;max-width:720px;letter-spacing:.01em}.slide.active .enter{animation:textEnter .72s cubic-bezier(.18,.84,.24,1) both}.slide.active .enter:nth-child(2){animation-delay:.06s}.slide.active .enter:nth-child(3){animation-delay:.13s}.slide.active .enter:nth-child(4){animation-delay:.20s}.slide.active .enter:nth-child(5){animation-delay:.27s}.slide.leaving .enter{animation:textExit .38s cubic-bezier(.5,0,.8,.2) both}@keyframes textEnter{from{opacity:0;transform:translateX(-80px) translateY(22px) skewX(-7deg);filter:blur(7px)}to{opacity:1;transform:translateX(0) translateY(0) skewX(0);filter:blur(0)}}@keyframes textExit{from{opacity:1;transform:translateX(0);filter:blur(0)}to{opacity:0;transform:translateX(100px) skewX(-9deg);filter:blur(9px)}}
+  .big-number{position:absolute;right:54px;bottom:20px;z-index:2;font-size:clamp(130px,23vw,360px);font-weight:900;font-style:italic;letter-spacing:-.13em;color:rgba(232,251,26,.12);transform:skewX(-20deg);line-height:.72}.hero-shape{position:absolute;right:8%;top:17%;width:36%;height:48%;z-index:2;filter:drop-shadow(0 45px 65px rgba(0,0,0,.35));animation:float 7s ease-in-out infinite}.hero-shape div{position:absolute;inset:0;clip-path:polygon(0 48%,34% 30%,51% 43%,100% 18%,100% 58%,66% 77%,49% 64%,0 92%);background:linear-gradient(135deg,var(--violet),var(--yellow));}.hero-shape div:nth-child(2){transform:translate(34px,28px) scale(.9);background:rgba(216,217,222,.18);z-index:-1}.hero-shape div:nth-child(3){transform:translate(-26px,48px) scale(.62);background:var(--violet2);z-index:-2}@keyframes float{50%{transform:translateY(-20px) rotate(-1deg)}}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}.cards.two{grid-template-columns:repeat(2,1fr)}.cards.four{grid-template-columns:repeat(4,1fr)}.card{position:relative;min-height:134px;border:1px solid rgba(216,217,222,.14);border-radius:24px;padding:20px;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(96,71,216,.09));backdrop-filter:blur(12px);overflow:hidden}.card:before{content:"";position:absolute;right:-34px;top:-34px;width:110px;height:90px;background:var(--yellow);clip-path:polygon(0 48%,34% 30%,51% 43%,100% 18%,100% 58%,66% 77%,49% 64%,0 92%);opacity:.08}.card h3{color:white;text-transform:uppercase;font-size:19px;letter-spacing:-.03em}.card p,.list div{font-size:14px;line-height:1.38;color:rgba(216,217,222,.74);margin-top:10px}.metric{font-size:36px;font-weight:900;font-style:italic;color:var(--yellow);letter-spacing:-.08em;margin-bottom:12px;transform:skewX(-14deg);display:inline-block}.flow{display:grid;grid-template-columns:1fr 78px 1fr 78px 1fr;gap:15px;align-items:center;margin-top:34px}.node{min-height:160px;border-radius:28px;padding:23px;border:1px solid rgba(232,251,26,.22);background:linear-gradient(150deg,rgba(96,71,216,.27),rgba(255,255,255,.05));position:relative;overflow:hidden}.node:after{content:"";position:absolute;inset:auto -18px -35px auto;width:120px;height:120px;background:var(--yellow);opacity:.12;clip-path:polygon(0 48%,34% 30%,51% 43%,100% 18%,100% 58%,66% 77%,49% 64%,0 92%)}.arrow{color:var(--yellow);font-size:54px;text-align:center;font-weight:900;text-shadow:0 0 30px rgba(232,251,26,.35)}
+  .funnel{margin-top:32px;width:min(920px,100%);display:grid;gap:13px}.step{height:58px;border-radius:18px;border:1px solid rgba(232,251,26,.28);background:linear-gradient(90deg,rgba(232,251,26,.95),rgba(96,71,216,.58));color:#130934;font-weight:900;text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;justify-content:center;clip-path:polygon(3% 0,100% 0,97% 100%,0 100%)}.w1{width:100%}.w2{width:84%;margin:auto}.w3{width:66%;margin:auto}.w4{width:48%;margin:auto;color:white;background:linear-gradient(90deg,rgba(96,71,216,.95),rgba(31,20,78,.82))}.formula{margin-top:26px;border:1px solid rgba(232,251,26,.35);border-radius:28px;padding:24px;background:linear-gradient(120deg,rgba(232,251,26,.12),rgba(96,71,216,.18));font-size:24px;color:white;font-weight:900;text-transform:uppercase;letter-spacing:-.04em}.formula span{color:var(--yellow)}.split{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:24px}.list{display:grid;gap:10px;margin-top:14px}.list div{margin:0;padding:11px 13px;border:1px solid rgba(216,217,222,.12);border-radius:15px;background:rgba(255,255,255,.05)}
+  .lower-band{position:absolute;left:0;right:0;bottom:0;height:92px;z-index:7;background:linear-gradient(90deg,rgba(31,20,78,.92),rgba(96,71,216,.36));border-top:1px solid rgba(216,217,222,.16);display:grid;grid-template-columns:repeat(4,1fr)}.pill{display:flex;align-items:center;gap:14px;padding:0 26px;border-right:1px solid rgba(216,217,222,.12)}.pill b{font-size:28px;color:var(--yellow);font-style:italic;transform:skewX(-18deg)}.pill span{display:block;color:white;text-transform:uppercase;font-size:13px;letter-spacing:.08em}.pill small{display:block;color:rgba(216,217,222,.62);font-size:12px;margin-top:2px}.controls{height:70px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}.btn{border:1px solid rgba(216,217,222,.20);background:rgba(31,20,78,.50);color:white;border-radius:999px;padding:14px 26px;text-transform:uppercase;letter-spacing:.14em;font-size:12px;cursor:pointer;transition:.22s;backdrop-filter:blur(12px)}.btn:hover{transform:translateY(-2px);border-color:rgba(232,251,26,.7);box-shadow:0 20px 40px rgba(0,0,0,.22)}.btn.primary{justify-self:end;background:linear-gradient(90deg,var(--violet),var(--yellow));color:#120936;border:0;font-weight:900}.counter{color:rgba(216,217,222,.58);letter-spacing:.16em}.counter b{color:var(--yellow);font-size:20px}.progress{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(216,217,222,.08);z-index:20}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--yellow),var(--violet2));box-shadow:0 0 28px rgba(232,251,26,.7);transition:.45s cubic-bezier(.2,.8,.2,1)}
+  .transition-slice{position:absolute;inset:0;z-index:30;pointer-events:none;transform:translateX(-120%);background:linear-gradient(100deg,transparent 0 12%,var(--yellow) 12% 19%,var(--violet) 19% 46%,rgba(31,20,78,.9) 46% 76%,transparent 76%)}.transition-slice.play{animation:slice .72s cubic-bezier(.22,.74,.22,1)}@keyframes slice{0%{transform:translateX(-120%)}55%{transform:translateX(0)}100%{transform:translateX(120%)}}
+  @media(max-width:1120px){.app{grid-template-columns:1fr}aside{display:none}main{padding:14px}.slide{padding:36px 28px 110px;overflow:auto}.stage{overflow:auto}.cards,.cards.two,.cards.four,.split,.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.hero-shape,.stage:after{display:none}.lower-band{position:static;height:auto;grid-template-columns:1fr}.pill{padding:16px 22px}.controls{grid-template-columns:1fr 1fr;gap:10px}.counter{display:none}.btn.primary{justify-self:stretch}.btn{text-align:center}.big-number{display:none}}
+  @media(max-height:830px){.slide{padding-top:36px}h1{font-size:clamp(50px,6.4vw,82px)}h2{font-size:clamp(38px,4.7vw,64px)}.lead{font-size:16px}.cards{margin-top:20px}.card{min-height:112px;padding:16px}.lower-band{height:82px}.step{height:48px}.node{min-height:130px;padding:18px}.formula{font-size:20px;padding:18px}.kicker{margin-bottom:14px}}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="app">
+  <aside>
+    <div class="brand"><div class="n-logo"></div><div class="brand-copy"><strong>Numbers</strong><span>Group</span></div></div>
+    <div class="nav" id="nav"></div>
+    <div class="footer">Brand system: Dark Purple / Energy Violet / Energy Yellow<div class="kbd"><span class="key">←</span><span class="key">→</span><span class="key">SPACE</span></div></div>
+  </aside>
+  <main>
+    <div class="stage">
+      <div class="pattern"></div><div class="scanline"></div><div class="transition-slice" id="slice"></div><div class="progress"><span id="progress"></span></div>
+
+      <section class="slide active" data-title="Intro"><div class="big-number">01</div><div class="hero-shape"><div></div><div></div><div></div></div><div class="content"><div class="kicker enter">Sales Table Documentation</div><h1 class="enter">Trasformare i dati <span class="accent">in crescita</span></h1><p class="lead enter">Una control tower business per monitorare ogni contratto commerciale: inserimento CRM, invio al brand, attivazione, KO e backlog operativo.</p></div><div class="lower-band"><div class="pill"><b>01</b><div><span>Focus</span><small>business critical</small></div></div><div class="pill"><b>02</b><div><span>Controllo</span><small>funnel contratti</small></div></div><div class="pill"><b>03</b><div><span>Crescita</span><small>performance</small></div></div><div class="pill"><b>04</b><div><span>AI Ready</span><small>semantic layer</small></div></div></div></section>
+
+      <section class="slide" data-title="Contesto"><div class="big-number">02</div><div class="content"><div class="kicker enter">Perché è importante</div><h2 class="enter">Dal dato tecnico alla <span class="accent">control tower</span></h2><p class="lead enter">La Sales Table centralizza il ciclo di vita commerciale e rende misurabili performance, colli di bottiglia, qualità operativa e responsabilità manageriale.</p><div class="cards enter"><div class="card"><div class="metric">01</div><h3>Visibilità</h3><p>Ogni contratto è tracciato dal CRM fino all’esito finale.</p></div><div class="card"><div class="metric">02</div><h3>Controllo</h3><p>Backlog, KO, sospesi e lavorazioni aperte diventano leggibili.</p></div><div class="card"><div class="metric">03</div><h3>Coerenza</h3><p>Stesse definizioni KPI per dashboard, report e agenti AI.</p></div></div></div></section>
+
+      <section class="slide" data-title="Architettura"><div class="big-number">03</div><div class="content"><div class="kicker enter">Architettura business</div><h2 class="enter">Flusso high-level <span class="accent">end-to-end</span></h2><div class="flow enter"><div class="node"><h3>Fonti</h3><p>Coraly, TeamWork e mapping business.</p></div><div class="arrow">→</div><div class="node"><h3>Arricchimento</h3><p>Prodotto, area, BU, manager, stato e ownership.</p></div><div class="arrow">→</div><div class="node"><h3>KPI</h3><p>Dashboard, alert, executive reporting e AI analytics.</p></div></div><div class="cards four enter"><div class="card"><div class="metric">01</div><p>Dati unificati</p></div><div class="card"><div class="metric">02</div><p>Contratti classificati</p></div><div class="card"><div class="metric">03</div><p>Funnel calcolato</p></div><div class="card"><div class="metric">04</div><p>Output governato</p></div></div></div></section>
+
+      <section class="slide" data-title="Funnel"><div class="big-number">04</div><div class="content"><div class="kicker enter">Ciclo di vita contratto</div><h2 class="enter">Logica degli stati del <span class="accent">sales funnel</span></h2><p class="lead enter">Il funnel segue il percorso business del contratto: inserimento nel CRM, invio al brand, attivazione, KO oppure lavorazione ancora aperta.</p><div class="funnel enter"><div class="step w1">Inserito CRM</div><div class="step w2">Inserito Brand</div><div class="step w3">Attivi / OK</div><div class="step w4">KO Post Inserimento</div></div></div></section>
+
+      <section class="slide" data-title="Backlog"><div class="big-number">05</div><div class="content"><div class="kicker enter">Regola operativa</div><h2 class="enter">Contratti ancora <span class="accent">in lavorazione</span></h2><div class="split enter"><div><p class="lead">La differenza tra contratti inseriti al brand e contratti già chiusi come attivi o KO post inserimento rappresenta il backlog operativo.</p><div class="formula"><span>Backlog operativo</span> = Inserito Brand − (Attivi + KO Post)</div></div><div class="card"><h3>Interpretazione</h3><div class="list"><div>Contratti in attesa di esito attivazione</div><div>Carico operativo da seguire</div><div>Possibili colli di bottiglia brand/back office</div><div>KPI chiave di monitoraggio giornaliero</div></div></div></div></div></section>
+
+      <section class="slide" data-title="KPI"><div class="big-number">06</div><div class="content"><div class="kicker enter">Framework KPI</div><h2 class="enter">Metriche <span class="accent">executive</span></h2><div class="cards four enter"><div class="card"><div class="metric">CRM</div><h3>Inserito CRM</h3><p>Contratti creati nel flusso commerciale.</p></div><div class="card"><div class="metric">BR</div><h3>Inserito Brand</h3><p>Contratti inviati correttamente al provider.</p></div><div class="card"><div class="metric">OK</div><h3>Attivi</h3><p>Contratti attivati dal provider.</p></div><div class="card"><div class="metric">KO</div><h3>KO Post</h3><p>Contratti rifiutati dopo l’inserimento brand.</p></div></div></div></section>
+
+      <section class="slide" data-title="Economics"><div class="big-number">07</div><div class="content"><div class="kicker enter">Monitoraggio economico</div><h2 class="enter">KPI economici e <span class="accent">payout</span></h2><p class="lead enter">La dashboard include KPI economici separati dallo scope operativo, utili per riconciliazione, payout e controllo finanziario.</p><div class="cards two enter"><div class="card"><div class="metric">€</div><h3>Pagabili</h3><p>Contratti eleggibili al payout secondo le regole business.</p></div><div class="card"><div class="metric">↺</div><h3>Stornabili</h3><p>Contratti potenzialmente soggetti a storno o recupero economico.</p></div></div></div></section>
+
+      <section class="slide" data-title="Dimensioni"><div class="big-number">08</div><div class="content"><div class="kicker enter">Dimensioni business</div><h2 class="enter">Letture manageriali della <span class="accent">performance</span></h2><div class="cards two enter"><div class="card"><h3>Organizzazione commerciale</h3><div class="list"><div>Seller Group</div><div>Responsabile Team</div><div>Business Unit</div><div>Responsabile BU</div></div></div><div class="card"><h3>Prodotto e funnel</h3><div class="list"><div>Brand</div><div>Prodotto</div><div>Tipo servizio</div><div>Stato / fase funnel</div></div></div></div></div></section>
+
+      <section class="slide" data-title="Domande"><div class="big-number">09</div><div class="content"><div class="kicker enter">Domande manageriali</div><h2 class="enter">Cosa può chiedere il <span class="accent">business</span></h2><div class="cards two enter"><div class="card"><h3>Performance</h3><p>Quale BU, area o seller group genera il miglior tasso di attivazione?</p></div><div class="card"><h3>Qualità</h3><p>Dove aumentano i KO e quali prodotti sono più impattati?</p></div><div class="card"><h3>Operations</h3><p>Quanti contratti sono bloccati e dove?</p></div><div class="card"><h3>Finance</h3><p>Quanti contratti attivi sono pagabili?</p></div></div></div></section>
+
+      <section class="slide" data-title="Governance"><div class="big-number">10</div><div class="content"><div class="kicker enter">Governance</div><h2 class="enter">Un linguaggio KPI <span class="accent">condiviso</span></h2><p class="lead enter">La piattaforma elimina ambiguità centralizzando le definizioni e garantendo che dashboard, report e agenti AI usino le stesse regole business.</p><div class="cards four enter"><div class="card"><h3>Standard</h3><p>Una definizione ufficiale per KPI.</p></div><div class="card"><h3>Ownership</h3><p>Ogni contratto mappato su aree e manager.</p></div><div class="card"><h3>Monitoraggio</h3><p>Backlog, KO e attivazioni sotto controllo.</p></div><div class="card"><h3>Scalabilità</h3><p>Metriche riusabili per BI e AI.</p></div></div></div></section>
+
+      <section class="slide" data-title="Impatto"><div class="big-number">11</div><div class="content"><div class="kicker enter">Sintesi executive</div><h2 class="enter">Dalla reportistica alla <span class="accent">performance intelligence</span></h2><div class="cards two enter"><div class="card"><h3>Vista unificata</h3><p>Ciclo di vita del contratto dal CRM all’esito finale.</p></div><div class="card"><h3>Funnel affidabile</h3><p>Attivazioni, KO e lavorazioni leggibili in modo coerente.</p></div><div class="card"><h3>Efficienza operativa</h3><p>Identificazione rapida di ritardi e colli di bottiglia.</p></div><div class="card"><h3>Future-ready</h3><p>KPI pronti per dashboard, alert e AI analytics.</p></div></div></div></section>
+    </div>
+    <div class="controls"><button class="btn" id="prev">← Indietro</button><div class="counter"><b id="current">01</b> / <span id="total">11</span></div><button class="btn primary" id="next">Avanti →</button></div>
+  </main>
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const nav=document.getElementById('nav');
+const cur=document.getElementById('current');
+const total=document.getElementById('total');
+const progress=document.getElementById('progress');
+const slice=document.getElementById('slice');
+let i=0, locked=false;
+total.textContent=String(slides.length).padStart(2,'0');
+slides.forEach((s,idx)=>{const b=document.createElement('button');b.innerHTML=`<span class="num">${String(idx+1).padStart(2,'0')}</span><span>${s.dataset.title}</span>`;b.onclick=()=>go(idx);nav.appendChild(b);});
+const buttons=[...nav.querySelectorAll('button')];
+function go(n){
+  if(locked || n===i) return;
+  locked=true;
+  const old=i;
+  i=(n+slides.length)%slides.length;
+  slice.classList.remove('play'); void slice.offsetWidth; slice.classList.add('play');
+  slides[old].classList.add('leaving');
+  setTimeout(()=>{
+    slides.forEach((s,k)=>{s.classList.toggle('active',k===i);s.classList.remove('leaving');});
+    buttons.forEach((b,k)=>b.classList.toggle('active',k===i));
+    cur.textContent=String(i+1).padStart(2,'0');
+    progress.style.width=((i+1)/slides.length*100)+'%';
+  },220);
+  setTimeout(()=>locked=false,720);
+}
+function init(){slides.forEach((s,k)=>s.classList.toggle('active',k===0));buttons.forEach((b,k)=>b.classList.toggle('active',k===0));progress.style.width=(1/slides.length*100)+'%';}
+document.getElementById('next').onclick=()=>go(i+1);
+document.getElementById('prev').onclick=()=>go(i-1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')go(i+1);if(e.key==='ArrowLeft')go(i-1);});
+init();
+</script>
+</body>
+</html>
