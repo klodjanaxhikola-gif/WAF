@@ -1,0 +1,147 @@
+<html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOD Pagamenti | Project Status &amp; Roadmap</title>
+<style>
+:root{
+  --bg:#0f1117; --panel:#151a24; --panel2:#111827; --text:#e5e7eb; --muted:#9ca3af;
+  --cyan:#19d3d1; --blue:#60a5fa; --green:#22c55e; --yellow:#facc15; --red:#f87171; --purple:#a78bfa;
+  --border:#273244; --white:#ffffff;
+}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at top left,#1e293b 0,#0f1117 38%,#080b11 100%);font-family:Segoe UI,Arial,sans-serif;color:var(--text)}
+.deck{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory}.slide{min-height:100vh;scroll-snap-align:start;padding:42px 54px;display:flex;flex-direction:column;gap:24px}.kicker{color:var(--cyan);font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:13px}.title{font-size:48px;line-height:1.05;margin:0;color:#f8fafc}.subtitle{font-size:22px;color:var(--muted);max-width:980px;line-height:1.45}.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));border:1px solid var(--border);border-radius:22px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,.22)}
+.card h3{margin:0 0 14px;font-size:24px;color:#f8fafc}.card p,.card li{color:#cbd5e1;font-size:17px;line-height:1.5}.badge{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 13px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}.done{background:rgba(34,197,94,.15);color:#86efac;border:1px solid rgba(34,197,94,.35)}.progress{background:rgba(250,204,21,.15);color:#fde68a;border:1px solid rgba(250,204,21,.35)}.todo{background:rgba(96,165,250,.15);color:#bfdbfe;border:1px solid rgba(96,165,250,.35)}.risk{background:rgba(248,113,113,.15);color:#fecaca;border:1px solid rgba(248,113,113,.35)}
+ul{padding-left:20px;margin:10px 0}.hero{margin-top:auto;margin-bottom:auto}.bigline{height:4px;background:linear-gradient(90deg,var(--cyan),transparent);border-radius:99px;width:70%;margin:18px 0}.flow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px}.node{flex:1;text-align:center;background:#111827;border:1px solid #334155;border-radius:18px;padding:18px 12px;font-weight:800;color:#dbeafe;min-height:82px;display:flex;align-items:center;justify-content:center;flex-direction:column}.node small{font-weight:500;color:#94a3b8;margin-top:6px}.arrow{font-size:28px;color:var(--cyan);font-weight:900}.metric{font-size:42px;font-weight:900;color:var(--cyan)}.split-title{display:flex;align-items:center;justify-content:space-between;gap:16px}.timeline{position:relative;margin-top:18px;padding-top:28px}.timeline:before{content:"";position:absolute;top:39px;left:4%;right:4%;height:3px;background:#334155}.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;position:relative}.step{position:relative;background:#121826;border:1px solid #2b3548;border-radius:18px;padding:28px 14px 16px;min-height:180px}.dot{position:absolute;top:-2px;left:50%;transform:translateX(-50%);width:24px;height:24px;border-radius:50%;border:4px solid #0f1117;background:#64748b;z-index:2}.dot.doneD{background:var(--green)}.dot.progD{background:var(--yellow)}.dot.todoD{background:var(--blue)}.step h4{margin:0 0 8px;font-size:17px;color:#f8fafc}.step p{margin:0;color:#cbd5e1;font-size:14px;line-height:1.35}.step .date{font-size:12px;color:#94a3b8;font-weight:800;text-transform:uppercase;margin-bottom:8px}.table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:16px}.table th,.table td{border-bottom:1px solid #263244;padding:14px;text-align:left;font-size:15px}.table th{color:#93c5fd;background:#111827}.table td{color:#cbd5e1}.callout{border-left:5px solid var(--cyan);background:rgba(25,211,209,.08);padding:20px 22px;border-radius:16px;color:#dbeafe;font-size:22px;line-height:1.45}.footer{margin-top:auto;color:#64748b;font-size:12px;display:flex;justify-content:space-between}.editable-note{position:fixed;right:16px;bottom:14px;background:#111827;border:1px solid #334155;color:#94a3b8;border-radius:999px;padding:8px 12px;font-size:12px} [contenteditable="true"]:focus{outline:2px solid var(--cyan);border-radius:6px;background:rgba(25,211,209,.08)}
+@media(max-width:900px){.slide{padding:28px}.grid,.grid3{grid-template-columns:1fr}.flow{flex-direction:column}.arrow{transform:rotate(90deg)}.steps{grid-template-columns:1fr}.timeline:before{display:none}.title{font-size:38px}}
+@media print{body{background:white}.deck{height:auto;overflow:visible}.slide{page-break-after:always;height:100vh;background:#0f1117}.editable-note{display:none}}
+</style>
+</head>
+<body>
+<div class="editable-note">Edit mode: click text to modify</div>
+<div class="deck">
+
+<section class="slide">
+  <div class="hero">
+    <div class="kicker" contenteditable="true"><div><span style="letter-spacing: 0.18em;">project update</span></div></div>
+    <h1 class="title" contenteditable="true">MOD Pagamenti<br>Project Status &amp; Roadmap</h1>
+    <div class="bigline"></div>
+    <p class="subtitle" contenteditable="true">Stato di avanzamento del progetto PayOut: cosa è stato costruito, dove siamo oggi e quali step servono per trasformare il motore di calcolo in un processo governato dentro Numbers Core.</p>
+    <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap">
+      <span class="badge done" contenteditable="true">Calculation engine completed</span>
+      <span class="badge progress" contenteditable="true">Current focus: Core integration</span>
+      <span class="badge todo" contenteditable="true">Next: UI + validations</span>
+    </div>
+  </div>
+  <div class="footer"><span>MOD Pagamenti</span><span>Project Status &amp; Roadmap</span></div>
+</section>
+
+<section class="slide">
+  <div class="split-title"><div><div class="kicker">01 / Project objective</div><h2 class="title" contenteditable="true">Perché nasce il progetto</h2></div><span class="badge done">Business need</span></div>
+  <div class="grid">
+    <div class="card"><h3 contenteditable="true">Obiettivo</h3><p contenteditable="true">Automatizzare il calcolo delle provvigioni mensili verso agenti e agenzie, partendo dai contratti di vendita e arrivando a un output riconciliabile con i pagamenti effettivi.</p></div>
+    <div class="card"><h3 contenteditable="true">Risultato atteso</h3><p contenteditable="true">Un processo unico, tracciabile e controllabile, dove le regole di business sono centralizzate e Pre-Billing può verificare chiaramente quanto deve essere pagato, stornato o riconciliato.</p></div>
+  </div>
+  <div class="flow">
+    <div class="node" contenteditable="true">Vendite / Contratti<small>CORALY + TW</small></div><div class="arrow">→</div>
+    <div class="node" contenteditable="true">Motore di calcolo<small>dbt payout engine</small></div><div class="arrow">→</div>
+    <div class="node" contenteditable="true">Output PayOut<small>calcolato per agente / agenzia</small></div><div class="arrow">→</div>
+    <div class="node" contenteditable="true">Riconciliazione<small>calcolato vs pagato</small></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="split-title"><div><div class="kicker">02 / What has been done</div><h2 class="title" contenteditable="true">Cosa è stato costruito fino ad oggi</h2></div><span class="badge done">Completed</span></div>
+  <div class="grid3">
+    <div class="card"><div class="metric">1</div><h3 contenteditable="true">Base dati normalizzata</h3><p contenteditable="true">Creata la base unica dei contratti da pagare, con pulizia dati, deduplica, normalizzazione prodotto/stato/area e selezione dei soli contratti pagabili o stornabili.</p></div>
+    <div class="card"><div class="metric">2</div><h3 contenteditable="true">Motore di calcolo</h3><p contenteditable="true">Sviluppati i modelli di calcolo commissioni per aree standard e Ciccone, con logiche diverse per fonte dati, profilo, listino e figure di pagamento.</p></div>
+    <div class="card"><div class="metric">3</div><h3 contenteditable="true">Controllo pagamenti</h3><p contenteditable="true">Costruito l’output finale per confrontare importi calcolati e importi realmente pagati/importati, con check e delta per evidenziare anomalie.</p></div>
+  </div>
+  <div class="callout" contenteditable="true">Il punto chiave: il motore di calcolo è già stato realizzato. La fase successiva non è rifare il calcolo, ma rendere governabile e manutenibile la parte di configurazione e gestione operativa.</div>
+</section>
+
+<section class="slide">
+  <div class="split-title"><div><div class="kicker">03 / Current engine</div><h2 class="title" contenteditable="true">Architettura attuale in macro</h2></div><span class="badge done">Engine ready</span></div>
+  <div class="flow">
+    <div class="node" contenteditable="true">CORALY + TW<small>fonti contratti</small></div><div class="arrow">→</div>
+    <div class="node" contenteditable="true">da_pagare<small>contratti puliti e pagabili</small></div><div class="arrow">→</div>
+    <div class="node" contenteditable="true">int_tw_cataloghi<small>classificazione cataloghi TW</small></div><div class="arrow">→</div>
+    <div class="node" contenteditable="true">payout_others / payout_ciccone<small>calcolo commissioni</small></div>
+  </div>
+  <div class="flow">
+    <div class="node" contenteditable="true">payout_tot<small>unione payout calcolati</small></div><div class="arrow">→</div>
+    <div class="node" contenteditable="true">payout_final<small>confronto con pagamenti reali</small></div><div class="arrow">→</div>
+    <div class="node" contenteditable="true">Check &amp; Delta<small>OK / KO / da pagare / stornare</small></div>
+  </div>
+  <div class="grid">
+    <div class="card"><h3 contenteditable="true">Aree già gestite</h3><p contenteditable="true">Partner Pro, Spark, Area Diretta, Agency, Ciccone.</p></div>
+    <div class="card"><h3 contenteditable="true">Logiche già incluse</h3><p contenteditable="true">Mapping prodotti e aree, profilo agente, listini, fasce energia, extra, importo calcolato, confronto con pagato.</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="split-title"><div><div class="kicker">04 / Current limitation</div><h2 class="title" contenteditable="true">Le limitazioni attuali</h2></div><span class="badge risk">Maintenance risk</span></div>
+  <div class="grid">
+    <div class="card"><h3 contenteditable="true">Situazione attuale</h3><p contenteditable="true">Le configurazioni business — mapping anagrafica, mapping listini, gerarchie e regole operative — sono ancora gestite tramite Google Sheet e poi importate nel database.</p><ul><li contenteditable="true">Aggiornamenti manuali</li><li contenteditable="true">Poche validazioni preventive</li><li contenteditable="true">Rischio di errori o incoerenze</li><li contenteditable="true">Ownership non pienamente governata</li></ul></div>
+    <div class="card"><h3 contenteditable="true">Impatto sul progetto</h3><p contenteditable="true">Il motore calcola, ma la manutenzione delle regole non è ancora abbastanza strutturata per diventare un processo scalabile, controllato e facilmente utilizzabile dal business.</p><div class="callout" style="font-size:18px;margin-top:14px" contenteditable="true">Per completare il progetto serve portare la configurazione dentro Numbers Core.</div></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="split-title"><div><div class="kicker">05 / Target model</div><h2 class="title" contenteditable="true">Target: Numbers Core come centro di governo</h2></div><span class="badge todo">Next phase</span></div>
+  <div class="flow">
+    <div class="node" contenteditable="true">Numbers Core UI<small>gestione configurazioni</small></div><div class="arrow">→</div>
+    <div class="node" contenteditable="true">Validazioni<small>controlli prima del salvataggio</small></div><div class="arrow">→</div>
+    <div class="node" contenteditable="true">Database config<small>single source of truth</small></div><div class="arrow">→</div>
+    <div class="node" contenteditable="true">Motore PayOut<small>calcolo automatico</small></div>
+  </div>
+  <div class="grid3">
+    <div class="card"><h3 contenteditable="true">Efficienza</h3><p contenteditable="true">Eliminazione progressiva dei Google Sheet come strumento operativo principale.</p></div>
+    <div class="card"><h3 contenteditable="true">Controllo</h3><p contenteditable="true">Validazioni su anagrafica, listini, gerarchie e ricezione payout prima che impattino il calcolo.</p></div>
+    <div class="card"><h3 contenteditable="true">Scalabilità</h3><p contenteditable="true">Regole mantenibili dal sistema, non da file manuali difficili da governare.</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="split-title"><div><div class="kicker">06 / Roadmap</div><h2 class="title" contenteditable="true">Timeline progetto: fatto e da fare</h2></div><span class="badge progress">Roadmap</span></div>
+  <div class="timeline">
+    <div class="steps">
+      <div class="step"><span class="dot doneD"></span><div class="date" contenteditable="true">Completato</div><h4 contenteditable="true">1. Data foundation</h4><p contenteditable="true">Unione e normalizzazione dei contratti CORALY/TW, mapping area, prodotto, stato e macro area pagamenti.</p></div>
+      <div class="step"><span class="dot doneD"></span><div class="date" contenteditable="true">Completato</div><h4 contenteditable="true">2. Calculation engine</h4><p contenteditable="true">Calcolo payout per Partner Pro, Spark, Area Diretta, Agency e Ciccone, con logiche per listini, profili, figure ed extra.</p></div>
+      <div class="step"><span class="dot doneD"></span><div class="date" contenteditable="true">Completato</div><h4 contenteditable="true">3. Reconciliation</h4><p contenteditable="true">Output finale con confronto tra importo calcolato e pagamento reale/importato, check pagamenti, check importo e delta.</p></div>
+      <div class="step"><span class="dot progD"></span><div class="date" contenteditable="true">Now</div><h4 contenteditable="true">4. Core configuration</h4><p contenteditable="true">Spostare mapping e configurazioni da Google Sheet a Numbers Core UI con validazioni.</p></div>
+      <div class="step"><span class="dot todoD"></span><div class="date" contenteditable="true">Next</div><h4 contenteditable="true">5. Payout intake</h4><p contenteditable="true">Importare in Core i dati payout generati dal motore PostgreSQL tramite querystring readonly.</p></div>
+      <div class="step"><span class="dot todoD"></span><div class="date" contenteditable="true">Final</div><h4 contenteditable="true">6. UX &amp; Go Live</h4><p contenteditable="true">Sezione PayOut in Numbers Core, controllo Pre-Billing e processo operativo standardizzato.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="split-title"><div><div class="kicker">07 / Detailed TODO</div><h2 class="title" contenteditable="true">TO-DO da sviluppare in Numbers Core</h2></div><span class="badge todo">Core UI</span></div>
+  <table class="table">
+    <thead><tr><th>Area</th><th>Deliverable</th><th>Obiettivo PM</th></tr></thead>
+    <tbody>
+      <tr><td contenteditable="true">Mapping Anagrafica</td><td contenteditable="true">Tabella con campi stile file mapping foglio anagrafica Airtable</td><td contenteditable="true">Centralizzare anagrafiche e regole agente.</td></tr>
+      <tr><td contenteditable="true">Identificativi</td><td contenteditable="true">Aggiungere ID venditore e ID di chi riceve pagamento / agenzia</td><td contenteditable="true">Rendere chiaro chi vende e chi deve ricevere il payout.</td></tr>
+      <tr><td contenteditable="true">Mapping Anagrafica Listini</td><td contenteditable="true">Gestione del mapping stile file “listino prodotti”</td><td contenteditable="true">Eliminare dipendenza operativa da Google Sheet.</td></tr>
+      <tr><td contenteditable="true">Ricezione dati PayOut</td><td contenteditable="true">Importare dati da PostgreSQL tramite querystring readonly</td><td contenteditable="true">Portare in Core il risultato del motore di calcolo.</td></tr>
+      <tr><td contenteditable="true">UX Sezione PayOut</td><td contenteditable="true">Creare interfaccia PayOut dentro Numbers Core</td><td contenteditable="true">Rendere consultabile il processo a business e Pre-Billing.</td></tr>
+      <tr><td contenteditable="true">Gerarchia Venditori</td><td contenteditable="true">Gestione strutturata della gerarchia venditori</td><td contenteditable="true">Supportare regole per agenti, agenzie, manager e destinatari pagamento.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="slide">
+  <div class="split-title"><div><div class="kicker">08 / Executive summary</div><h2 class="title" contenteditable="true">Messaggio finale per decisione</h2></div><span class="badge progress">Decision needed</span></div>
+  <div class="grid">
+    <div class="card"><h3 contenteditable="true">Dove siamo oggi</h3><p contenteditable="true">La parte più complessa — il motore di calcolo payout — è stata costruita. Il sistema è in grado di leggere i contratti, applicare le regole, calcolare gli importi e confrontarli con i pagamenti reali.</p></div>
+    <div class="card"><h3 contenteditable="true">Cosa serve ora</h3><p contenteditable="true">Serve trasformare la parte di configurazione e gestione operativa in un modulo strutturato dentro Numbers Core, così da eliminare Google Sheet, introdurre validazioni e rendere il processo governabile.</p></div>
+  </div>
+  <div class="callout" contenteditable="true">Target finale: un motore PayOut governato, dove Numbers Core gestisce configurazioni e validazioni, dbt calcola in modo consistente, e Pre-Billing riconcilia in modo trasparente importi calcolati e pagati.</div>
+</section>
+
+</div>
+<script>
+document.addEventListener('keydown',e=>{if(e.key==='s'&&(e.ctrlKey||e.metaKey)){e.preventDefault();const blob=new Blob([document.documentElement.outerHTML],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='mod_pagamenti_project_status_roadmap.html';a.click();}});
+</script>
+
+</body></html>
