@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>METRIX — Enterprise Product Presentation</title>
+<style>
+:root{
+  --ink:#0b1220;
+  --ink-2:#111827;
+  --slate:#334155;
+  --muted:#64748b;
+  --soft:#f8fafc;
+  --panel:#ffffff;
+  --line:#dbe3ee;
+  --line-2:#edf2f7;
+  --blue:#164c96;
+  --blue-2:#0f376e;
+  --gold:#b9872f;
+  --green:#157f5b;
+  --red:#b42338;
+  --amber:#b7791f;
+  --shadow:0 22px 70px rgba(15,23,42,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Aptos","Segoe UI",Arial,sans-serif;
+  background:#d9e2ef;
+  color:var(--ink);
+}
+.deck{
+  width:100%;
+}
+.slide{
+  position:relative;
+  width:100%;
+  min-height:100vh;
+  padding:54px 70px 46px;
+  background:
+    linear-gradient(90deg,rgba(22,76,150,.055),transparent 44%),
+    linear-gradient(180deg,#fff,#f7f9fc);
+  border-bottom:1px solid #cbd5e1;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.slide.dark{
+  background:
+    radial-gradient(circle at 86% 12%,rgba(185,135,47,.18),transparent 28%),
+    linear-gradient(135deg,#071123 0%,#0b1f3b 52%,#06101e 100%);
+  color:#fff;
+}
+.slide.dark .eyebrow,.slide.dark .section-label{color:#d8b36d}
+.slide.dark .lead{color:#c8d3e3}
+.slide.dark .footer{color:rgba(255,255,255,.62);border-color:rgba(255,255,255,.14)}
+.slide.dark .subtle{color:#cbd5e1}
+.slide.dark .chip{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#eef5ff}
+.slide.dark .card{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16);box-shadow:none;color:#fff}
+.slide.dark .card p,.slide.dark .card li{color:#cbd5e1}
+.slide.dark .module-title{color:#fff}
+.slide:before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:9px;
+  background:linear-gradient(180deg,var(--blue),var(--gold));
+}
+.slide-number{
+  position:absolute;
+  right:70px;
+  top:46px;
+  font-size:13px;
+  letter-spacing:.14em;
+  color:#94a3b8;
+  font-weight:700;
+}
+.dark .slide-number{color:rgba(255,255,255,.42)}
+.eyebrow{
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:.17em;
+  color:var(--blue);
+  font-weight:800;
+  margin-bottom:14px;
+}
+h1{
+  font-size:76px;
+  line-height:.92;
+  letter-spacing:-.055em;
+  margin:0 0 22px;
+  max-width:1120px;
+}
+h2{
+  font-size:46px;
+  line-height:1.04;
+  letter-spacing:-.035em;
+  margin:0 0 20px;
+  max-width:1120px;
+}
+h3{
+  font-size:20px;
+  line-height:1.2;
+  margin:0 0 10px;
+}
+p{margin:0}
+.lead{
+  font-size:22px;
+  line-height:1.45;
+  color:var(--slate);
+  max-width:980px;
+  margin-bottom:30px;
+}
+.subtle{
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.45;
+}
+.meta-row{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:22px;
+}
+.chip{
+  border:1px solid #cad6e6;
+  background:#fff;
+  color:#23334d;
+  border-radius:999px;
+  padding:9px 13px;
+  font-size:13px;
+  font-weight:700;
+}
+.grid{display:grid;gap:18px;width:100%}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.grid-5{grid-template-columns:repeat(5,1fr)}
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+.card.tight{padding:18px}
+.card.flat{box-shadow:none;background:#fbfdff}
+.card.accent{
+  border-top:4px solid var(--blue);
+}
+.card.gold{
+  border-top:4px solid var(--gold);
+}
+.card.green{
+  border-top:4px solid var(--green);
+}
+.card.red{
+  border-top:4px solid var(--red);
+}
+.card p,.card li{
+  color:var(--slate);
+  font-size:15.5px;
+  line-height:1.45;
+}
+ul{margin:8px 0 0;padding-left:19px}
+li{margin:6px 0}
+.executive-strip{
+  display:grid;
+  grid-template-columns:1.25fr .95fr .95fr;
+  gap:18px;
+  margin-top:8px;
+}
+.kpi{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+}
+.kpi-icon{
+  flex:0 0 42px;
+  height:42px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:#e9f1fb;
+  color:var(--blue);
+  font-weight:900;
+  border:1px solid #cbd9ea;
+}
+.dark .kpi-icon{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);color:#d8b36d}
+.module-title{
+  color:var(--ink);
+  font-size:20px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+.table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+.table th{
+  background:#eef4fb;
+  color:#0f376e;
+  text-align:left;
+  padding:13px 15px;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+}
+.table td{
+  padding:13px 15px;
+  border-top:1px solid var(--line-2);
+  font-size:15px;
+  color:#26364d;
+  vertical-align:top;
+}
+.table td strong{color:#0b1220}
+.dark .table{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18);box-shadow:none}
+.dark .table th{background:rgba(255,255,255,.10);color:#f5d99f}
+.dark .table td{border-color:rgba(255,255,255,.11);color:#d8e2f0}
+.dark .table td strong{color:#fff}
+.architecture{
+  display:grid;
+  grid-template-columns:1fr 120px 1fr 120px 1fr;
+  gap:14px;
+  align-items:center;
+  margin-top:14px;
+}
+.arch-box{
+  min-height:178px;
+  padding:22px;
+  border-radius:20px;
+  border:1px solid var(--line);
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+.arch-arrow{
+  height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--gold));
+  position:relative;
+}
+.arch-arrow:after{
+  content:"";
+  position:absolute;
+  right:-1px;top:-5px;
+  width:0;height:0;
+  border-left:10px solid var(--gold);
+  border-top:6px solid transparent;
+  border-bottom:6px solid transparent;
+}
+.pillar{
+  border-left:4px solid var(--blue);
+  padding:16px 18px;
+  background:#fff;
+  border-radius:0 16px 16px 0;
+  border-top:1px solid var(--line);
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.validation-grid{
+  display:grid;
+  grid-template-columns:1.15fr 1fr 1fr;
+  gap:18px;
+  align-items:stretch;
+}
+.validation-list .row{
+  display:grid;
+  grid-template-columns:155px 1fr;
+  gap:12px;
+  padding:13px 0;
+  border-bottom:1px solid var(--line-2);
+}
+.validation-list .row:last-child{border-bottom:none}
+.tag{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:28px;
+  border-radius:8px;
+  padding:5px 9px;
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  background:#eef4fb;
+  color:var(--blue-2);
+}
+.tag.green{background:#e6f5ee;color:#126b4e}
+.tag.gold{background:#fbf2df;color:#8a5d18}
+.tag.red{background:#fdecef;color:#9f1d33}
+.workflow{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-top:8px;
+}
+.workflow .card{
+  position:relative;
+  box-shadow:none;
+}
+.workflow .card:after{
+  content:"→";
+  position:absolute;
+  right:-16px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--gold);
+  font-size:28px;
+  font-weight:800;
+}
+.workflow .card:last-child:after{display:none}
+.num{
+  width:34px;height:34px;
+  border-radius:50%;
+  display:grid;place-items:center;
+  background:#eef4fb;
+  color:var(--blue);
+  border:1px solid #cbd9ea;
+  font-weight:900;
+  margin-bottom:12px;
+}
+
+
+.upgrade-ribbon{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  width:max-content;
+  max-width:100%;
+  border:1px solid rgba(103,232,249,.28);
+  background:rgba(103,232,249,.075);
+  color:#dff8ff;
+  border-radius:999px;
+  padding:10px 14px;
+  font-size:14px;
+  font-weight:800;
+  margin:-10px 0 16px;
+}
+.upgrade-ribbon span{
+  color:#67e8f9;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:12px;
+}
+
+.process-summary{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:18px;
+  margin:12px 0 10px;
+}
+.process-summary .statement{
+  padding:18px 20px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.075);
+}
+.process-summary .statement strong{
+  color:#fff;
+  display:block;
+  font-size:18px;
+  margin-bottom:6px;
+}
+.process-summary .statement span{
+  color:#cbd5e1;
+  font-size:14.5px;
+  line-height:1.42;
+}
+.process-lane{
+  margin-top:30px;
+}
+.process-title{
+  color:#67e8f9;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  font-size:13px;
+  font-weight:900;
+  margin:0 0 14px;
+}
+.process-track{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:28px;
+  align-items:start;
+  padding:6px 0 2px;
+}
+.process-track:before{
+  content:"";
+  position:absolute;
+  left:24px;
+  right:24px;
+  top:28px;
+  height:2px;
+  background:linear-gradient(90deg,rgba(103,232,249,.58),rgba(216,179,109,.62),rgba(167,139,250,.58));
+  opacity:.9;
+}
+.process-step{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:48px 1fr;
+  gap:14px;
+  align-items:start;
+  min-height:86px;
+}
+.process-dot{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.25);
+  box-shadow:0 14px 30px rgba(0,0,0,.25);
+}
+.process-dot.c1{background:linear-gradient(135deg,#22d3ee,#0891b2)}
+.process-dot.c2{background:linear-gradient(135deg,#2dd4bf,#0f766e)}
+.process-dot.c3{background:linear-gradient(135deg,#fbbf24,#b7791f)}
+.process-dot.c4{background:linear-gradient(135deg,#a78bfa,#6d5bd0)}
+.process-copy h3{
+  color:#fff;
+  font-size:17px;
+  margin:0 0 6px;
+  line-height:1.18;
+}
+.process-copy p{
+  color:#d8e2f0;
+  font-size:13.5px;
+  line-height:1.35;
+  margin:0;
+}
+.process-note{
+  margin-top:26px;
+  border:1px solid rgba(216,179,109,.34);
+  background:rgba(216,179,109,.08);
+  border-radius:18px;
+  padding:16px 18px;
+  color:#e7edf7;
+  font-size:15px;
+  line-height:1.45;
+}
+.process-note strong{color:#f5d99f}
+
+.value-map{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.value-row{
+  display:grid;
+  grid-template-columns:160px 1fr;
+  gap:16px;
+  padding:14px 0;
+  border-bottom:1px solid var(--line-2);
+}
+.value-row:last-child{border-bottom:none}
+.value-row strong{color:var(--ink)}
+.footer{
+  position:absolute;
+  left:70px;
+  right:70px;
+  bottom:28px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:#7b8799;
+  font-size:12.5px;
+  letter-spacing:.02em;
+}
+.progress{
+  position:fixed;
+  top:0;left:0;
+  height:4px;
+  width:0%;
+  background:linear-gradient(90deg,var(--blue),var(--gold));
+  z-index:10;
+}
+.controls{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:20;
+  display:flex;
+  gap:8px;
+}
+.controls button{
+  border:1px solid rgba(11,18,32,.18);
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(8px);
+  color:#0b1220;
+  border-radius:999px;
+  padding:10px 13px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(15,23,42,.15);
+}
+.print-note{
+  position:absolute;
+  right:70px;
+  bottom:78px;
+  color:#94a3b8;
+  font-size:12px;
+}
+.brand-mark{
+  display:inline-grid;
+  place-items:center;
+  width:46px;height:46px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#164c96,#0b1f3b);
+  color:#fff;
+  font-weight:900;
+  margin-bottom:24px;
+  box-shadow:0 14px 34px rgba(22,76,150,.28);
+}
+.dark .brand-mark{background:linear-gradient(135deg,#d8b36d,#8a5d18);color:#071123}
+.section-label{
+  color:var(--blue);
+  font-weight:900;
+  font-size:13px;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.two-column-copy{
+  columns:2;
+  column-gap:34px;
+}
+.checklist{
+  list-style:none;
+  padding:0;
+  margin:8px 0 0;
+}
+.checklist li{
+  position:relative;
+  padding-left:25px;
+  margin:10px 0;
+}
+.checklist li:before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  top:0;
+  color:var(--green);
+  font-weight:900;
+}
+@media(max-width:1100px){
+  .slide{padding:44px 30px 38px}
+  h1{font-size:54px}
+  h2{font-size:34px}
+  .lead{font-size:18px}
+  .grid-2,.grid-3,.grid-4,.grid-5,.executive-strip,.validation-grid,.workflow,.value-map,.architecture,.process-summary,.process-track{grid-template-columns:1fr}
+  .arch-arrow,.workflow .card:after{display:none}
+  .process-track:before{display:none}
+  .footer{left:30px;right:30px}
+  .slide-number{right:30px}
+  .controls{display:none}
+}
+@media print{
+  @page{size:16in 9in;margin:0}
+  body{background:#fff}
+  .slide{height:100vh;min-height:100vh;page-break-after:always;border-bottom:0}
+  .controls,.progress{display:none!important}
+  .card,.table,.arch-box{box-shadow:none}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="controls" aria-label="Presentation controls">
+  <button onclick="goSlide(-1)" title="Previous slide">←</button>
+  <button onclick="goSlide(1)" title="Next slide">→</button>
+  <button onclick="window.print()" title="Print or save as PDF">Print / PDF</button>
+</div>
+<main class="deck">
+
+<section class="slide dark" id="slide-1">
+  <div class="slide-number">01 / 16</div>
+  <div class="brand-mark">M</div>
+  <div class="eyebrow">Enterprise Product Presentation</div>
+  <h1>METRIX<br/>Operations & Workforce Platform</h1>
+  <p class="lead">A governed operating layer for contracts, campaigns, working hours, training hours, leaves, validations and access control.</p>
+  <div class="meta-row">
+    <span class="chip">Workforce Operations</span>
+    <span class="chip">Payroll Readiness</span>
+    <span class="chip">Governed Data Entry</span>
+    <span class="chip">Role-Based Access</span>
+    <span class="chip">Validation Controls</span>
+  </div>
+  <div class="footer"><span>METRIX — Confidential Internal Product Overview</span><span>Enterprise-ready narrative</span></div>
+</section>
+
+<section class="slide" id="slide-2">
+  <div class="slide-number">02 / 16</div>
+  <div class="eyebrow">Executive Summary</div>
+  <h2>METRIX turns workforce data entry into governed operational control.</h2>
+  <p class="lead">The product centralizes employee contracts, campaign records, working hours, training activity and leave visibility into one controlled interface, with validation rules and permission enforcement at both frontend and backend level.</p>
+  <div class="executive-strip">
+    <div class="card accent">
+      <div class="kpi"><div class="kpi-icon">01</div><div><h3>Operational source of truth</h3><p>Contracts, campaigns, hours and leaves are managed or surfaced through a single application layer instead of fragmented manual files.</p></div></div>
+    </div>
+    <div class="card gold">
+      <div class="kpi"><div class="kpi-icon">02</div><div><h3>Controlled change</h3><p>Users see only what their role, page access, campaign access and workforce visibility allow.</p></div></div>
+    </div>
+    <div class="card green">
+      <div class="kpi"><div class="kpi-icon">03</div><div><h3>Payroll-quality controls</h3><p>Critical errors are blocked before they become downstream payroll corrections.</p></div></div>
+    </div>
+  </div>
+  <div class="footer"><span>Executive summary</span><span>METRIX</span></div>
+</section>
+
+<section class="slide" id="slide-3">
+  <div class="slide-number">03 / 16</div>
+  <div class="eyebrow">Business Context</div>
+  <h2>Why the platform matters</h2>
+  <div class="grid grid-3">
+    <div class="card red"><h3>Before METRIX</h3><ul><li>Manual corrections across contracts, WH and leave data</li><li>Higher risk of duplicate or overlapping records</li><li>Unclear ownership of operational changes</li><li>Late discovery of payroll-impacting exceptions</li></ul></div>
+    <div class="card accent"><h3>METRIX control layer</h3><ul><li>Authenticated access to protected modules</li><li>Business rules applied before database writes</li><li>Permission-scoped views and exports</li><li>Exception reports for post-factum conflicts</li></ul></div>
+    <div class="card green"><h3>Target outcome</h3><ul><li>Cleaner workforce dataset</li><li>Fewer manual checks before payroll</li><li>Faster operational review</li><li>Clearer accountability and auditability</li></ul></div>
+  </div>
+  <div class="footer"><span>Business rationale</span><span>From data entry to control</span></div>
+</section>
+
+<section class="slide" id="slide-4">
+  <div class="slide-number">04 / 16</div>
+  <div class="eyebrow">Platform Scope</div>
+  <h2>Core product modules</h2>
+  <div class="grid grid-4">
+    <div class="card"><div class="module-title">Employee Contracts</div><p>Full CRUD, contract status, KPI dashboard, Dedicated / Shared rules and overlap protection.</p></div>
+    <div class="card"><div class="module-title">Campaign List</div><p>Managed registry of campaign records, active/deactivated logic and project source for dynamic WH pages.</p></div>
+    <div class="card"><div class="module-title">Working Hours</div><p>Project-based working hour entry with split shifts, breaks, overnight shifts, closures and agent/campaign selection.</p></div>
+    <div class="card"><div class="module-title">Training Tracker</div><p>Onboarding and training lifecycle tracking with filters, summary KPIs, pass status and production milestones.</p></div>
+    <div class="card"><div class="module-title">Training Hours</div><p>Daily Training/Nesting hour capture for trainees before production, governed by payment month and eligibility controls.</p></div>
+    <div class="card"><div class="module-title">Leaves Taken</div><p>Read-only leave explorer from Odoo, expanded by day and filterable by date, campaign, position and agent.</p></div>
+    <div class="card"><div class="module-title">WH Leave Conflicts</div><p>Exception report that identifies saved working hours overlapping leave records added later in HR systems.</p></div>
+    <div class="card"><div class="module-title">Settings & Governance</div><p>User permissions, role definitions, workplan closures, page access and campaign access administration.</p></div>
+  </div>
+  <div class="footer"><span>Product modules</span><span>Current platform coverage</span></div>
+</section>
+
+<section class="slide" id="slide-5">
+  <div class="slide-number">05 / 16</div>
+  <div class="eyebrow">Enterprise Architecture</div>
+  <h2>Controlled request lifecycle</h2>
+  <p class="lead">The application is designed so authentication, authorization and business validation happen before data is written or exposed to users.</p>
+  <div class="architecture">
+    <div class="arch-box"><div class="section-label">Identity</div><h3>Supabase Auth</h3><p class="subtle">Session validation, protected routes, role-aware application entry and service-role user listing for Super Admin governance.</p></div>
+    <div class="arch-arrow"></div>
+    <div class="arch-box"><div class="section-label">Application Control</div><h3>Next.js + API Guards</h3><p class="subtle">Frontend guards shape the UI; backend guards enforce page, campaign and editor permissions before database operations.</p></div>
+    <div class="arch-arrow"></div>
+    <div class="arch-box"><div class="section-label">Data Layer</div><h3>PostgreSQL Sources</h3><p class="subtle">Primary mvp_web schema for product data and secondary waf_odoo schema for leave visibility and leave-conflict checks.</p></div>
+  </div>
+  <div class="footer"><span>Architecture model</span><span>Auth → Guard → Validate → Persist / Display</span></div>
+</section>
+
+<section class="slide" id="slide-6">
+  <div class="slide-number">06 / 16</div>
+  <div class="eyebrow">Delivered Capability</div>
+  <h2>What is implemented today</h2>
+  <table class="table">
+    <thead><tr><th>Area</th><th>Implemented capability</th><th>Operational value</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Core platform</strong></td><td>Protected routes, Supabase login, role-aware sidebar and settings access.</td><td>Only authenticated and authorized users can operate inside the platform.</td></tr>
+      <tr><td><strong>Operational data</strong></td><td>Contracts, Campaign List, Training Tracker, Working Hours, Training Hours, Leaves and Conflicts.</td><td>Centralized operational view of the workforce lifecycle.</td></tr>
+      <tr><td><strong>Governance</strong></td><td>One role per user, page access overrides, campaign access and workplan closures.</td><td>Clear control of who can see or change operational data.</td></tr>
+      <tr><td><strong>Controls</strong></td><td>Business validations run on both frontend and backend write paths.</td><td>High-risk errors are blocked before persistence.</td></tr>
+      <tr><td><strong>Outputs</strong></td><td>KPI cards, charts, exception reporting, workforce timeline and CSV exports.</td><td>Management and operations can review controlled, filtered data quickly.</td></tr>
+    </tbody>
+  </table>
+  <div class="footer"><span>Current state</span><span>Implemented baseline</span></div>
+</section>
+
+<section class="slide" id="slide-7">
+  <div class="slide-number">07 / 16</div>
+  <div class="eyebrow">Access Governance</div>
+  <h2>Roles are already defined and enforced</h2>
+  <p class="lead">METRIX does not rely only on UI hiding. Access is enforced through role, page access, campaign access and backend guards.</p>
+  <div class="grid grid-4">
+    <div class="card"><h3>super_admin</h3><p>Full access, user governance, role assignment and manual overrides. Protected by OWNER_EMAIL fallback.</p></div>
+    <div class="card"><h3>admin</h3><p>Operational settings and full bypass for page/campaign access, without super_admin escalation rights.</p></div>
+    <div class="card"><h3>tl</h3><p>Role defaults like user; Working Hours only by assigned campaigns; workforce visibility limited to Agents.</p></div>
+    <div class="card"><h3>fm</h3><p>Working Hours only by assigned campaigns; visibility includes Agent and TL positions.</p></div>
+    <div class="card"><h3>csdm</h3><p>Working Hours only by assigned campaigns; visibility includes Agent, TL and FM positions.</p></div>
+    <div class="card"><h3>trainer</h3><p>Training Tracker editor by default; never has Working Hours access even if campaign access is assigned.</p></div>
+    <div class="card"><h3>user</h3><p>Dashboard and Leaves as viewer by default; Working Hours only through manual campaign assignment.</p></div>
+    <div class="card gold"><h3>Manual overrides</h3><p>Page and campaign overrides always win where applicable, managed through Users & Permissions.</p></div>
+  </div>
+  <div class="footer"><span>RBAC implemented</span><span>Role + Page Access + Campaign Access + Workforce Visibility</span></div>
+</section>
+
+<section class="slide" id="slide-8">
+  <div class="slide-number">08 / 16</div>
+  <div class="eyebrow">Permission Model</div>
+  <h2>Enterprise access model by layer</h2>
+  <div class="grid grid-3">
+    <div class="pillar"><h3>1. Page Access</h3><p class="subtle">Controls normal pages with editor, viewer or no_access. Viewer hides write actions and backend writes return 403.</p></div>
+    <div class="pillar"><h3>2. Campaign Access</h3><p class="subtle">Controls Working Hours and Training Hours. A user can be editor on one campaign and viewer or no_access on another.</p></div>
+    <div class="pillar"><h3>3. Workforce Visibility</h3><p class="subtle">Filters visible employees by position for TL, FM and CSDM after campaign access is already granted.</p></div>
+  </div>
+  <div class="grid grid-2" style="margin-top:18px">
+    <div class="card accent"><h3>Fail-closed for campaign access</h3><p>No campaign permission means no Working Hours access for non-admin users. Campaign assignment is manual and deliberate.</p></div>
+    <div class="card gold"><h3>Backend-enforced security</h3><p>Direct API calls cannot bypass frontend state. Write routes check editor-level permissions before accepting changes.</p></div>
+  </div>
+  <div class="footer"><span>Permission design</span><span>See, edit and export only what access allows</span></div>
+</section>
+
+<section class="slide" id="slide-9">
+  <div class="slide-number">09 / 16</div>
+  <div class="eyebrow">Validation Controls</div>
+  <h2>Macro validation map — what is protected</h2>
+  <p class="lead">Validation is not a single rule. It is a control framework covering data completeness, lifecycle consistency, date logic, eligibility, time conflicts, closures, leaves and permissions.</p>
+  <div class="validation-grid">
+    <div class="card accent">
+      <h3>Control categories</h3>
+      <ul class="checklist">
+        <li>Required fields and normalized values</li>
+        <li>Date ordering and valid lifecycle windows</li>
+        <li>Contract and campaign overlap prevention</li>
+        <li>Shared contract coverage by Dedicated contract</li>
+        <li>Working/Training Hours eligibility</li>
+        <li>Shift overlap and duplicate protection</li>
+        <li>Leave conflicts and closed-period blocking</li>
+        <li>Viewer/editor/no_access enforcement</li>
+      </ul>
+    </div>
+    <div class="card flat validation-list">
+      <h3>Master data controls</h3>
+      <div class="row"><span class="tag">Contracts</span><p>Required agent data, start/end logic, Dedicated overlap blocking and Shared coverage checks.</p></div>
+      <div class="row"><span class="tag">Campaigns</span><p>Required campaign metadata, lowercase project slug and overlapping campaign-period prevention.</p></div>
+      <div class="row"><span class="tag">Training</span><p>Training/Nesting/Production date validation and fixed phase/status/pass-status values.</p></div>
+    </div>
+    <div class="card flat validation-list">
+      <h3>Operational controls</h3>
+      <div class="row"><span class="tag green">Hours</span><p>Overnight shifts, split shifts, break handling, duplicate shift key and global overlap checks per agent.</p></div>
+      <div class="row"><span class="tag gold">Closure</span><p>Working Hours close by work date; Training Hours close by payment month.</p></div>
+      <div class="row"><span class="tag red">Leaves</span><p>WH/Training Hours save is blocked when leave exists, and conflict reports catch later HR updates.</p></div>
+    </div>
+  </div>
+  <div class="footer"><span>Validation layer</span><span>Frontend feedback + backend enforcement</span></div>
+</section>
+
+<section class="slide" id="slide-10">
+  <div class="slide-number">10 / 16</div>
+  <div class="eyebrow">Working Hours Control</div>
+  <h2>Working Hours is governed by contract, campaign, time and closure logic</h2>
+  <div class="workflow">
+    <div class="card"><div class="num">1</div><h3>Eligible agent</h3><p>Agent is selected from active contracts and merged with Training Tracker status where relevant.</p></div>
+    <div class="card"><div class="num">2</div><h3>Authorized campaign</h3><p>User must have campaign-level viewer/editor access for the project and campaign.</p></div>
+    <div class="card"><div class="num">3</div><h3>Valid shift</h3><p>Split and overnight shifts are allowed, but overlaps and invalid times are blocked.</p></div>
+    <div class="card"><div class="num">4</div><h3>Open period</h3><p>Workplan closure and month-close rules decide whether create/update/delete is allowed.</p></div>
+  </div>
+  <div class="grid grid-3" style="margin-top:18px">
+    <div class="card accent"><h3>Global overlap scope</h3><p>Overlap is checked by personal_id across projects and campaigns, not only inside the visible project.</p></div>
+    <div class="card gold"><h3>Training Tracker integration</h3><p>Pre-production trainees are hidden from Working Hours; post-production trainees need a valid contract to be editable.</p></div>
+    <div class="card green"><h3>Audit-safe behavior</h3><p>Read-only states are shown for missing contracts or closed payment/work periods; viewing remains possible where appropriate.</p></div>
+  </div>
+  <div class="footer"><span>Working Hours governance</span><span>Eligibility + authorization + validation + closure</span></div>
+</section>
+
+<section class="slide" id="slide-11">
+  <div class="slide-number">11 / 16</div>
+  <div class="eyebrow">Training Lifecycle</div>
+  <h2>Training Tracker and Training Hours extend governance into onboarding</h2>
+  <div class="grid grid-2">
+    <div class="card accent"><h3>Training Tracker</h3><ul><li>Full onboarding/training CRUD</li><li>Training, nesting and production milestones</li><li>Phase and pass-status lifecycle</li><li>Training Summary KPIs and charts</li><li>Payment Month confirmation context</li></ul></div>
+    <div class="card gold"><h3>Training Hours</h3><ul><li>Daily Training/Nesting hour capture before Production Start</li><li>Hours Type derived from Training Tracker windows</li><li>Primary Language required on save</li><li>Overlap checked against both training_hours and working_hours</li><li>Closed by Payment Month, not Work Date</li></ul></div>
+  </div>
+  <div class="card green" style="margin-top:18px"><h3>Why this matters</h3><p>Training activity becomes part of the same governance model as Working Hours, making pre-production effort visible, controlled and payroll-aware.</p></div>
+  <div class="footer"><span>Onboarding governance</span><span>Training Tracker + Training Hours</span></div>
+</section>
+
+<section class="slide" id="slide-12">
+  <div class="slide-number">12 / 16</div>
+  <div class="eyebrow">Exception Management</div>
+  <h2>METRIX surfaces issues that cannot be prevented at entry time</h2>
+  <p class="lead">Some operational conflicts happen after the original entry, especially when external HR systems are updated later. METRIX includes exception reporting to make those cases visible.</p>
+  <div class="grid grid-3">
+    <div class="card red"><h3>WH Leave Conflicts</h3><p>Finds saved Working Hours records that overlap leave records from Odoo after leave data is added or changed.</p></div>
+    <div class="card accent"><h3>Workforce Timeline</h3><p>Read-only day/week timeline of registered Working Hours, scoped by campaign access and workforce visibility.</p></div>
+    <div class="card gold"><h3>CSV Export</h3><p>Exports only currently filtered and permission-visible rows. Export does not bypass access restrictions.</p></div>
+  </div>
+  <div class="footer"><span>Exception management</span><span>Prevent where possible, detect where needed</span></div>
+</section>
+
+<section class="slide" id="slide-13">
+  <div class="slide-number">13 / 16</div>
+  <div class="eyebrow">Enterprise Value</div>
+  <h2>Value by stakeholder group</h2>
+  <div class="value-map">
+    <div class="card">
+      <div class="value-row"><strong>HR</strong><p>Cleaner contract lifecycle, leave visibility, training lifecycle control and approval-ready processes.</p></div>
+      <div class="value-row"><strong>Operations</strong><p>Governed visibility into agents, campaigns, shifts, exceptions and workforce timeline.</p></div>
+      <div class="value-row"><strong>Payroll</strong><p>Reduced risk of closed-period edits, leave conflicts and overlapping shifts before downstream processing.</p></div>
+    </div>
+    <div class="card">
+      <div class="value-row"><strong>Managers</strong><p>Role-specific access, campaign-scoped control and operational KPIs for faster review.</p></div>
+      <div class="value-row"><strong>Data & Analytics</strong><p>Structured, validated source tables and consistent audit fields for reporting and troubleshooting.</p></div>
+      <div class="value-row"><strong>Leadership</strong><p>One platform narrative: accountability, control, scalability and payroll-readiness.</p></div>
+    </div>
+  </div>
+  <div class="footer"><span>Stakeholder value</span><span>Governed operations at scale</span></div>
+</section>
+
+<section class="slide" id="slide-14">
+  <div class="slide-number">14 / 16</div>
+  <div class="eyebrow">Future Direction</div>
+  <h2>What comes next — without a timeline</h2>
+  <p class="lead">The future direction is not about adding more screens. It is about transforming post-factum corrections into controlled, auditable workflows.</p>
+  <div class="grid grid-4">
+    <div class="card accent"><h3>Contract versioning</h3><p>History, restore and undo when contract updates are wrong or need formal rollback.</p></div>
+    <div class="card gold"><h3>Leave / sick requests</h3><p>Request submission, HR approval queue and approved records that automatically block WH entry.</p></div>
+    <div class="card green"><h3>WFM shift import</h3><p>CSV import of planned shifts with validation, exception handling and controlled ownership.</p></div>
+    <div class="card red"><h3>Shift edit requests</h3><p>TL-requested changes reviewed through validation and approval rather than uncontrolled direct edits.</p></div>
+  </div>
+  <div class="card flat" style="margin-top:18px"><h3>Strategic principle</h3><p>Permissions decide what a user can see. Validations decide what is technically acceptable. Requests decide what a user can change.</p></div>
+  <div class="footer"><span>Strategic direction</span><span>No timeline included</span></div>
+</section>
+
+
+<section class="slide dark" id="slide-15">
+  <div class="slide-number">15 / 16</div>
+  <div class="eyebrow">Major Platform Upgrade</div>
+  <h2>Controlled change flows</h2>
+  <p class="lead">This upgrade makes the next step very clear: sensitive operational changes no longer happen as free edits. They move through a structured request, review, validation, approval and audit cycle.</p>
+  <div class="upgrade-ribbon"><span>Upgrade logic</span> Existing controls stay in place; a request lifecycle is added above them.</div>
+
+  <div class="process-lane">
+    <div class="process-title">Flow A · Leave / Sick approval</div>
+    <div class="process-track">
+      <div class="process-step"><div class="process-dot c1">1</div><div class="process-copy"><h3>Submit leave/sick request</h3><p>User or TL inserts dates, leave type and reason.</p></div></div>
+      <div class="process-step"><div class="process-dot c2">2</div><div class="process-copy"><h3>HR review</h3><p>HR approves or rejects the request with decision context.</p></div></div>
+      <div class="process-step"><div class="process-dot c3">3</div><div class="process-copy"><h3>Approved leave</h3><p>The request becomes an official approved leave record.</p></div></div>
+      <div class="process-step"><div class="process-dot c4">4</div><div class="process-copy"><h3>WH blocked</h3><p>Working Hours cannot be added on approved leave days.</p></div></div>
+    </div>
+  </div>
+
+  <div class="process-lane">
+    <div class="process-title">Flow B · Shift change approval</div>
+    <div class="process-track">
+      <div class="process-step"><div class="process-dot c1">1</div><div class="process-copy"><h3>CSV shift import</h3><p>WFM uploads the planned shift baseline.</p></div></div>
+      <div class="process-step"><div class="process-dot c2">2</div><div class="process-copy"><h3>TL request edit</h3><p>TL requests a change, not a full re-upload or uncontrolled edit.</p></div></div>
+      <div class="process-step"><div class="process-dot c3">3</div><div class="process-copy"><h3>Approval / validation</h3><p>Rules check access, overlap, closure and leave conflict.</p></div></div>
+      <div class="process-step"><div class="process-dot c4">4</div><div class="process-copy"><h3>Audit trail</h3><p>Original, requested and approved values are preserved.</p></div></div>
+    </div>
+  </div>
+
+  <div class="process-note"><strong>Executive message:</strong> METRIX moves from preventing invalid input to governing the full lifecycle of operational change.</div>
+  <div class="footer"><span>Governed change management</span><span>Request → Review → Validate → Approve → Audit</span></div>
+</section>
+
+<section class="slide dark" id="slide-16">
+  <div class="slide-number">16 / 16</div>
+  <div class="brand-mark">M</div>
+  <div class="eyebrow">Product Positioning</div>
+  <h2>METRIX is not a simple CRUD web app.</h2>
+  <p class="lead">It is an enterprise workforce operations control layer: designed to standardize processes, enforce rules, protect data quality and support payroll-ready operational workflows.</p>
+  <div class="grid grid-4" style="margin-top:10px">
+    <div class="card"><h3>Governed</h3><p>Access and actions controlled by role, page, campaign and workforce visibility.</p></div>
+    <div class="card"><h3>Validated</h3><p>Business rules enforced before high-risk data changes are accepted.</p></div>
+    <div class="card"><h3>Operational</h3><p>Built around how workforce teams actually manage contracts, shifts, training and leaves.</p></div>
+    <div class="card"><h3>Scalable</h3><p>Dynamic project pages and shared data models support new campaigns without rebuilding the product.</p></div>
+  </div>
+  <div class="footer"><span>METRIX — Operations & Workforce Platform</span><span>Enterprise presentation</span></div>
+</section>
+
+</main>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+function updateProgress(){
+  const max=document.body.scrollHeight-window.innerHeight;
+  const pct=max>0?(window.scrollY/max)*100:0;
+  document.getElementById('progress').style.width=pct+'%';
+}
+function currentIndex(){
+  let idx=0;
+  slides.forEach((s,i)=>{ if(s.getBoundingClientRect().top <= window.innerHeight*0.45) idx=i; });
+  return idx;
+}
+function goSlide(delta){
+  const idx=Math.min(Math.max(currentIndex()+delta,0),slides.length-1);
+  slides[idx].scrollIntoView({behavior:'smooth',block:'start'});
+}
+window.addEventListener('scroll',updateProgress,{passive:true});
+window.addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();goSlide(1)}
+  if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();goSlide(-1)}
+  if(e.key==='Home'){e.preventDefault();slides[0].scrollIntoView({behavior:'smooth'})}
+  if(e.key==='End'){e.preventDefault();slides[slides.length-1].scrollIntoView({behavior:'smooth'})}
+});
+updateProgress();
+</script>
+</body>
+</html>
